@@ -1,0 +1,67 @@
+@import 'variables.scss';
+
+body {
+    font-family: 'Merriweather';
+    h1 {
+        font-size: 100px;
+    }
+    h2 {
+        font-size: 70px;
+    }
+    p {
+        font-size: 20px;
+    }
+}
+
+#home-banner {
+    background-image: url('../background/img-1.jpg');
+    height: 700px;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+}
+#home-novedades {
+    font-family: 'Coolvetica Black';
+    height: 650px;
+    width: 100%;
+}
+#home-quienes-somos {
+    font-family: 'Coolvetica Black';
+    height: 650px;
+    width: 100%;
+    p {
+        margin-top: 50px;
+        width: 70%;
+        max-width: 1000px;
+    }
+}
+#home-contacto {
+    font-family: 'Coolvetica Black';
+    height: 850px;
+    width: 100%;
+    h2 {
+        margin-bottom: 100px;
+    }
+    p {
+        margin: 0;
+        font-size: 30px;
+    }
+}
+
+#relleno {
+    height: 300px;
+}
+
+#img-1 {
+    height: 500px;
+    width: auto;
+}
+#home-background-1 {
+    background-image: url('../img/img-1b.png');
+    background-size: cover;
+    background-position: center;
+}
+#home-map {
+    width: 950px;
+    height: 450px;
+}

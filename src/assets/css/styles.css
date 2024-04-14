@@ -1,0 +1,117 @@
+body {
+  font-family: 'Merriweather'; }
+  body h1 {
+    font-size: 100px; }
+  body h2 {
+    font-size: 70px; }
+  body p {
+    font-size: 20px; }
+
+#home-banner {
+  background-image: url("../background/img-1.jpg");
+  height: 700px;
+  width: 100%;
+  background-size: cover;
+  background-position: center; }
+
+#home-novedades {
+  font-family: 'Coolvetica Black';
+  height: 650px;
+  width: 100%; }
+
+#home-quienes-somos {
+  font-family: 'Coolvetica Black';
+  height: 650px;
+  width: 100%; }
+  #home-quienes-somos p {
+    margin-top: 50px;
+    width: 70%;
+    max-width: 1000px; }
+
+#home-contacto {
+  font-family: 'Coolvetica Black';
+  height: 850px;
+  width: 100%; }
+  #home-contacto h2 {
+    margin-bottom: 100px; }
+  #home-contacto p {
+    margin: 0;
+    font-size: 30px; }
+
+#relleno {
+  height: 300px; }
+
+#img-1 {
+  height: 500px;
+  width: auto; }
+
+#home-background-1 {
+  background-image: url("../img/img-1b.png");
+  background-size: cover;
+  background-position: center; }
+
+#home-map {
+  width: 950px;
+  height: 450px; }
+
+@font-face {
+  font-family: 'Coolvetica Regular';
+  src: url("../fonts/coolvetica-rg.otf") format("truetype"); }
+
+@font-face {
+  font-family: 'Coolvetica Black';
+  src: url("../fonts/CoolveticaBk-Regular.ttf") format("truetype");
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Coolvetica Regular Italic';
+  src: url("../fonts/coolvetica-rg-it.otf") format("truetype"); }
+
+.color-1 {
+  color: #e5dbf9; }
+
+.background-color-1 {
+  background-color: #e5dbf9; }
+
+.color-2 {
+  color: #d1bef4; }
+
+.background-color-2 {
+  background-color: #d1bef4; }
+
+.color-3 {
+  color: #804cd1; }
+
+.background-color-3 {
+  background-color: #804cd1; }
+
+.color-4 {
+  color: #4b2b78; }
+
+.background-color-4 {
+  background-color: #4b2b78; }
+
+.white-1 {
+  color: #ffffff; }
+
+.background-white-1 {
+  background-color: #ffffff; }
+
+.white-2 {
+  color: #f5f5f5; }
+
+.background-white-2 {
+  background-color: #f5f5f5; }
+
+.black-1 {
+  color: #0a0a0a; }
+
+.background-black-1 {
+  background-color: #0a0a0a; }
+
+.button-1 {
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  background-color: #d1bef4;
+  font-size: 20px; }

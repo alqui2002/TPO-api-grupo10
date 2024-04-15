@@ -3,8 +3,6 @@ import React from 'react';
 import Navbar from '../components/Navbar.jsx';
 import Footer from '../components/Footer.jsx';
 
-import img1 from '../assets/img/img-1b.png'
-
 const Home = () => {
     return (
         <div>
@@ -12,7 +10,7 @@ const Home = () => {
             <section id="home-banner" className="d-flex justify-content-center align-items-center">
                 <h1 className="white-1">Explora la música en vinilo</h1>
             </section>
-            <main id="home-novedades" className="background-color-1 d-flex flex-column justify-content-center align-items-center">
+            <main id="home-novedades" className="background-color-0 d-flex flex-column justify-content-center align-items-center">
                 <h2 className="black-1 fw-bold">Novedades</h2>
                 <div id="relleno"></div>
                 <button className="button-1 black-1">
@@ -31,16 +29,17 @@ const Home = () => {
                     </p>
                 </div>
             </section>
-            <section id="home-contacto" className="background-color-1 d-flex flex-column justify-content-center align-items-center">
+            <section id="home-contacto" className="background-color-0 d-flex flex-column justify-content-center align-items-center">
                 <h2 className="black-1 fw-bold">Contacto</h2>
-                <div className="d-flex justify-content-center align-items-center">
-                    <div className="h-100 d-flex justify-content-center align-items-center">
-                        <iframe id="home-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.2786785924445!2d-58.487919623391555!3d-34.62239725848646!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcc9ea024ee50f%3A0x571651f7460fee3!2sComuna%2011%2C%20Joaqu%C3%ADn%20V.%20Gonz%C3%A1lez%201125%2C%20C1407%20Cdad.%20Aut%C3%B3noma%20de%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1713135517454!5m2!1ses!2sar" loading="lazy"></iframe>
+                <div id="contacto-container" className="background-color-1 d-flex justify-content-center align-items-center p-5">
+                    <div className="d-flex justify-content-center align-items-center">
+                    <div>
+                        <iframe id="home-map" src="https://maps.google.com/maps?width=100%&amp;height=100%&amp;hl=en&amp;q=Joaquín V. González 1125 CABA&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe></div>
                     </div>
-                    <div className="d-flex flex-column justify-content-end align-items-start ms-5">
-                        <p>Teléfono: 4862-9345</p>
+                    <div className="d-flex flex-column justify-content-end align-items-start ms-5 h-100">
                         <p>contacto@spincity.com</p>
                         <p>Joaquín V. González 1125 CABA</p>
+                        <p>4862-9345</p>
                     </div>
                 </div>
             </section>

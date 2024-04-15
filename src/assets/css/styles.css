@@ -5,7 +5,7 @@ body {
   body h2 {
     font-size: 70px; }
   body p {
-    font-size: 20px; }
+    font-size: 22px; }
 
 #home-banner {
   background-image: url("../background/img-1.jpg");
@@ -33,17 +33,21 @@ body {
   height: 850px;
   width: 100%; }
   #home-contacto h2 {
-    margin-bottom: 100px; }
+    margin-bottom: 40px; }
   #home-contacto p {
+    font-weight: bold;
     margin: 0;
-    font-size: 30px; }
+    font-size: 24px; }
 
 #relleno {
-  height: 300px; }
+  height: 400px; }
 
 #img-1 {
   height: 500px;
   width: auto; }
+
+#contacto-container {
+  width: fit-content; }
 
 #home-background-1 {
   background-image: url("../img/img-1b.png");
@@ -51,7 +55,7 @@ body {
   background-position: center; }
 
 #home-map {
-  width: 950px;
+  width: 800px;
   height: 450px; }
 
 @font-face {
@@ -66,6 +70,12 @@ body {
 @font-face {
   font-family: 'Coolvetica Regular Italic';
   src: url("../fonts/coolvetica-rg-it.otf") format("truetype"); }
+
+.color-0 {
+  color: #f1eaff; }
+
+.background-color-0 {
+  background-color: #f1eaff; }
 
 .color-1 {
   color: #e5dbf9; }

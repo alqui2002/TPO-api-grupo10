@@ -2,6 +2,7 @@ import { Routes, Route, HashRouter } from "react-router-dom";
 
 import './assets/css/styles.css'
 
+
 import Home from './views/Home.jsx'
 import Admin from './views/Admin.jsx'
 import Cart from './views/Cart.jsx'

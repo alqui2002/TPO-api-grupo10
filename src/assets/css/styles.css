@@ -39,8 +39,6 @@ body {
     margin: 0;
     font-size: 24px; }
 
-#relleno {
-  height: 400px; }
 
 #img-1 {
   height: 500px;
@@ -125,3 +123,50 @@ body {
   border-radius: 3px;
   background-color: #d1bef4;
   font-size: 20px; }
+  :root {
+    --card-imageSrc: url(''); /* Define la variable para la imagen */
+    --card-title: ''; /* Define la variable para el título */
+    --card-subtitle: ''; /* Define la variable para el subtítulo */
+    --card-price: ''; /* Define la variable para el precio */
+  }
+  
+  .home-container-cards{
+    display: inline-flex;
+  }
+  .card {
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 20px;
+  }
+  
+  .card img {
+    width: 100%;
+    height: auto;
+    content: var(--card-imageSrc); /* Utiliza la variable para la imagen */
+  }
+  
+  .card-body {
+    padding: 20px;
+  }
+  
+  .card-title {
+    margin: 0;
+    font-size: 24px;
+    content: var(--card-title); /* Utiliza la variable para el título */
+  }
+  
+  .card-subtitle {
+    margin: 5px 0;
+    font-size: 18px;
+    content: var(--card-subtitle); /* Utiliza la variable para el subtítulo */
+  }
+  
+  .card-price {
+    margin: 10px 0 0;
+    font-size: 20px;
+    font-weight: bold;
+    content: var(--card-price); /* Utiliza la variable para el precio */
+  }
+  

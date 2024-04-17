@@ -209,6 +209,7 @@ nav img {
   height: 120px;
 }
 
+/* -----------------------------------------   PRODUCTOS   -----------------------------------------      */
 
 
 #prod-banner {
@@ -239,6 +240,8 @@ nav img {
 .prod-cards{
   column-count: 4; /* Number of columns you want */
   column-gap: 0px; /* Optional: Add gap between cards */
+  display: RUBY;
+  justify-content: center;
 }
 
 
@@ -256,3 +259,18 @@ nav img {
   width: 100%;
   background-size: cover;
   background-position: center; }
+
+  /* -----------------------------------------   ADmin   -----------------------------------------      */
+
+
+.Admin-form{
+  font-family: 'Coolvetica Black';
+
+}
+.Admin-form input{
+  margin: 10px;
+}
+
+.Admin-form h2{
+  
+}

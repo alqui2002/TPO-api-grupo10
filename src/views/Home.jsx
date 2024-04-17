@@ -1,11 +1,12 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 import Navbar from '../components/Navbar.jsx';
 import Footer from '../components/Footer.jsx';
 import Card from '../components/Card.jsx';
 import inRainbows from "../assets/img/Inrainbowscover.png";
 import rumours from "../assets/img/Rumourscover.png";
-import folklore from "../assets/img/folklorecover.png"
+import folklore from "../assets/img/folklorecover.png";
 
 
 
@@ -46,10 +47,11 @@ const Home = () => {
                     </div>
 
                 </div>
-                
-                <button className="button-1 black-1">
-                    Ver catálogo
-                </button>
+                <Link to = "/Products">
+                    <button className="button-1 black-1">
+                        Ver catálogo
+                    </button>
+                </Link>
             </main>
             <section id="home-quienes-somos" className="background-white-1 d-flex justify-content-center align-items-center">
                 <div id="home-background-1" className="w-50 h-100">
@@ -79,7 +81,6 @@ const Home = () => {
                 </div>
             </section>
             
-
             {Footer}
         </div>
     );

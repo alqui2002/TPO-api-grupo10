@@ -18,7 +18,10 @@ const Footer = () => {
                 <img src="logo.png" alt="Logo" />
             </div>
             <div className="copyright">
+                <h3>
                 © 2024 Tu Empresa. Todos los derechos reservados.
+
+                </h3>
             </div>
         </footer>
     );

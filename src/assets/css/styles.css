@@ -130,6 +130,8 @@ body {
     --card-price: ''; /* Define la variable para el precio */
   }
   
+  /* -----------------------------------------   CARDS   -----------------------------------------      */
+
   .home-container-cards{
     display: inline-flex;
   }
@@ -169,7 +171,9 @@ body {
     font-weight: bold;
     content: var(--card-price); /* Utiliza la variable para el precio */
   }
-  
+
+  /* -----------------------------------------   NAVEGADOR   -----------------------------------------      */
+
 nav {
   height: 120px;
   font-family: 'Coolvetica Black';
@@ -260,17 +264,32 @@ nav img {
   background-size: cover;
   background-position: center; }
 
-  /* -----------------------------------------   ADmin   -----------------------------------------      */
+  /* -----------------------------------------   ADMIN   -----------------------------------------      */
 
 
 .Admin-form{
   font-family: 'Coolvetica Black';
-
+  margin: 5%;
+  padding: 20px;
+  border-radius: 15px;
+  display: block;
 }
 .Admin-form input{
-  margin: 10px;
+  font-family: 'Coolvetica Black';
+  margin: 20px;
+  display: block;
+  padding: 5px;
+
 }
 
-.Admin-form h2{
-  
+.Admin-form form{
+  display: flow;
+}
+.Admin-form button{
+  background-color: #804cd1 ;
+  font-family: 'Coolvetica Black';
+  border: none;
+  color:white;
+  padding: 10px;
+  border-radius: 15px;
 }

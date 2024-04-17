@@ -15,18 +15,19 @@ const Admin = () => {
         e.preventDefault(); // Evitar comportamiento de envío predeterminado
         setProducts([...products, { ...newProduct, id: products.length + 1 }]);
         setNewProduct({ id: '', title: '', subtitle: '', price: '', imageSrc: '' });
+        console.log(newProduct)
     };
 
     
     return (
-        <section className="Admin-form">
-                <h2>Agregar Nuevo Producto</h2>
+        <section className="Admin-form background-color-1">
+                <h3>Agregar Nuevo Producto</h3>
                 <form>
                     <input type="text" name="title" placeholder="Título" value={newProduct.title} onChange={handleChange}/>
-                    <input type="text" name="subtitle" placeholder="Subtítulo" value={newProduct.subtitle} onChange={handleChange} />
+                    <input type="text" name="subtitle" placeholder="Artista" value={newProduct.subtitle} onChange={handleChange} />
                     <input type="text" name="price" placeholder="Precio" value={newProduct.price} onChange={handleChange}  />
                     <input type="text" name="imageSrc" placeholder="URL de la imagen" value={newProduct.imageSrc} onChange={handleChange} />
-                    <button type="submit" onClick={handleClick}>Agregar Producto</button>
+                    <button type="submit" onClick={handleClick}>Agregar Vinilo</button>
                 </form>
         </section>
     );

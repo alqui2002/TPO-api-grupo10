@@ -1,11 +1,23 @@
+@charset "UTF-8";
+#cart-banner {
+  background-image: url("../img/carrito-banner.jpeg");
+  height: 450px;
+  width: 100%;
+  background-size: cover;
+  background-position: center; }
+
 body {
   font-family: 'Merriweather'; }
   body h1 {
     font-size: 100px; }
   body h2 {
-    font-size: 70px; }
+    font-size: 70px;
+    transition: 0.5s ease; }
+  body h3 {
+    transition: 0.5s ease; }
   body p {
-    font-size: 22px; }
+    font-size: 24px;
+    transition: 0.5s ease; }
 
 #home-banner {
   background-image: url("../background/img-1.jpg");
@@ -16,15 +28,15 @@ body {
 
 #home-novedades {
   font-family: 'Coolvetica Black';
-  height: 650px;
+  height: 750px;
   width: 100%; }
 
 #home-quienes-somos {
   font-family: 'Coolvetica Black';
-  height: 650px;
+  height: 750px;
   width: 100%; }
   #home-quienes-somos p {
-    margin-top: 50px;
+    margin-top: 70px;
     width: 70%;
     max-width: 1000px; }
 
@@ -38,7 +50,6 @@ body {
     font-weight: bold;
     margin: 0;
     font-size: 24px; }
-
 
 #img-1 {
   height: 500px;
@@ -55,6 +66,162 @@ body {
 #home-map {
   width: 800px;
   height: 450px; }
+
+.home-container-cards {
+  display: inline-flex;
+  transition: 0.5s ease;
+  height: 430px; }
+
+.home-card {
+  width: 280px; }
+  .home-card .card:hover {
+    box-shadow: 0 5px 15px 5px rgba(0, 0, 0, 0.1);
+    transition: 0.5s ease;
+    width: 270px;
+    transform: translateY(-10px); }
+    .home-card .card:hover h2 {
+      font-size: 26px;
+      transition: 0.5s ease; }
+    .home-card .card:hover h3 {
+      font-size: 19px;
+      transition: 0.5s ease; }
+    .home-card .card:hover p {
+      font-size: 22px;
+      transition: 0.5s ease; }
+
+.card {
+  width: 250px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  transition: 0.5s ease; }
+
+.card img {
+  width: 100%;
+  height: auto;
+  content: var(--card-imageSrc);
+  /* Utiliza la variable para la imagen */ }
+
+.card-body {
+  padding: 20px; }
+
+.card-title {
+  margin: 0;
+  font-size: 24px;
+  content: var(--card-title);
+  /* Utiliza la variable para el título */ }
+
+.card-subtitle {
+  margin: 5px 0;
+  font-size: 18px;
+  content: var(--card-subtitle);
+  /* Utiliza la variable para el subtítulo */ }
+
+.card-price {
+  margin: 10px 0 0;
+  font-size: 20px;
+  font-weight: bold;
+  content: var(--card-price);
+  /* Utiliza la variable para el precio */ }
+
+#prod-banner {
+  background-image: url("../img/newWave.jpg");
+  height: 450px;
+  width: 100%;
+  background-size: cover;
+  background-position: center; }
+
+.prod-name {
+  font-family: 'Coolvetica Black';
+  display: flex; }
+
+.prod-categorias {
+  background-color: #d1bef4;
+  padding: 40px; }
+
+.prod-categorias :hover {
+  color: #804cd1; }
+
+.prod-productos {
+  padding-left: 40px;
+  padding-top: 40px; }
+  .prod-productos h3 {
+    padding-bottom: 20px; }
+  .prod-productos card {
+    margin-left: 0px;
+    margin-top: 20px; }
+
+.prod-cards {
+  column-count: 4;
+  column-gap: 0px;
+  display: RUBY;
+  justify-content: center; }
+
+nav {
+  position: fixed;
+  transition: 0.3s ease;
+  z-index: 100;
+  width: 100%;
+  height: 85px;
+  font-family: 'Coolvetica Black';
+  font-size: 25px;
+  display: flex;
+  justify-content: center; }
+
+.hidden-nav {
+  display: none;
+  background-color: rgba(255, 255, 255, 0.9); }
+
+.nav-links {
+  list-style-type: none;
+  display: flex;
+  margin: 0;
+  padding-top: 25px;
+  justify-content: center;
+  vertical-align: middle; }
+  .nav-links li {
+    margin-right: 25px;
+    transition: 0.5s ease; }
+  .nav-links a {
+    text-decoration: underline;
+    text-decoration-color: #d1bef4;
+    color: #0a0a0a;
+    transition: 0.5s ease; }
+  .nav-links li a:hover {
+    text-decoration: underline;
+    color: #804cd1;
+    transition: 0.5s ease; }
+
+nav img {
+  height: 120px; }
+
+.padding-nav {
+  height: 85px; }
+
+.padding-nav-title {
+  padding-top: 42.5px; }
+
+#admin-form {
+  font-family: 'Coolvetica Black';
+  margin: 5%;
+  padding: 20px;
+  border-radius: 15px;
+  display: block; }
+  #admin-form input {
+    font-family: 'Coolvetica Black';
+    margin: 20px;
+    display: block;
+    padding: 5px; }
+  #admin-form form {
+    display: flow; }
+  #admin-form button {
+    background-color: #804cd1;
+    font-family: 'Coolvetica Black';
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: 15px; }
 
 @font-face {
   font-family: 'Coolvetica Regular';
@@ -123,173 +290,3 @@ body {
   border-radius: 3px;
   background-color: #d1bef4;
   font-size: 20px; }
-  :root {
-    --card-imageSrc: url(''); /* Define la variable para la imagen */
-    --card-title: ''; /* Define la variable para el título */
-    --card-subtitle: ''; /* Define la variable para el subtítulo */
-    --card-price: ''; /* Define la variable para el precio */
-  }
-  
-  /* -----------------------------------------   CARDS   -----------------------------------------      */
-
-  .home-container-cards{
-    display: inline-flex;
-  }
-  .card {
-    width: 250px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    overflow: hidden;
-    margin: 20px;
-  }
-  
-  .card img {
-    width: 100%;
-    height: auto;
-    content: var(--card-imageSrc); /* Utiliza la variable para la imagen */
-  }
-  
-  .card-body {
-    padding: 20px;
-  }
-  
-  .card-title {
-    margin: 0;
-    font-size: 24px;
-    content: var(--card-title); /* Utiliza la variable para el título */
-  }
-  
-  .card-subtitle {
-    margin: 5px 0;
-    font-size: 18px;
-    content: var(--card-subtitle); /* Utiliza la variable para el subtítulo */
-  }
-  
-  .card-price {
-    margin: 10px 0 0;
-    font-size: 20px;
-    font-weight: bold;
-    content: var(--card-price); /* Utiliza la variable para el precio */
-  }
-
-  /* -----------------------------------------   NAVEGADOR   -----------------------------------------      */
-
-nav {
-  height: 120px;
-  font-family: 'Coolvetica Black';
-  font-size: 25px;
-  display: flex;
-  justify-content: center;
-}
-
-
-.nav-links {
-  list-style-type: none;
-  display: flex;
-  margin:0;
-  padding-top: 30px;
-  justify-content: center;
-  vertical-align: middle;
-
-}
-
-.nav-links li {
-  margin-right: 25px;
-}
-
-.nav-links li a {
-  text-decoration: none;
-  color: white;
-  color:black;
-
-}
-
-.nav-links li a:hover {
-  text-decoration: underline;
-  color: #4b2b78;
-}
-
-nav img {
-  height: 120px;
-}
-
-/* -----------------------------------------   PRODUCTOS   -----------------------------------------      */
-
-
-#prod-banner {
-  background-image: url("../img/newWave.jpg");
-  height: 450px;
-  width: 100%;
-  background-size: cover;
-  background-position: center; }
-
-.prod-name{
-  font-family: 'Coolvetica Black';
-  display: flex;
-}
-.prod-categorias{
-  background-color:#d1bef4;
-  padding: 40px;
-}
-.prod-categorias :hover{
-  color:#804cd1;
-}
-.prod-productos{
-  padding-left: 40px;
-  padding-top:40px ;
-}
-.prod-productos h3{
-  padding-bottom: 20px;
-}
-.prod-cards{
-  column-count: 4; /* Number of columns you want */
-  column-gap: 0px; /* Optional: Add gap between cards */
-  display: RUBY;
-  justify-content: center;
-}
-
-
-.prod-productos .card{
-  margin-left: 0px;
-  margin-top: 20px;
-}
-
-/* -----------------------------------------   CARRITO   -----------------------------------------      */
-
-
-#cart-banner {
-  background-image: url("../img/carrito-banner.jpeg");
-  height: 450px;
-  width: 100%;
-  background-size: cover;
-  background-position: center; }
-
-  /* -----------------------------------------   ADMIN   -----------------------------------------      */
-
-
-.Admin-form{
-  font-family: 'Coolvetica Black';
-  margin: 5%;
-  padding: 20px;
-  border-radius: 15px;
-  display: block;
-}
-.Admin-form input{
-  font-family: 'Coolvetica Black';
-  margin: 20px;
-  display: block;
-  padding: 5px;
-
-}
-
-.Admin-form form{
-  display: flow;
-}
-.Admin-form button{
-  background-color: #804cd1 ;
-  font-family: 'Coolvetica Black';
-  border: none;
-  color:white;
-  padding: 10px;
-  border-radius: 15px;
-}

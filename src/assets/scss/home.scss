@@ -7,12 +7,16 @@ body {
     }
     h2 {
         font-size: 70px;
+        transition: 0.5s ease;
+    }
+    h3 {
+        transition: 0.5s ease;
     }
     p {
-        font-size: 22px;
+        font-size: 24px;
+        transition: 0.5s ease;
     }
 }
-
 #home-banner {
     background-image: url('../background/img-1.jpg');
     height: 700px;
@@ -22,15 +26,15 @@ body {
 }
 #home-novedades {
     font-family: 'Coolvetica Black';
-    height: 650px;
+    height: 750px;
     width: 100%;
 }
 #home-quienes-somos {
     font-family: 'Coolvetica Black';
-    height: 650px;
+    height: 750px;
     width: 100%;
     p {
-        margin-top: 50px;
+        margin-top: 70px;
         width: 70%;
         max-width: 1000px;
     }
@@ -48,9 +52,6 @@ body {
         font-size: 24px;
     }
 }
-#relleno {
-    height: 400px;
-}
 #img-1 {
     height: 500px;
     width: auto;
@@ -66,4 +67,62 @@ body {
 #home-map {
     width: 800px;
     height: 450px;
+}
+.home-container-cards{
+    display: inline-flex;
+    transition: 0.5s ease;
+    height: 430px;
+}
+.home-card {
+    width: 280px;
+    .card:hover {
+        box-shadow: 0 5px 15px 5px rgba(0, 0, 0, 0.1);
+        transition: 0.5s ease;
+        width: 270px;
+        transform: translateY(-10px);
+        h2 {
+            font-size: 26px;
+            transition: 0.5s ease;
+        }
+        h3 {
+            font-size: 19px;
+            transition: 0.5s ease;
+        }
+        p {
+            font-size: 22px;
+            transition: 0.5s ease;
+        }
+    }
+}
+.card {
+    width: 250px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    text-align: center;
+    transition: 0.5s ease;
+}
+.card img {
+    width: 100%;
+    height: auto;
+    content: var(--card-imageSrc); /* Utiliza la variable para la imagen */
+}
+.card-body {
+    padding: 20px;
+}
+.card-title {
+    margin: 0;
+    font-size: 24px;
+    content: var(--card-title); /* Utiliza la variable para el título */
+}
+.card-subtitle {
+    margin: 5px 0;
+    font-size: 18px;
+    content: var(--card-subtitle); /* Utiliza la variable para el subtítulo */
+}
+.card-price {
+    margin: 10px 0 0;
+    font-size: 20px;
+    font-weight: bold;
+    content: var(--card-price); /* Utiliza la variable para el precio */
 }

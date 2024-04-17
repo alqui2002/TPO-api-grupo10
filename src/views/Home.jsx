@@ -1,27 +1,24 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-import Navbar from '../components/Navbar.jsx';
 import Footer from '../components/Footer.jsx';
 import Card from '../components/Card.jsx';
 import inRainbows from "../assets/img/Inrainbowscover.png";
 import rumours from "../assets/img/Rumourscover.png";
 import folklore from "../assets/img/folklorecover.png";
-
-
+import civilizacion from "../assets/img/lospiojoscivilizacion.webp";
 
 const Home = () => {
     return (
         <div>
-            {Navbar}
             <section id="home-banner" className="d-flex justify-content-center align-items-center">
-                <h1 className="white-1">Explora la música en vinilo</h1>
+                <div className="padding-nav"></div>
+                <h1 className="white-1 padding-nav-title">Explora la música en vinilo</h1>
             </section>
             <main id="home-novedades" className="background-color-0 d-flex flex-column justify-content-center align-items-center">
                 <h2 className="black-1 fw-bold">Novedades</h2>
-                <div id="relleno"></div>
-                <div className='home-container-cards'>
-                    <div className="home-card">
+                <div className='home-container-cards d-flex justify-content-center align-items-center'>
+                    <div className="home-card d-flex justify-content-center align-items-center">
                         <Card
                             imageSrc={inRainbows}
                             title="In Rainbows"
@@ -29,7 +26,7 @@ const Home = () => {
                             price="80.000"
                         />
                     </div>
-                    <div className="home-card">
+                    <div className="home-card d-flex justify-content-center align-items-center">
                         <Card
                             imageSrc={rumours}
                             title="Rumours"
@@ -37,7 +34,7 @@ const Home = () => {
                             price="85.000"
                         />
                     </div>
-                    <div className="home-card">
+                    <div className="home-card d-flex justify-content-center align-items-center">
                         <Card
                             imageSrc={folklore}
                             title="Folklore"
@@ -45,10 +42,17 @@ const Home = () => {
                             price="90.000"
                         />
                     </div>
-
+                    <div className="home-card d-flex justify-content-center align-items-center">
+                        <Card
+                            imageSrc={civilizacion}
+                            title="Civilización"
+                            subtitle="Los Piojos"
+                            price="70.000"
+                        />
+                    </div>
                 </div>
-                <Link to = "/Products">
-                    <button className="button-1 black-1">
+                <Link to = "/Products" className="mb-5">
+                    <button className="button-1 black-1 mb-4 mt-3">
                         Ver catálogo
                     </button>
                 </Link>
@@ -81,7 +85,6 @@ const Home = () => {
                 </div>
             </section>
             <Footer/>
-            
         </div>
     );
 }

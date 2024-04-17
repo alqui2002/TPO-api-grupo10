@@ -5,7 +5,6 @@ import logo from "../assets/img/logo.png";
 const Navbar = () => {
     return (
         <nav className='background-color-2'>
-        
             <ul className='nav-links color-3' >
                 <li><Link to='/'>Inicio</Link></li>
                 <li><Link to='/Products'>Productos</Link></li>

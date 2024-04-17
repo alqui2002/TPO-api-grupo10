@@ -17,10 +17,9 @@ const Admin = () => {
         setNewProduct({ id: '', title: '', subtitle: '', price: '', imageSrc: '' });
         console.log(newProduct)
     };
-
     
     return (
-        <section className="Admin-form background-color-1">
+        <section id="admin-form" className="background-color-1">
                 <h3>Agregar Nuevo Producto</h3>
                 <form>
                     <input type="text" name="title" placeholder="Título" value={newProduct.title} onChange={handleChange}/>

@@ -213,7 +213,7 @@ nav img {
 
 #prod-banner {
   background-image: url("../img/newWave.jpg");
-  height: 400px;
+  height: 450px;
   width: 100%;
   background-size: cover;
   background-position: center; }
@@ -247,3 +247,12 @@ nav img {
   margin-top: 20px;
 }
 
+/* -----------------------------------------   CARRITO   -----------------------------------------      */
+
+
+#cart-banner {
+  background-image: url("../img/carrito-banner.jpeg");
+  height: 450px;
+  width: 100%;
+  background-size: cover;
+  background-position: center; }

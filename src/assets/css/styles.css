@@ -134,7 +134,7 @@ body {
     display: inline-flex;
   }
   .card {
-    width: 300px;
+    width: 250px;
     border: 1px solid #ccc;
     border-radius: 8px;
     overflow: hidden;
@@ -170,3 +170,80 @@ body {
     content: var(--card-price); /* Utiliza la variable para el precio */
   }
   
+nav {
+  height: 120px;
+  font-family: 'Coolvetica Black';
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+}
+
+
+.nav-links {
+  list-style-type: none;
+  display: flex;
+  margin:0;
+  padding-top: 30px;
+  justify-content: center;
+  vertical-align: middle;
+
+}
+
+.nav-links li {
+  margin-right: 25px;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: white;
+  color:black;
+
+}
+
+.nav-links li a:hover {
+  text-decoration: underline;
+  color: #4b2b78;
+}
+
+nav img {
+  height: 120px;
+}
+
+
+
+#prod-banner {
+  background-image: url("../img/newWave.jpg");
+  height: 400px;
+  width: 100%;
+  background-size: cover;
+  background-position: center; }
+
+.prod-name{
+  font-family: 'Coolvetica Black';
+  display: flex;
+}
+.prod-categorias{
+  background-color:#d1bef4;
+  padding: 40px;
+}
+.prod-categorias :hover{
+  color:#804cd1;
+}
+.prod-productos{
+  padding-left: 40px;
+  padding-top:40px ;
+}
+.prod-productos h3{
+  padding-bottom: 20px;
+}
+.prod-cards{
+  column-count: 4; /* Number of columns you want */
+  column-gap: 0px; /* Optional: Add gap between cards */
+}
+
+
+.prod-productos .card{
+  margin-left: 0px;
+  margin-top: 20px;
+}
+

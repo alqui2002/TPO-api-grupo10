@@ -2,6 +2,8 @@ import { Routes, Route, HashRouter } from "react-router-dom";
 
 import './assets/css/styles.css'
 
+import Navbar from "./components/Navbar.jsx";
+
 import Home from './views/Home.jsx'
 import Admin from './views/Admin.jsx'
 import Cart from './views/Cart.jsx'
@@ -10,6 +12,7 @@ import Products from './views/Products.jsx'
 function App() {
   return (
     <HashRouter>
+    <Navbar />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/admin' element={<Admin />} />

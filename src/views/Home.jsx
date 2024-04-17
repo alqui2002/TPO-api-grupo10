@@ -3,6 +3,10 @@ import React from 'react';
 import Navbar from '../components/Navbar.jsx';
 import Footer from '../components/Footer.jsx';
 import Card from '../components/Card.jsx';
+import inRainbows from "../assets/img/Inrainbowscover.png";
+import rumours from "../assets/img/Rumourscover.png";
+import folklore from "../assets/img/folklorecover.png"
+
 
 
 const Home = () => {
@@ -16,20 +20,28 @@ const Home = () => {
                 <h2 className="black-1 fw-bold">Novedades</h2>
                 <div id="relleno"></div>
                 <div className='home-container-cards'>
-                    <div className="home">
+                    <div className="home-card">
                         <Card
-                            imageSrc="../assets/img/Inrainbowscover.png"
+                            imageSrc={inRainbows}
                             title="In Rainbows"
                             subtitle="Radiohead"
-                            price="80.000$"
+                            price="80.000"
                         />
                     </div>
-                    <div className="home">
+                    <div className="home-card">
                         <Card
-                            imageSrc="ruta/a/la/imagen.jpg"
-                            title="Nombre del Producto"
-                            subtitle="Descripción corta del producto"
-                            price="29.99"
+                            imageSrc={rumours}
+                            title="Rumours"
+                            subtitle="Fleetwood Mac"
+                            price="85.000"
+                        />
+                    </div>
+                    <div className="home-card">
+                        <Card
+                            imageSrc={folklore}
+                            title="Folklore"
+                            subtitle="Taylor Swift"
+                            price="90.000"
                         />
                     </div>
 

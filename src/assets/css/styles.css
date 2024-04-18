@@ -77,8 +77,7 @@ body {
   .home-card .card:hover {
     box-shadow: 0 5px 15px 5px rgba(0, 0, 0, 0.1);
     transition: 0.5s ease;
-    width: 270px;
-    transform: translateY(-10px); }
+    width: 270px; }
     .home-card .card:hover h2 {
       font-size: 26px;
       transition: 0.5s ease; }
@@ -96,6 +95,10 @@ body {
   overflow: hidden;
   text-align: center;
   transition: 0.5s ease; }
+
+.prod-productos .card {
+  text-align: left;
+  margin: 20px; }
 
 .card img {
   width: 100%;
@@ -289,4 +292,11 @@ nav img {
   border: none;
   border-radius: 3px;
   background-color: #d1bef4;
-  font-size: 20px; }
+  font-size: 20px;
+  text-decoration: none;
+  transition: 0.3s ease; }
+
+.button-1:hover {
+  color: #4b2b78;
+  background-color: #cbb5f3;
+  transition: 0.2s ease; }

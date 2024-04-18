@@ -18,9 +18,9 @@ const Products = () => {
         { id: 1, title: 'In Rainbows',subtitle:'Radiohead',imageSrc:inRainbows,price: '80.000', genero:"Alternativo"},
         { id: 2, title: 'Folklore', subtitle:'Taylor Swift',imageSrc:folklore,price: '90.000',genero:'indie Folk' },
         { id: 3, title: 'Rumours', subtitle:'Fleetwood Mac',  imageSrc:rumours,price: '85.000', genero:'Rock' },
-        { id: 4, title: 'Civilización', subtitle:'Los Piojos',  imageSrc:civilizacion,price: '70.000' , genero:'Nacional'},
-        { id: 5, title: "Red (Taylor's Version)", subtitle:'Taylor Swift',  imageSrc:redTS,price: '90.000',genero:'Pop' },
-        { id: 6, title: "Red (Taylor's Version)", subtitle:'Taylor Swift',  imageSrc:redTS,price: '90.000', genero:'Pop' },
+        { id: 4, title: 'Civilización', subtitle:'Los Piojos',  imageSrc:civilizacion,price: '75.000' , genero:'Nacional'},
+        { id: 5, title: "Red (Taylor's Version)", subtitle:'Taylor Swift',  imageSrc:redTS,price: '70.000',genero:'Pop' },
+        { id: 6, title: "Red (Taylor's Version)", subtitle:'Taylor Swift',  imageSrc:redTS,price: '70.000', genero:'Pop' },
     ];
     
     return (

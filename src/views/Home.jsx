@@ -51,11 +51,7 @@ const Home = () => {
                         />
                     </div>
                 </div>
-                <Link to = "/Products" className="mb-5">
-                    <button className="button-1 black-1 mb-4 mt-3">
-                        Ver catálogo
-                    </button>
-                </Link>
+                <Link to = "/Products" className="button-1 black-1 mb-4 mt-3">Ver catálogo</Link>
             </main>
             <section id="home-quienes-somos" className="background-white-1 d-flex justify-content-center align-items-center">
                 <div id="home-background-1" className="w-50 h-100">

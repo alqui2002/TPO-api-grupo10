@@ -74,4 +74,11 @@
     border-radius: 3px;
     background-color: $color-2;
     font-size: 20px;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+.button-1:hover{
+    color: $color-4;
+    background-color: $color-25;
+    transition: 0.2s ease;
 }

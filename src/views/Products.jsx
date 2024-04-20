@@ -8,22 +8,24 @@ import ttps from "../assets/img/ttps.jpeg"
 
 import Card from '../components/Card.jsx';
 
-const Products = () => {
+
+const Products = ({productosSeleccionados, setProductosSeleccionados}) => {
+
+
     const products = [
-        { id: 1, title: 'In Rainbows',subtitle:'Radiohead',imageSrc:inRainbows,price: '80.000', genero:"Alternativo"},
-        { id: 2, title: 'Folklore', subtitle:'Taylor Swift',imageSrc:folklore,price: '90.000',genero:'indie Folk' },
-        { id: 3, title: 'Rumours', subtitle:'Fleetwood Mac',  imageSrc:rumours,price: '85.000', genero:'Rock' },
-        { id: 4, title: 'Civilización', subtitle:'Los Piojos',  imageSrc:civilizacion,price: '75.000' , genero:'Nacional'},
-        { id: 5, title: "Red (Taylor's Version)", subtitle:'Taylor Swift',  imageSrc:redTS,price: '70.000',genero:'Pop' },
-        { id: 6, title: "The Tortured Poets Department: The Anthology ", subtitle:'Taylor Swift',  imageSrc:ttps,price: '100.000', genero:'Pop' },
+        { id: 1, title: 'In Rainbows',subtitle:'Radiohead',imageSrc:inRainbows,price: 80.000, genero:"Alternativo"},
+        { id: 2, title: 'Folklore', subtitle:'Taylor Swift',imageSrc:folklore,price: 90.000,genero:'indie Folk' },
+        { id: 3, title: 'Rumours', subtitle:'Fleetwood Mac',  imageSrc:rumours,price: 85.000, genero:'Rock' },
+        { id: 4, title: 'Civilización', subtitle:'Los Piojos',  imageSrc:civilizacion,price: 75.000 , genero:'Nacional'},
+        { id: 5, title: "Red (Taylor's Version)", subtitle:'Taylor Swift',  imageSrc:redTS,price: 70.000,genero:'Pop' },
+        { id: 6, title: "The Tortured Poets Department: The Anthology ", subtitle:'Taylor Swift',  imageSrc:ttps,price: 100.000, genero:'Pop' },
     ];
 
-    const [productosSeleccionados, setProductos] = useState([]);
     const [filtroGenero, setFiltroGenero] = useState(null);
 
     const handleProductClick = (product) => {
-        setProductos([...productosSeleccionados, product]); 
-        console.log("Product clicked:", product)
+        setProductosSeleccionados([...productosSeleccionados, product]); 
+        console.log("Product clicked:", productosSeleccionados)
     };
 
     const filtrarPorGenero = (genero) => {
@@ -42,13 +44,13 @@ const Products = () => {
                 <h1 className="white-1 padding-nav-title">Vinilos</h1>
             </section>
             <main className='prod-name'>
-                <side className="prod-categorias">
+                <aside className="prod-categorias">
                     <h3 onClick={() => filtrarPorGenero('Rock')}>Rock</h3>
                     <h3 onClick={() => filtrarPorGenero('Alternativo')}>Alternativo</h3>
                     <h3 onClick={() => filtrarPorGenero('Pop')}>Pop</h3>
                     <h3 onClick={() => filtrarPorGenero('Nacional')}>Nacional</h3>
                     <h4 onClick={() => filtrarPorGenero('')}>Ver Todo</h4>
-                </side>
+                </aside>
                 <section className='prod-productos'>
                     <h3>Nuestros vinilos más escuchados: </h3>
                     <div className='prod-cards'>

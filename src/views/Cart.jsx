@@ -8,31 +8,24 @@ import civilizacion from "../assets/img/lospiojoscivilizacion.webp";
 import redTS from "../assets/img/redcover.jpeg";
 
 
-const Cart = () => {
-    const [seleccionEnvio, setEnvio] = useState(''); 
+const Cart = ({ productosSeleccionados, setProductosSeleccionados }) => {
+    const [seleccionEnvio, setEnvio] = useState('seleccionarEnvio'); 
     const [descuentos, setDescuentos] = useState(false);
 
 
-    const [cartItems, setCart] = useState([
-        { id: 1, title: 'In Rainbows', subtitle: 'Radiohead', imageSrc: inRainbows, price: '80.000', genero: "Alternativo" },
-        { id: 2, title: 'Folklore', subtitle: 'Taylor Swift', imageSrc: folklore, price: '90.000', genero: 'indie Folk' },
-        { id: 3, title: 'Rumours', subtitle: 'Fleetwood Mac', imageSrc: rumours, price: '85.000', genero: 'Rock' },
-        { id: 4, title: 'Civilización', subtitle: 'Los Piojos', imageSrc: civilizacion, price: '75.000', genero: 'Nacional' },
-        { id: 5, title: "Red (Taylor's Version)", subtitle: 'Taylor Swift', imageSrc: redTS, price: '70.000', genero: 'Pop' },
-    ]);
-
+    
     const alertaEliminado = () => {
         alert("Producto Eliminado");
-        console.log (cartItems)
+        console.log (productosSeleccionados)
     };
 
     const handleClick = (productId) => {
-        setCart(prevItems => prevItems.filter(item => item.id !== productId));
+        setProductosSeleccionados(prevItems => prevItems.filter(item => item.id !== productId));
     };
 
     const compraExitosa = () => {
         alert("Compra realizada con exito!");
-        console.log (cartItems)
+        console.log (productosSeleccionados)
     };
 
 
@@ -40,7 +33,7 @@ const Cart = () => {
         compraExitosa();
     };
 
-    const totalPrice = cartItems.reduce((acc, curr) => acc + parseInt(curr.price), 0);
+    const totalPrice = productosSeleccionados.reduce((acc, curr) => acc + parseInt(curr.price), 0);
 
 
     return (
@@ -59,7 +52,7 @@ const Cart = () => {
                         <span></span> 
                     </div>
                     <div>
-                        {cartItems.map(product => (
+                        {productosSeleccionados.map(product => (
                             <ProductList
                                 key={product.id}
                                 imageSrc={product.imageSrc}
@@ -77,11 +70,13 @@ const Cart = () => {
                         <select value={seleccionEnvio} onChange={(e) => setEnvio(e.target.value)}>
                             <option value="retiro">Retiro en Sucursal</option>
                             <option value="envio">Envío a domicilio</option>
+                            <option value="seleccionarEnvio">Seleccionar envio...</option>
+
                         </select>
                 </div>
                 <div className="cart-total">
                     <p> Descuentos: $ {(descuentos ? 7500 : 0)}.000</p> 
-                    <p> Total: ${totalPrice + (seleccionEnvio === 'retiro' ? 0 : 7500)}</p>
+                    <p> Total: ${totalPrice + (seleccionEnvio === 'envio' ? 7500 : 0)}.000</p>
                     <button onClick={handleCompra}>Finalizar Compra</button>
                 </div>
                 

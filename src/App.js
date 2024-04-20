@@ -40,19 +40,22 @@ function App() {
     };
   }, [isNavHidden, prevScrollPos,]);
 
-  
-  const [itemsCarrito, setCarrito] = useState([]);
+  const [productosSeleccionados, setProductosSeleccionados] = useState([]);
   return (
     <HashRouter>
       <Navbar />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/admin' element={<Admin />} />
-        <Route path='/cart' element={<Cart />} />
-        <Route path='/products' element={<Products cartItems={itemsCarrito} />} />
-      </Routes>
+        <Route path='/cart' element={<Cart productosSeleccionados={productosSeleccionados} setProductosSeleccionados={setProductosSeleccionados}/>} />
+        <Route
+          path='/products'
+          element={<Products productosSeleccionados={productosSeleccionados} setProductosSeleccionados={setProductosSeleccionados} />}
+        />      </Routes>
     </HashRouter>
   );
+  
 }
+
 
 export default App;

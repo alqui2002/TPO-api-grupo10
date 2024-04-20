@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Footer from '../components/Footer.jsx';
 
 
 const Admin = () => {
@@ -29,7 +30,11 @@ const Admin = () => {
                     <button type="submit" onClick={handleClick}>Agregar Vinilo</button>
                 </form>
         </section>
+        
+
+        
     );
+
 }
 
 export default Admin;

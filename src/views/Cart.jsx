@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ProductList from "../components/ProductList.jsx";
+import Footer from '../components/Footer.jsx';
 
 import inRainbows from "../assets/img/Inrainbowscover.png";
 import rumours from "../assets/img/Rumourscover.png";
@@ -81,6 +82,7 @@ const Cart = ({ productosSeleccionados, setProductosSeleccionados }) => {
                 </div>
                 
             </div>
+            <Footer/>
         </div>
     );
 }

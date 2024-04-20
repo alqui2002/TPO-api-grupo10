@@ -6,6 +6,7 @@ import civilizacion from "../assets/img/lospiojoscivilizacion.webp";
 import redTS from "../assets/img/redcover.jpeg";
 import ttps from "../assets/img/ttps.jpeg"
 
+import Footer from '../components/Footer.jsx';
 import Card from '../components/Card.jsx';
 
 
@@ -67,7 +68,7 @@ const Products = ({productosSeleccionados, setProductosSeleccionados}) => {
                     </div>
                 </section>
             </main>
-            
+            <Footer/>
         </div>
     );
 }

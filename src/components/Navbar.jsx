@@ -8,7 +8,7 @@ const Navbar = () => {
             <ul className='nav-links color-3' >
                 <li><Link to='/'>Inicio</Link></li>
                 <li><Link to='/Products'>Productos</Link></li>
-                <li><Link to='/Cart'>Carrito</Link></li>
+                <li><Link to={{ pathname: '/Cart' }}>Carrito</Link></li>
                 <li><Link to='/Admin'>Admin</Link></li>
             </ul>
         </nav>

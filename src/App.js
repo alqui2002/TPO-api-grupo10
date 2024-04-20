@@ -40,6 +40,8 @@ function App() {
     };
   }, [isNavHidden, prevScrollPos,]);
 
+  
+  const [itemsCarrito, setCarrito] = useState([]);
   return (
     <HashRouter>
       <Navbar />
@@ -47,7 +49,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/admin' element={<Admin />} />
         <Route path='/cart' element={<Cart />} />
-        <Route path='/products' element={<Products />} />
+        <Route path='/products' element={<Products cartItems={itemsCarrito} />} />
       </Routes>
     </HashRouter>
   );

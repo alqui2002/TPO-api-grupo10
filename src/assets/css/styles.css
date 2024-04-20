@@ -141,7 +141,8 @@ body {
 
 .prod-categorias {
   background-color: #d1bef4;
-  padding: 40px; }
+  padding: 40px;
+  margin-bottom: 0; }
 
 .prod-categorias :hover {
   color: #804cd1; }
@@ -300,3 +301,114 @@ nav img {
   color: #4b2b78;
   background-color: #cbb5f3;
   transition: 0.2s ease; }
+
+
+
+.productList {
+  
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 30px;
+  background-color:#f5f5f5;
+  height: 170px;
+  border-radius: 20px;
+
+}
+
+.productList img{
+  width: 150px;
+  height: 150px;
+  margin-right: 30px;
+  margin-left: 30px;
+  border-radius: 100px;
+}
+
+.productList .delete-button{
+  margin-left: auto;
+  margin-right:5% ;
+  border:none;
+  width: 3%;
+  border-radius: 200px;
+  height: 30px;
+  background-color: #804cd1;
+  color: #ffffff;
+}
+
+.productList-body {
+  display: flex;
+  align-items: flex-start;
+  width:100%;
+}
+
+.productList-body span{
+  margin-right: 50px;
+}
+.productList-body p{
+  padding: 20px;
+  width: 35%;
+}
+
+.productList-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: bold;
+  margin-left: 210px;
+  padding: 10px 0;
+  border-bottom: 1px solid #ccc;
+}
+.productList-header span{
+  width: 330px;
+}
+
+.cart{
+  font-family: 'Coolvetica Regular';
+
+}
+.cart-items{
+  margin: 5%;
+  margin-right: 7%;
+
+}
+
+
+.cart-checkout{
+  margin: 5%;
+  margin-top: 20px;
+  margin-left: 6%;
+  background-color:#cbb5f3;
+  padding: 10px;
+  border-radius: 20px;
+  display: flex;
+}
+
+.cart-envio {
+  padding: 20px;
+}
+
+.cart-total {
+  padding: 20px;
+  float: right;
+  margin-left: auto;
+  width: 300px;
+}
+
+.cart-total button {
+  width: 100%;
+  border-radius: 5px;
+  padding: 10px 20px;
+  background-color:#804cd1;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.cart-envio select{
+  border-radius: 5px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+}

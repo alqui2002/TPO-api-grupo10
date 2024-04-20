@@ -183,8 +183,7 @@ body {
   
   .nav-links {
     display: flex;
-    /* justify-content: center; */
-    margin: auto; /* Centra los elementos horizontalmente */
+    margin: auto;
     list-style-type: none;
     padding: 0;
   }

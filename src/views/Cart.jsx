@@ -82,7 +82,6 @@ const Cart = ({ productosSeleccionados, setProductosSeleccionados }) => {
                 </div>
                 
             </div>
-            <Footer/>
         </div>
     );
 }

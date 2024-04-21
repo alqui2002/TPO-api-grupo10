@@ -72,7 +72,6 @@ const Products = ({productosSeleccionados, setProductosSeleccionados}) => {
                     </div>
                 </section>
             </main>
-            <Footer/>
         </div>
     );
 }

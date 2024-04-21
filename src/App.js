@@ -4,6 +4,8 @@ import React, { useEffect, useState } from 'react';
 import './assets/css/styles.css'
 
 import Navbar from "./components/Navbar.jsx";
+import Footer from "./components/Footer.jsx";
+
 
 import Home from './views/Home.jsx'
 import Admin from './views/Admin.jsx'
@@ -52,6 +54,7 @@ function App() {
           path='/products'
           element={<Products productosSeleccionados={productosSeleccionados} setProductosSeleccionados={setProductosSeleccionados} />}
         />      </Routes>
+        <Footer />
     </HashRouter>
   );
   

@@ -83,7 +83,7 @@ const Home = () => {
                 <div id="home-background-1" className="w-50 h-100"></div>
                 <div className="w-50 d-flex flex-column justify-content-center align-items-center">
                     <h2 className="black-1 fw-bold">¿Quiénes somos?</h2>
-                    <p>Desde 1967 nos dedicamos a preservar la magia intemporal de la música a través de uno de los formatos más queridos y auténticos: el vinilo. Con una pasión arraigada por el sonido analógico y la nostalgia de las portadas artísticas, ofrecemos una cuidadosa selección de álbumes que abarcan géneros, décadas y emociones.</p>
+                    <p>Desde 1967 nos dedicamos a preservar la magia atemporal de la música a través de uno de los formatos más queridos y auténticos: el vinilo. Con una pasión arraigada por el sonido analógico y la nostalgia de las portadas artísticas, ofrecemos una cuidadosa selección de álbumes que abarcan géneros, décadas y emociones.</p>
                 </div>
             </section>
             <section id="home-contacto" className="background-color-0 d-flex flex-column justify-content-center align-items-center">
@@ -101,6 +101,7 @@ const Home = () => {
                     </div>
                 </div>
             </section>
+            <div className="footer-padding background-color-0"></div>
             <Footer />
         </div>
     );

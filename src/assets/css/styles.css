@@ -1,5 +1,6 @@
 @charset "UTF-8";
 #cart-banner {
+  font-family: 'Merriweather';
   background-image: url("../img/carrito-banner.jpeg");
   height: 450px;
   width: 100%;
@@ -277,7 +278,7 @@ body {
   color: #f1eaff; }
 
 .background-color-0 {
-  background-color: #afa9bc; }
+  background-color: #f1eaff; }
 
 .color-1 {
   color: #e5dbf9; }
@@ -391,6 +392,7 @@ body {
   margin-left: 210px;
   padding: 10px 0;
   border-bottom: 1px solid #ccc;
+  font-size: 25px;
 }
 .productList-header span{
   width: 330px;
@@ -464,6 +466,11 @@ body {
   font-family: 'Coolvetica Black';
 }
 
+.footer-padding{
+  height: 50px;
+
+}
+
 .social-icons a {
   margin: 0 10px;
 }
@@ -490,8 +497,15 @@ body {
   border-radius: 0;
   background-color: transparent;
   border: none;
+  filter: invert(100%);
 }
 
 .carousel-indicators {
   display: none;
 }
+
+.padding-nav {
+  height: 85px; }
+
+.padding-nav-title {
+  padding-top: 42.5px; }

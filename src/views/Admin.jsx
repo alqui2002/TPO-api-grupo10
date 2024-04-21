@@ -21,6 +21,7 @@ const Admin = () => {
     
     return (
         <div className='admin'>
+            <div className='padding-nav'></div>
         <section id="admin-form" className="background-color-1">
                 <h3>Agregar Nuevo Producto</h3>
                 <form>

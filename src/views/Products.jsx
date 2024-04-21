@@ -6,6 +6,7 @@ import civilizacion from "../assets/img/lospiojoscivilizacion.webp";
 import redTS from "../assets/img/redcover.jpeg";
 import ttps from "../assets/img/ttps.jpeg"
 import uvst from "../assets/img/unVeranoSinTi.jpeg"
+import ohms from "../assets/img/ohms.jpg"
 
 import Footer from '../components/Footer.jsx';
 import Card from '../components/Card.jsx';
@@ -21,7 +22,8 @@ const Products = ({productosSeleccionados, setProductosSeleccionados}) => {
         { id: 4, title: 'Civilización', subtitle:'Los Piojos',  imageSrc:civilizacion,price: 75.000 , genero:'Nacional'},
         { id: 5, title: "Red (Taylor's Version)", subtitle:'Taylor Swift',  imageSrc:redTS,price: 70.000,genero:'Pop' },
         { id: 6, title: "The Tortured Poets Department: The Anthology ", subtitle:'Taylor Swift',  imageSrc:ttps,price: 100.000, genero:'Pop' },
-        { id: 7, title: "Un Verano Sin Ti ", subtitle:'Bad Bunny',  imageSrc:uvst,price: 120.000, genero:'Pop' },
+        { id: 7, title: "Un Verano Sin Ti", subtitle:'Bad Bunny',  imageSrc:uvst,price: 120.000, genero:'Pop' },
+        { id: 8, title: "Ohms", subtitle:'Deftones',  imageSrc:ohms,price: 120.000, genero:'Rock' },
     ];
 
     const [filtroGenero, setFiltroGenero] = useState(null);

@@ -20,6 +20,7 @@ const Admin = () => {
     };
     
     return (
+        <div className='admin'>
         <section id="admin-form" className="background-color-1">
                 <h3>Agregar Nuevo Producto</h3>
                 <form>
@@ -30,7 +31,8 @@ const Admin = () => {
                     <button type="submit" onClick={handleClick}>Agregar Vinilo</button>
                 </form>
         </section>
-        
+        <Footer/>
+        </div>
 
         
     );

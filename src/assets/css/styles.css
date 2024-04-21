@@ -69,6 +69,7 @@ body {
   height: 450px; }
 
 .home-container-cards {
+  padding: 60px;
   display: inline-flex;
   gap: 35px;
   transition: 0.5s ease;
@@ -479,3 +480,18 @@ body {
   width: 100px;
 }
 
+.carousel-control-prev, .carousel-control-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: auto;
+  height: auto;
+  margin: 0;
+  border-radius: 0;
+  background-color: transparent;
+  border: none;
+}
+
+.carousel-indicators {
+  display: none;
+}

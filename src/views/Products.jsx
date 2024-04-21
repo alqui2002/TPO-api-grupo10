@@ -30,7 +30,7 @@ const Products = ({ productosSeleccionados, setProductosSeleccionados }) => {
 
     const [filtroGenero, setFiltroGenero] = useState(null);
     const [filtrados, setFiltrados] = useState([]);
-    const [newProduct, setNewProduct] = useState({ title: '' });
+    const [newProduct, setNewProduct] = useState({ query: '' });
 
     const handleProductClick = (product) => {
         setProductosSeleccionados([...productosSeleccionados, product]);
@@ -43,11 +43,11 @@ const Products = ({ productosSeleccionados, setProductosSeleccionados }) => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setNewProduct({ ...newProduct, [name]: value });
-    };
-
-    const handleSearch = () => {
-        const filtrados = products.filter(product => product.title.toLowerCase().includes(newProduct.title.toLowerCase()));
+        setNewProduct({ [name]: value });
+        const filtrados = products.filter(product =>
+            product.title.toLowerCase().includes(value.toLowerCase()) ||
+            product.subtitle.toLowerCase().includes(value.toLowerCase())
+        );
         setFiltrados(filtrados);
         setFiltroGenero(null); // Reiniciar filtro de género al hacer una búsqueda
     };
@@ -61,13 +61,11 @@ const Products = ({ productosSeleccionados, setProductosSeleccionados }) => {
                 <h1 className="white-1 padding-nav-title">Vinilos</h1>
             </section>
             <main className='prod-name'>
-                <div className='prod-busqueda'>
-                    <h3>Filtrar Productos</h3>
-                    <input type="text" name="title" placeholder="Título" value={newProduct.title} onChange={handleChange} />
-                    <button type='button' onClick={handleSearch}>Buscar Álbum</button>
-                </div>
                 <div className='prod-contenido'>
                     <aside className="prod-categorias">
+                        <div className='prod-busqueda'>
+                            <input type="text" name="query" placeholder="Título o Artista" value={newProduct.query || ''} onChange={handleChange} />
+                        </div>
                         <h3 onClick={() => filtrarPorGenero('Rock')}>Rock</h3>
                         <h3 onClick={() => filtrarPorGenero('Alternativo')}>Alternativo</h3>
                         <h3 onClick={() => filtrarPorGenero('Pop')}>Pop</h3>

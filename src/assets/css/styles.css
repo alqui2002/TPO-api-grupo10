@@ -519,19 +519,25 @@ body {
 
 .prod-busqueda{
   margin-bottom: 4%;
-  padding: 2%;
-  background-color: #F5F5F5;
+  background-color: #d1bef4;
   border-radius: 20px;
   align-content: center;
+  display: flex;
 }
+
 .prod-busqueda input{
   border-color:#000000; 
   border-style: solid;
   font-size: 16px;
+  margin-right: 10px;
+}
+
+.prod-busqueda input:hover{
+  cursor:text;
 }
 
 .prod-busqueda button{
-  margin: 30px;
+
 }
   
 .prod-busqueda :focus {

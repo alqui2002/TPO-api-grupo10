@@ -2,6 +2,7 @@ import { Routes, Route, HashRouter } from "react-router-dom";
 import React, { useEffect, useState } from 'react';
 
 import './assets/css/styles.css'
+import Login from './views/Login.jsx'
 
 import Navbar from "./components/Navbar.jsx";
 
@@ -47,6 +48,8 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/admin' element={<Admin />} />
+        <Route path='/login' element={<Login />} />
+
         <Route path='/cart' element={<Cart productosSeleccionados={productosSeleccionados} setProductosSeleccionados={setProductosSeleccionados}/>} />
         <Route
           path='/products'

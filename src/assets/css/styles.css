@@ -1,5 +1,6 @@
 @charset "UTF-8";
 #cart-banner {
+  font-family: 'Merriweather';
   background-image: url("../img/carrito-banner.jpeg");
   height: 450px;
   width: 100%;
@@ -69,6 +70,7 @@ body {
   height: 450px; }
 
 .home-container-cards {
+  padding: 60px;
   display: inline-flex;
   gap: 35px;
   transition: 0.5s ease;
@@ -162,7 +164,14 @@ body {
 
 .prod-name {
   font-family: 'Coolvetica Black';
-  display: flex; }
+  display: flex; 
+  flex-direction: column;
+}
+
+.prod-contenido{
+  display: flex;
+  flex-direction: row;
+}
 
 .prod-categorias {
   background-color: #d1bef4;
@@ -255,7 +264,7 @@ body {
   color: #f1eaff; }
 
 .background-color-0 {
-  background-color: #afa9bc; }
+  background-color: #f1eaff; }
 
 .color-1 {
   color: #e5dbf9; }
@@ -370,6 +379,7 @@ body {
   margin-left: 210px;
   padding: 10px 0;
   border-bottom: 1px solid #ccc;
+  font-size: 25px;
 }
 .productList-header span{
   width: 330px;
@@ -444,6 +454,11 @@ body {
   font-family: 'Coolvetica Black';
 }
 
+.footer-padding{
+  height: 50px;
+
+}
+
 .social-icons a {
   margin: 0 10px;
 }
@@ -460,7 +475,56 @@ body {
   width: 100px;
 }
 
+.carousel-control-prev, .carousel-control-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: auto;
+  height: auto;
+  margin: 0;
+  border-radius: 0;
+  background-color: transparent;
+  border: none;
+  filter: invert(100%);
+}
 
+.carousel-indicators {
+  display: none;
+}
+
+.padding-nav {
+  height: 85px; }
+
+.padding-nav-title {
+  padding-top: 42.5px; }
+
+.prod-busqueda{
+  margin-bottom: 4%;
+  background-color: #d1bef4;
+  border-radius: 20px;
+  align-content: center;
+  display: flex;
+}
+
+.prod-busqueda input{
+  border-color:#000000; 
+  border-style: solid;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.prod-busqueda input:hover{
+  cursor:text;
+}
+
+.prod-busqueda button{
+
+}
+  
+.prod-busqueda :focus {
+  border-color:#ccc;
+  box-shadow: 0 0 5px #808080; 
+}
 
 /*-------------------------------------------------ADMIN-------------------------------------------------*/
 

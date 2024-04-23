@@ -46,7 +46,7 @@ const Cart = ({ productosSeleccionados, setProductosSeleccionados }) => {
             </section>
             
             <div className='cart-items'>
-                    <div className="productList-header">
+                    <div className="product-list-header d-flex align-items-center justify-content-center fw-bold">
                         <span>Título</span>
                         <span>Subtítulo</span>
                         <span>Precio</span>
@@ -65,7 +65,7 @@ const Cart = ({ productosSeleccionados, setProductosSeleccionados }) => {
                         ))}
                     </div>
             </div>
-            <div className='cart-checkout'>
+            <div className='cart-checkout d-flex'>
                 <div className="cart-envio">
                         <h3>Seleccionar tipo de envío:</h3>
                         <select value={seleccionEnvio} onChange={(e) => setEnvio(e.target.value)}>

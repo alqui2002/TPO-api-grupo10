@@ -55,7 +55,7 @@ const Admin = () => {
     return (
         <div className='admin'>
                 <div className='padding-nav'></div>
-        <section className='admin-filter'>
+        <section className='admin-filter '>
                 <h3>Filtrar Productos</h3>
                 <input type="text" name="title" placeholder="Título" value={newProduct.title} onChange={handleChange}/>
                 <button type='button' onClick={handleSearch}> Buscar Albúm</button>

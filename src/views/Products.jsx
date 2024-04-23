@@ -63,7 +63,7 @@ const Products = ({ productosSeleccionados, setProductosSeleccionados }) => {
             <main className='prod-name'>
                 <div className='prod-contenido'>
                     <aside className="prod-categorias">
-                        <div className='prod-busqueda'>
+                        <div className='prod-busqueda d-flex align-items-center'>
                             <input type="text" name="query" placeholder="Título o Artista" value={newProduct.query || ''} onChange={handleChange} />
                         </div>
                         <h3 onClick={() => filtrarPorGenero('Rock')}>Rock</h3>

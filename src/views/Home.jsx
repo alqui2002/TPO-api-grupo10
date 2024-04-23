@@ -102,7 +102,7 @@ const Home = () => {
                 </div>
             </section>
             <div className="footer-padding background-color-0"></div>
-            <Footer />
+            
         </div>
     );
 }

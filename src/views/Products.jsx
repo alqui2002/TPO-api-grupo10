@@ -89,7 +89,7 @@ const Products = ({ productosSeleccionados, setProductosSeleccionados }) => {
                     </section>
                 </div>
             </main>
-            <Footer />
+            
         </div>
     );
 }

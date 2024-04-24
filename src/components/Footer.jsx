@@ -1,10 +1,6 @@
 import React from 'react';
-import instagram from '../assets/img/instagram.png';
-import twitter from '../assets/img/twitter.png';
-import tiktok from '../assets/img/tiktok.png';
 import logo from '../assets/img/logo.png';
 import { Link } from 'react-router-dom';
-
 
 const Footer = () => {
 
@@ -19,8 +15,8 @@ const Footer = () => {
                     <h3 className="black-1">Links Utiles:</h3>
                     <div id="footer-links" className="d-flex flex-column">
                         <Link to='/' className="footer-link text-decoration-none black-1" onClick={() => window.scrollTo(0, 0)}>Inicio</Link>
-                        <Link to='/Products' className="footer-link text-decoration-none black-1">Productos</Link>
-                        <Link to={{ pathname: '/Cart' }} className="footer-link text-decoration-none black-1">Carrito</Link>
+                        <Link to='/Products' className="footer-link text-decoration-none black-1" onClick={() => window.scrollTo(0, 0)}>Productos</Link>
+                        <Link to={{ pathname: '/Cart' }} className="footer-link text-decoration-none black-1" onClick={() => window.scrollTo(0, 0)}>Carrito</Link>
                     </div>
                 </div>
                 <div id="footer-redes" className="footer-section d-flex flex-column align-items-end ms-3">

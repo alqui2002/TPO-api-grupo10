@@ -46,7 +46,7 @@ const Cart = ({ productosSeleccionados, setProductosSeleccionados }) => {
             </section>
             
             <div className='cart-items'>
-                    <div className="product-list-header d-flex align-items-center justify-content-center fw-bold">
+                    <div className="product-list-header d-flex align-items-center fw-bold ps-2">
                         <span>Título</span>
                         <span>Subtítulo</span>
                         <span>Precio</span>

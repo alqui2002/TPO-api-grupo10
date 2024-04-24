@@ -1,5 +1,12 @@
 /* -------- GENERAL --------- */
-
+@keyframes dissapear {
+  0% { opacity: 100% }
+  100% { opacity: 0% }
+}
+@keyframes apear {
+  0% { opacity: 0% }
+  100% { opacity: 100% }
+}
 @font-face {
   font-family: 'Coolvetica Regular';
   src: url("../fonts/coolvetica-rg.otf") format("truetype"); }
@@ -10,6 +17,9 @@
 @font-face {
   font-family: 'Coolvetica Regular Italic';
   src: url("../fonts/coolvetica-rg-it.otf") format("truetype"); }
+
+.disappear { animation: disappear 1s forwards; }
+.appear { animation: appear 1s forwards; }
 
 body { font-family: 'Merriweather'; }
 body h1 { font-size: 100px; }
@@ -27,6 +37,8 @@ body p {
 .background-color-1 { background-color: #e5dbf9; }
 .color-2 { color: #d1bef4; }
 .background-color-2 { background-color: #d1bef4; }
+.color-2b { color: #a592c9; }
+.background-color-2b { background-color: #a592c9; }
 .color-3 { color: #804cd1; }
 .background-color-3 { background-color: #804cd1; }
 .color-4 { color: #4b2b78; }
@@ -91,26 +103,40 @@ nav img { height: 90px; }
 
 /* --------- FOOTER --------- */
 
-footer {
-  bottom: 0;
-  left: 0;
-  background-color: #60399e;
-  padding: 20px; }
-footer h3{
-  color:rgb(0, 0, 0);
-  font-size: 1rem;
-  font-family: 'Coolvetica Black';
-}
-.footer-padding { height: 50px; }
+footer { font-family: 'Coolvetica Regular'; }
+
+#footer-links { width: 139px; }
+.footer-link {
+  font-size: 20px;
+  transition: 0.3s ease; }
+.footer-link:hover {
+  color: #4b2b78;
+  transition: 0.3s ease; }
+
 .footer-section {
   display: flex;
-  justify-content: center;
-  width: 33.3% }
+  width: 27%; }
+
+#footer-margin { height: 1px; }
+
+#copyright {
+  font-family: 'Coolvetica Black';
+  font-size: 16px; }
 
 .social-icons a { margin: 0 10px; }
-.social-icons img { width: 35px; }
+.social-icons i {
+  transition: 0.3s ease;
+  font-size: 30px; }
+.social-icons i:hover {
+  color: #4b2b78;
+  transition: 0.3s ease; }
 
-.logo img { width: 100px; }
+.logo img { 
+  margin-left: 20px;
+  width: 120px;
+  height: 120px;
+  opacity: 90%;
+}
 
 
 /* ---------- HOME ----------- */

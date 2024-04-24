@@ -89,7 +89,7 @@ const Products = ({ productosSeleccionados, setProductosSeleccionados }) => {
                     </section>
                 </div>
             </main>
-            
+            <div id="footer-margin"></div>
         </div>
     );
 }

@@ -1,12 +1,5 @@
 /* -------- GENERAL --------- */
-@keyframes dissapear {
-  0% { opacity: 100% }
-  100% { opacity: 0% }
-}
-@keyframes apear {
-  0% { opacity: 0% }
-  100% { opacity: 100% }
-}
+
 @font-face {
   font-family: 'Coolvetica Regular';
   src: url("../fonts/coolvetica-rg.otf") format("truetype"); }
@@ -18,9 +11,11 @@
   font-family: 'Coolvetica Regular Italic';
   src: url("../fonts/coolvetica-rg-it.otf") format("truetype"); }
 
-.disappear { animation: disappear 1s forwards; }
-.appear { animation: appear 1s forwards; }
-
+@keyframes disappear {
+  from { opacity: 1 !important; }
+  to { opacity: 0 !important; } }
+.disappear { animation: disappear 3s; }
+  
 body { font-family: 'Merriweather'; }
 body h1 { font-size: 100px; }
 body h2 {
@@ -49,6 +44,8 @@ body p {
 .background-white-2 { background-color: #f5f5f5; }
 .black-1 { color: #0a0a0a; }
 .background-black-1 { background-color: #0a0a0a; }
+.green-1 { color: #49c44d; }
+.background-green-1 { background-color: #49c44d; }
 
 .button-1 {
   padding: 10px;
@@ -65,6 +62,11 @@ body p {
 
 .padding-nav { height: 85px; }
 .padding-nav-title { padding-top: 42.5px; }
+
+.hover-0:hover {
+  color: #0a0a0a !important;
+  cursor: default !important;
+}
 
 
 /* ---------- NAV ---------- */
@@ -151,6 +153,7 @@ footer { font-family: 'Coolvetica Regular'; }
   font-family: 'Coolvetica Black';
   height: 750px;
   width: 100%; }
+#home-novedades .card-subtitle { margin-bottom: 30px; }
 #home-quienes-somos {
   font-family: 'Coolvetica Black';
   height: 750px;
@@ -271,6 +274,8 @@ footer { font-family: 'Coolvetica Regular'; }
   background-color: #d1bef4;
   padding: 40px;
   margin-bottom: 0; }
+.prod-categorias h4 {
+  margin-left: 10px; }
 .prod-categorias :hover {
   cursor: pointer;
   color: #804cd1; }

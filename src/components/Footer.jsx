@@ -22,9 +22,9 @@ const Footer = () => {
                 <div id="footer-redes" className="footer-section d-flex flex-column align-items-end ms-3">
                     <h3 className="black-1">Nuestras Redes:</h3>
                     <div className="social-icons pe-2 me-2">
-                        <a href="#"><i class="bi bi-instagram black-1 pe-1"></i></a>
-                        <a href="#"><i class="bi bi-twitter black-1"></i></a>
-                        <a href="#"><i class="bi bi-tiktok black-1"></i></a>
+                        <a href="#"><i className="bi bi-instagram black-1 pe-1"></i></a>
+                        <a href="#"><i className="bi bi-twitter black-1"></i></a>
+                        <a href="#"><i className="bi bi-tiktok black-1"></i></a>
                     </div>
                 </div>
             </div>

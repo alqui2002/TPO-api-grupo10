@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Carousel } from 'react-bootstrap';
-import Footer from '../components/Footer.jsx';
 import Card from '../components/Card.jsx';
 import inRainbows from "../assets/img/Inrainbowscover.png";
 import rumours from "../assets/img/Rumourscover.png";
@@ -11,6 +10,7 @@ import ohms from '../assets/img/ohms.jpg';
 import am from '../assets/img/am.jpg';
 
 const Home = () => {
+    const [isHome,setisHome] = useState(false);
     return (
         <div>
             <section id="home-banner" className="d-flex justify-content-center align-items-center">
@@ -28,6 +28,7 @@ const Home = () => {
                                     title="In Rainbows"
                                     subtitle="Radiohead"
                                     price="80.000"
+                                    isHome={true}
                                 />
                             </div>
                             <div className="home-card d-flex justify-content-center align-items-center">
@@ -36,6 +37,7 @@ const Home = () => {
                                     title="Rumours"
                                     subtitle="Fleetwood Mac"
                                     price="85.000"
+                                    isHome={true}
                                 />
                             </div>
                             <div className="home-card d-flex justify-content-center align-items-center">
@@ -44,6 +46,7 @@ const Home = () => {
                                     title="Folklore"
                                     subtitle="Taylor Swift"
                                     price="90.000"
+                                    isHome={true}
                                 />
                             </div>
                         </div>
@@ -56,6 +59,7 @@ const Home = () => {
                                     title="Civilización"
                                     subtitle="Los Piojos"
                                     price="75.000"
+                                    isHome={true}
                                 />
                             </div>
                             <div className="home-card d-flex justify-content-center align-items-center">
@@ -64,6 +68,7 @@ const Home = () => {
                                     title="Ohms"
                                     subtitle="Deftones"
                                     price="85.000"
+                                    isHome={true}
                                 />
                             </div>
                             <div className="home-card d-flex justify-content-center align-items-center">
@@ -72,6 +77,7 @@ const Home = () => {
                                     title="AM"
                                     subtitle="Arctic Monkeys"
                                     price="90.000"
+                                    isHome={true}
                                 />
                             </div>
                         </div>

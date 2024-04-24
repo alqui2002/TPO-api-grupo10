@@ -39,7 +39,7 @@ const Products = ({ productosSeleccionados, setProductosSeleccionados }) => {
     const handleProductClick = (product) => {
         setProductosSeleccionados([...productosSeleccionados, product]);
     };
-
+    
     const cambiarColor = (genero) => {
         setColorTodo("black-1");
         setColorRock("black-1");

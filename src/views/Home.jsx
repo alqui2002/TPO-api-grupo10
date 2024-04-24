@@ -77,7 +77,7 @@ const Home = () => {
                         </div>
                     </Carousel.Item>
                 </Carousel>
-                <Link to="/Products" className="button-1 black-1 mb-4 mt-3">Ver catálogo</Link>
+                <Link to="/Products" className="button-1 black-1 mb-4 mt-3" onClick={() => window.scrollTo(0, 0)}>Ver catálogo</Link>
             </main>
             <section id="home-quienes-somos" className="background-white-1 d-flex justify-content-center align-items-center">
                 <div id="home-background-1" className="w-50 h-100"></div>
@@ -102,7 +102,6 @@ const Home = () => {
                 </div>
             </section>
             <div className="footer-padding background-color-0"></div>
-            
         </div>
     );
 }

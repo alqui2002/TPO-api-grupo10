@@ -10,7 +10,6 @@ import uvst from "../assets/img/unVeranoSinTi.jpeg"
 import ohms from "../assets/img/ohms.jpg"
 import am from "../assets/img/am.jpg"
 
-import Footer from '../components/Footer.jsx';
 import Card from '../components/Card.jsx';
 
 

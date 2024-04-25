@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ProductList from "../components/ProductList.jsx";
 
 const Cart = ({ productosSeleccionados, setProductosSeleccionados }) => {
-    const [seleccionEnvio, setEnvio] = useState('seleccionarEnvio'); 
-    const [descuentos, setDescuentos] = useState(false);
-    
+    const [seleccionEnvio, setEnvio] = useState('seleccionarEnvio');
+    const [codigoDescuento, setCodigoDescuento] = useState('');
+    const [descuentoAplicado, setDescuentoAplicado] = useState(0);
+    const [totalPrice, setTotalPrice] = useState(0);
+    const [precioConDescuento, setPrecioConDescuento] = useState(0);
+
     const alertaEliminado = () => {
         alert("Producto Eliminado");
-        console.log (productosSeleccionados)
+        console.log (productosSeleccionados);
     };
 
     const handleClick = (productId) => {
@@ -15,18 +18,48 @@ const Cart = ({ productosSeleccionados, setProductosSeleccionados }) => {
     };
 
     const compraExitosa = () => {
-        alert("Compra realizada con exito!");
-        console.log (productosSeleccionados)
+        alert("Compra realizada con éxito!");
+        console.log (productosSeleccionados);
     };
 
     const handleCompra = () => {
         compraExitosa();
     };
 
-    const totalPrice = productosSeleccionados.reduce((acc, curr) => acc + parseInt(curr.price), 0);
+    useEffect(() => {
+        // Actualizar el precio total cuando cambie la lista de productos seleccionados
+        const totalPrice = productosSeleccionados.reduce((acc, curr) => acc + parseInt(curr.price), 0);
+        setTotalPrice(totalPrice);
+
+        // Aplicar descuento si corresponde
+        if (codigoDescuento === 'Cod10Off') {
+            const descuentoCalculado = totalPrice * 0.1;
+            setDescuentoAplicado(descuentoCalculado);
+        } else {
+            setDescuentoAplicado(0);
+        }
+    }, [productosSeleccionados, codigoDescuento]);
+
+    useEffect(() => {
+        // Actualizar el precio con descuento cuando cambie el descuento
+        const precioConDescuento = totalPrice - descuentoAplicado;
+        setPrecioConDescuento(precioConDescuento);
+    }, [totalPrice, descuentoAplicado]);
+
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            // Validar el código de descuento y aplicar el descuento si es válido
+            if (codigoDescuento === 'Cod10Off') {
+                const descuentoCalculado = totalPrice * 0.1;
+                setDescuentoAplicado(descuentoCalculado);
+            } else {
+                // Mostrar mensaje de error si el código no es válido
+                alert('El código de descuento no es válido.');
+            }
+        }
+    };
 
     return (
-
         <div className='cart'>
             <section id="cart-banner" className="d-flex justify-content-center align-items-center">
                 <div className="padding-nav"></div>
@@ -59,12 +92,23 @@ const Cart = ({ productosSeleccionados, setProductosSeleccionados }) => {
                     <select value={seleccionEnvio} onChange={(e) => setEnvio(e.target.value)}>
                         <option value="retiro">Retiro en Sucursal</option>
                         <option value="envio">Envío a domicilio</option>
-                        <option value="seleccionarEnvio">Seleccionar envio...</option>
+                        <option value="seleccionarEnvio">Seleccionar envío...</option>
                     </select>
                 </div>
+                <div className="cart-descuento">
+                    <input 
+                        type="text" 
+                        placeholder="Código de descuento" 
+                        value={codigoDescuento} 
+                        onChange={(e) => setCodigoDescuento(e.target.value)} 
+                        onKeyDown={handleKeyDown}
+                    />
+                    {descuentoAplicado > 0 && (
+                        <p>Descuento aplicado: $ {descuentoAplicado.toFixed(2)}</p>
+                    )}
+                    <p>Total: ${precioConDescuento.toFixed(2)}</p>
+                </div>
                 <div className="cart-total">
-                    <p> Descuentos: $ {(descuentos ? 7500 : 0)}.000</p> 
-                    <p> Total: ${totalPrice + (seleccionEnvio === 'envio' ? 7500 : 0)}.000</p>
                     <button onClick={handleCompra}>Finalizar Compra</button>
                 </div>
             </div>

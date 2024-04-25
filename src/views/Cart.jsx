@@ -49,7 +49,7 @@ const Cart = ({ productosSeleccionados, setProductosSeleccionados }) => {
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
             // Validar el código de descuento y aplicar el descuento si es válido
-            if (codigoDescuento === 'Cod10Off') {
+            if (codigoDescuento === 'promociona') {
                 const descuentoCalculado = totalPrice * 0.1;
                 setDescuentoAplicado(descuentoCalculado);
             } else {
@@ -96,6 +96,7 @@ const Cart = ({ productosSeleccionados, setProductosSeleccionados }) => {
                     </select>
                 </div>
                 <div className="cart-descuento">
+                    <h3>Ingrese codigo de descuento:</h3>
                     <input 
                         type="text" 
                         placeholder="Código de descuento" 
@@ -103,12 +104,14 @@ const Cart = ({ productosSeleccionados, setProductosSeleccionados }) => {
                         onChange={(e) => setCodigoDescuento(e.target.value)} 
                         onKeyDown={handleKeyDown}
                     />
+                </div>
+                <div className="cart-total">
                     {descuentoAplicado > 0 && (
                         <p>Descuento aplicado: $ {descuentoAplicado.toFixed(2)}</p>
                     )}
                     <p>Total: ${precioConDescuento.toFixed(2)}</p>
                 </div>
-                <div className="cart-total">
+                <div className="cart-finalizar">
                     <button onClick={handleCompra}>Finalizar Compra</button>
                 </div>
             </div>

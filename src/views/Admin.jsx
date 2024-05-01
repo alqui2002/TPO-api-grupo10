@@ -23,15 +23,21 @@ const Admin = () => {
     ]);
     const [filtrados, setFiltrados] = useState([]);
     const [newProduct, setNewProduct] = useState({ id: '', title: '', subtitle: '', price: '', imageSrc: '' });
+    const [busquedaProduct, setBusquedaProduct] = useState({ id: '', title: '', subtitle: '', price: '', imageSrc: '' });
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setNewProduct({ ...newProduct, [name]: value });
     };
 
+    const handleChangeBusqueda = (e) => {
+        const { name, value } = e.target;
+        setBusquedaProduct({ ...busquedaProduct, [name]: value });
+    };
+
     const handleSearch = () => {
         const filtrados = products.filter(product => {
-            const titleMatch = product.title.toLowerCase().includes(newProduct.title.toLowerCase());
+            const titleMatch = product.title.toLowerCase().includes(busquedaProduct.title.toLowerCase());
             return titleMatch ;
         });
         setFiltrados(filtrados);
@@ -54,13 +60,11 @@ const Admin = () => {
     
     return (
         <div className='admin'>
-                <div className='padding-nav'></div>
-        <section className='admin-filter '>
+                <h2 className="ps-4 pb-4">Admin</h2>
+        <section className='admin-filter'>
                 <h3>Filtrar Productos</h3>
-                <input type="text" name="title" placeholder="Título" value={newProduct.title} onChange={handleChange}/>
+                <input type="text" name="title" placeholder="Título" value={busquedaProduct.title} onChange={handleChangeBusqueda}/>
                 <button type='button' onClick={handleSearch}> Buscar Albúm</button>
-            </section>
-            <section>
                 {filtrados.map(product => (
                                     <ProductList 
                                         key={product.id} 
@@ -74,13 +78,13 @@ const Admin = () => {
             </section>
             <section id="admin-form-new" className="background-color-1">
                     <h3>Agregar Nuevo Producto</h3>
-                    <form>
+                    <form className="py-2">
                         <input type="text" name="title" placeholder="Título" value={newProduct.title} onChange={handleChange}/>
                         <input type="text" name="subtitle" placeholder="Artista" value={newProduct.subtitle} onChange={handleChange} />
                         <input type="text" name="price" placeholder="Precio" value={newProduct.price} onChange={handleChange}  />
                         <input type="text" name="imageSrc" placeholder="URL de la imagen" value={newProduct.imageSrc} onChange={handleChange} />
-                        <button type="button" onClick={handleAgregar}>Agregar Vinilo</button>
                     </form>
+                    <button type="button" onClick={handleAgregar}>Agregar Vinilo</button>
             </section>
         {/*
         <section className='admin-eliminar-prod'>

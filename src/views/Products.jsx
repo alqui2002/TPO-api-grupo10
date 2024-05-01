@@ -120,6 +120,7 @@ const Products = ({ productosSeleccionados, setProductosSeleccionados }) => {
                                 />
                             ))}
                         </div>
+                        <div className="my-5 py-5"></div>
                     </section>
                 </div>
             </main>

@@ -436,6 +436,7 @@ footer { font-family: 'Coolvetica Regular'; }
   border-radius: 5px;
 }
 .cart-finalizar button {
+  min-width: 176px;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
@@ -494,21 +495,24 @@ footer { font-family: 'Coolvetica Regular'; }
   border-radius: 20px;
   align-content: center; }
 .admin-filter input{
-  border-color:#000000; 
+  border-color:#9a9a9a; 
   border-style: solid;
-  font-size: 16px; }
-.admin-filter button{ margin: 30px; }
+  font-size: 16px;
+  padding: 5px; }
+.admin-filter button{
+  margin: 30px;
+  padding: 5px; }
 .admin-filter :focus {
     border-color:#ccc;
     box-shadow: 0 0 5px #808080; }
 
 #admin-form-new {
-  padding: 20px;
+  padding: 30px;
   border-radius: 15px;
   display: block; }
 #admin-form-new input {
   font-family: 'Coolvetica Black';
-  margin: 20px;
+  margin: 20px 0;
   display: block;
   padding: 5px; }
 #admin-form-new  form { display: flow; }

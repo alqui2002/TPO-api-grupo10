@@ -27,11 +27,9 @@ const Cart = ({ productosSeleccionados, setProductosSeleccionados }) => {
     };
 
     useEffect(() => {
-        // Actualizar el precio total cuando cambie la lista de productos seleccionados
         const totalPrice = productosSeleccionados.reduce((acc, curr) => acc + parseInt(curr.price), 0);
         setTotalPrice(totalPrice);
 
-        // Aplicar descuento si corresponde
         if (codigoDescuento === 'Cod10Off') {
             const descuentoCalculado = totalPrice * 0.1;
             setDescuentoAplicado(descuentoCalculado);
@@ -41,19 +39,16 @@ const Cart = ({ productosSeleccionados, setProductosSeleccionados }) => {
     }, [productosSeleccionados, codigoDescuento]);
 
     useEffect(() => {
-        // Actualizar el precio con descuento cuando cambie el descuento
         const precioConDescuento = totalPrice - descuentoAplicado;
         setPrecioConDescuento(precioConDescuento);
     }, [totalPrice, descuentoAplicado]);
 
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
-            // Validar el código de descuento y aplicar el descuento si es válido
             if (codigoDescuento === 'promociona') {
                 const descuentoCalculado = totalPrice * 0.1;
                 setDescuentoAplicado(descuentoCalculado);
             } else {
-                // Mostrar mensaje de error si el código no es válido
                 alert('El código de descuento no es válido.');
             }
         }
@@ -88,7 +83,7 @@ const Cart = ({ productosSeleccionados, setProductosSeleccionados }) => {
             </div>
             <div className='cart-checkout d-flex'>
                 <div className="cart-envio">
-                    <h3>Seleccionar tipo de envío:</h3>
+                    <h3 className="text-center pb-2">Seleccionar tipo de envío:</h3>
                     <select value={seleccionEnvio} onChange={(e) => setEnvio(e.target.value)}>
                         <option value="retiro">Retiro en Sucursal</option>
                         <option value="envio">Envío a domicilio</option>
@@ -96,7 +91,7 @@ const Cart = ({ productosSeleccionados, setProductosSeleccionados }) => {
                     </select>
                 </div>
                 <div className="cart-descuento">
-                    <h3>Ingrese codigo de descuento:</h3>
+                    <h3 className="text-center pb-2">Ingrese codigo de descuento:</h3>
                     <input 
                         type="text" 
                         placeholder="Código de descuento" 

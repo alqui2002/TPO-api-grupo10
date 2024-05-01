@@ -7,14 +7,13 @@ const Cart = ({ productosSeleccionados, setProductosSeleccionados }) => {
     const [descuentoAplicado, setDescuentoAplicado] = useState(0);
     const [totalPrice, setTotalPrice] = useState(0);
     const [precioConDescuento, setPrecioConDescuento] = useState(0);
+    const [productoEliminado, setProductoEliminado] = useState("opacity-0-height-0");
 
-    const alertaEliminado = () => {
-        alert("Producto Eliminado");
-        console.log (productosSeleccionados);
-    };
-
-    const handleClick = (productId) => {
+    const handleClick = async (productId) => {
         setProductosSeleccionados(prevItems => prevItems.filter(item => item.id !== productId));
+        setProductoEliminado("disappear");
+        await new Promise(resolve => setTimeout(resolve, (2999)));
+        setProductoEliminado("opacity-0-height-0");
     };
 
     const compraExitosa = () => {
@@ -60,7 +59,6 @@ const Cart = ({ productosSeleccionados, setProductosSeleccionados }) => {
                 <div className="padding-nav"></div>
                 <h1 className="white-1 padding-nav-title">Carrito</h1>
             </section>
-            
             <div className='cart-items'>
                 <div className="product-list-header d-flex align-items-center fw-bold ps-2">
                     <span>Título</span>
@@ -76,7 +74,7 @@ const Cart = ({ productosSeleccionados, setProductosSeleccionados }) => {
                             title={product.title}
                             subtitle={product.subtitle}
                             price={product.price}
-                            handleClick={() => { handleClick(product.id); alertaEliminado(); }}
+                            handleClick={() => { handleClick(product.id); }}
                         />
                     ))}
                 </div>
@@ -109,6 +107,12 @@ const Cart = ({ productosSeleccionados, setProductosSeleccionados }) => {
                 <div className="cart-finalizar">
                     <button onClick={handleCompra}>Finalizar Compra</button>
                 </div>
+            </div>
+            <div id="eliminar-producto-alert" className={`${productoEliminado} background-color-4 d-flex align-items-center`}>
+                <h5 className="white-1 px-3 pt-3 pb-2">Producto eliminado.</h5>
+                <button className="background-color-4" onClick={() => setProductoEliminado("opacity-0-height-0")}>
+                    <h5 className="white-1 px-3 pt-3 pb-2">X</h5>
+                </button>
             </div>
         </div>
     );

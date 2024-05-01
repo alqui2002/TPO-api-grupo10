@@ -11,9 +11,7 @@ function ProductList({imageSrc, title, subtitle, price,handleClick }) {
         <p className="product-list-info">{subtitle}</p>
         <p className="product-list-info price">$ {price}</p>
       </div>
-      <button className="delete-button d-flex align-items-center justify-content-center" onClick={handleClick}>X
-      </button>
-
+      <button className="delete-button d-flex align-items-center justify-content-center" onClick={handleClick}>X</button>
     </div>
   );
 }

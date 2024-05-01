@@ -12,7 +12,6 @@ import am from "../assets/img/am.jpg"
 
 import Card from '../components/Card.jsx';
 
-
 const Products = ({ productosSeleccionados, setProductosSeleccionados }) => {
     const [colorTodo, setColorTodo] = useState("color-3");
     const [colorRock, setColorRock] = useState("black-1");

@@ -12,10 +12,15 @@
   src: url("../fonts/coolvetica-rg-it.otf") format("truetype"); }
 
 @keyframes disappear {
-  from { opacity: 1 !important; }
-  to { opacity: 0 !important; } }
+  0% { opacity: 1; }
+  70% { opacity: 1; }
+  100% { opacity: 0; } }
+
 .disappear { animation: disappear 3s; }
-  
+.opacity-0-height-0 {
+  opacity: 0 !important;
+  height: 0 !important; }
+
 body { font-family: 'Merriweather'; }
 body h1 { font-size: 100px; }
 body h2 {
@@ -447,6 +452,14 @@ footer { font-family: 'Coolvetica Regular'; }
 .cart-finalizar button:hover {
   background-color: #44296fe1;
 }
+
+#eliminar-producto-alert {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  border-radius: 3px;
+}
+#eliminar-producto-alert button { border: none; }
 
 /* --------- LOGIN ---------*/
 

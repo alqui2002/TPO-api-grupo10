@@ -60,21 +60,21 @@ const Admin = () => {
     
     return (
         <div className='admin'>
-                <h2 className="ps-4 pb-4">Admin</h2>
-        <section className='admin-filter'>
+            <h2 className="ps-4 pb-4">Admin</h2>
+            <section className='admin-filter'>
                 <h3>Filtrar Productos</h3>
                 <input type="text" name="title" placeholder="Título" value={busquedaProduct.title} onChange={handleChangeBusqueda}/>
-                <button type='button' onClick={handleSearch}> Buscar Albúm</button>
+                <button type='button' onClick={handleSearch}>Buscar Albúm</button>
                 {filtrados.map(product => (
-                                    <ProductList 
-                                        key={product.id} 
-                                        imageSrc={product.imageSrc}
-                                        title={product.title}
-                                        subtitle={product.subtitle}
-                                        price={product.price}
-                                        handleClick = {() => handleEliminar(product)}
-                                    />
-                                ))}
+                    <ProductList 
+                        key={product.id} 
+                        imageSrc={product.imageSrc}
+                        title={product.title}
+                        subtitle={product.subtitle}
+                        price={product.price}
+                        handleClick = {() => handleEliminar(product)}
+                    />
+                ))}
             </section>
             <section id="admin-form-new" className="background-color-1">
                     <h3>Agregar Nuevo Producto</h3>

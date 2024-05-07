@@ -38,9 +38,12 @@ const Cart = ({ productosSeleccionados, setProductosSeleccionados }) => {
     }, [productosSeleccionados, codigoDescuento]);
 
     useEffect(() => {
-        const precioConDescuento = totalPrice - descuentoAplicado;
+        let precioConDescuento = totalPrice - descuentoAplicado;
+        if (seleccionEnvio === 'envio') {
+            precioConDescuento += 30;
+        }
         setPrecioConDescuento(precioConDescuento);
-    }, [totalPrice, descuentoAplicado]);
+    }, [totalPrice, descuentoAplicado, seleccionEnvio]);
 
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {

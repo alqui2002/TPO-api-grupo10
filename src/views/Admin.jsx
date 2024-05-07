@@ -24,6 +24,7 @@ const Admin = () => {
     const [filtrados, setFiltrados] = useState([]);
     const [newProduct, setNewProduct] = useState({ id: '', title: '', subtitle: '', price: '', imageSrc: '' });
     const [busquedaProduct, setBusquedaProduct] = useState({ id: '', title: '', subtitle: '', price: '', imageSrc: '' });
+    const [editingProduct, setEditing] = useState(null);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -54,9 +55,17 @@ const Admin = () => {
         setProductos([...products, newAlbum]);
     };
 
+    const handleEdit = (productId, field, value) => {
+        const updatedProducts = products.map(product =>
+            product.id === productId ? { ...product, [field]: value } : product
+        );
+        setProductos(updatedProducts);
+    };
+
     useEffect(() => {
         console.log(products);
     }, [products]);
+
     
     return (
         <div className='admin'>
@@ -65,16 +74,25 @@ const Admin = () => {
                 <h3>Filtrar Productos</h3>
                 <input type="text" name="title" placeholder="Título" value={busquedaProduct.title} onChange={handleChangeBusqueda}/>
                 <button type='button' onClick={handleSearch}>Buscar Albúm</button>
+
+
                 {filtrados.map(product => (
-                    <ProductList 
-                        key={product.id} 
+                        
+                    <ProductList
+                        key={product.id}
                         imageSrc={product.imageSrc}
                         title={product.title}
                         subtitle={product.subtitle}
                         price={product.price}
-                        handleClick = {() => handleEliminar(product)}
+                        showEdit={true} 
+                        handleEdit={(field, value) => handleEdit(product.id, field, value)} 
+                        handleClick={() => handleEliminar(product.id)} 
                     />
+
                 ))}
+
+
+
             </section>
             <section id="admin-form-new" className="background-color-1">
                     <h3>Agregar Nuevo Producto</h3>

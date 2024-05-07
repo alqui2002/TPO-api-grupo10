@@ -343,6 +343,12 @@ footer { font-family: 'Coolvetica Regular'; }
   border-color:#ccc;
   box-shadow: 0 0 5px #808080; }
 
+.product-list input {
+  margin-right: 7%;
+  border-radius: 10px;
+  color: #323232;
+}
+
 
 /* ---------- CART ---------- */
 
@@ -529,7 +535,7 @@ footer { font-family: 'Coolvetica Regular'; }
   display: block;
   padding: 5px; }
 #admin-form-new  form { display: flow; }
-#admin-form-new  button {
+#admin-form-new  button, .admin-filter button {
   background-color: #804cd1;
   font-family: 'Coolvetica Black';
   border: none;

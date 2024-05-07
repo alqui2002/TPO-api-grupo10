@@ -100,6 +100,7 @@ const Cart = ({ productosSeleccionados, setProductosSeleccionados }) => {
                         <option value="Tarjeta Credito">Tarjeta Credito</option>
                         <option value="Tarjeta Debito">Tarjeta Debito</option>
                         <option value="Mercado Pago">Mercado Pago</option>
+                        <option value="seleccionar Metodo Pago">Seleccionar método pago...</option>
                     </select>
                 </div>
                 <div className="cart-descuento">

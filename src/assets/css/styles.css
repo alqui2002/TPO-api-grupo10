@@ -91,12 +91,15 @@ nav {
   justify-content: space-between;
 }
   
-nav img { height: 90px; }
+nav img { 
+  height: 90px;
+  margin-right: 5rem;
+}
 
 .nav-links {
   margin: auto;
   list-style-type: none; 
-justify-content: space-between;}
+  justify-content: space-between;}
 .nav-links li {
   margin-right: 25px;
   transition: 0.5s ease; }

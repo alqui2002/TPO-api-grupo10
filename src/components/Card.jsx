@@ -8,7 +8,7 @@ function Card({ imageSrc, title, subtitle, price, handleClick, isHome}) {
       <div className="card-body">
         <h2 className="card-title">{title}</h2>
         <h3 className="card-subtitle">{subtitle}</h3>
-        {isHome ? null : ( 
+        {isHome ? null : ( //Estado que verifica si la card esta en home para no mostrar el precio.
           <div className='d-flex'>
             <p className="card-price">$  {price}</p>
             <button id="add-cart-button" className="card-button bi bi-bag-fill mb-1" onClick={handleClick}></button>

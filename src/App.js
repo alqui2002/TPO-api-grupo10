@@ -15,49 +15,55 @@ import Products from './views/Products.jsx'
 
 function App() {
 
-  const [isNavHidden, setIsNavHidden] = useState(false);
-  const [prevScrollPos, setPrevScrollPos] = useState(window.pageYOffset);
+  //----------------------------------------- MOSTRAR/OCULTAR NAVBAR--------------------------------------------------------------
 
+  const [isNavHidden, setIsNavHidden] = useState(false); //Estado que determina si la navbar está oculta
+  const [prevScrollPos, setPrevScrollPos] = useState(window.pageYOffset); //Nos dice si el ultimo scroll fue para arriba o para abajo
+  
   useEffect(() => {
     const handleScroll = () => {
         const currentScrollPos = window.pageYOffset;
-        if (prevScrollPos > currentScrollPos) {
+        if (prevScrollPos > currentScrollPos) { //Si estoy en una posicion mas alta que antes (en el scroll vertical) y la navbar esta oculto muestro la navbar
             if (isNavHidden) {
-                navBar.style.transform = 'translateY(0)';
+                navBar.style.transform = 'translateY(0)'; //Muestra la navbar
                 setIsNavHidden(false);
             }
-        } else {
-            if (!isNavHidden) {
+        } else { //Si estoy en una posicion mas baja que antes y la navbar no está oculta escondo la navbar
+            if (!isNavHidden) { 
                 navBar.style.transform = 'translateY(-100%)';
                 setIsNavHidden(true);
             }
         }
-        setPrevScrollPos(currentScrollPos);
+
+        setPrevScrollPos(currentScrollPos); //Actualiza la posición de scroll
     };
 
     const navBar = document.querySelector('nav');
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll); //Listener que llama a handleScroll cada vez que el usuario mueva la rueda del mouse
 
     return () => {
         window.removeEventListener('scroll', handleScroll);
     };
   }, [isNavHidden, prevScrollPos,]);
 
+  //-------------------------------------------------------------------------------------------------------------------------------
+
   const [productosSeleccionados, setProductosSeleccionados] = useState([]);
   return (
-    <HashRouter>
+    <HashRouter> {/* Mantiene el estado de la aplicacion sincronizado con la URL */}
       <Navbar />
-      <Routes>
-        <Route path='/' element={<Home />} />
+      <Routes> {/* Se rutean las views con su URL */}
+        <Route path='/' element={<Home />} /> 
         <Route path='/admin' element={<Admin />} />
         <Route path='/login' element={<Login />} />
 
-        <Route path='/cart' element={<Cart productosSeleccionados={productosSeleccionados} setProductosSeleccionados={setProductosSeleccionados}/>} />
+        <Route path='/cart' element={<Cart productosSeleccionados={productosSeleccionados} setProductosSeleccionados={setProductosSeleccionados}/>} /> {/* Se pasa el estado del carrito y le pasa la funcion de actualizacion */}
         <Route
           path='/products'
           element={<Products productosSeleccionados={productosSeleccionados} setProductosSeleccionados={setProductosSeleccionados} />}
-        />      </Routes>
-        <Footer />
+        />      
+      </Routes>
+      <Footer />
     </HashRouter>
   );
   

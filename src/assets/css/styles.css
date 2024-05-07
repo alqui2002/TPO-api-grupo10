@@ -594,3 +594,18 @@ footer { font-family: 'Coolvetica Regular'; }
 .login{
   align-self: flex-end;
 }
+
+.popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.7); /* Fondo negro con 70% de opacidad */
+  color: white; /* Texto blanco */
+  padding: 20px;
+  border-radius: 10px; /* Bordes redondeados */
+  text-align: center;
+  z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
+  max-width: 300px; /* Ancho máximo del globo */
+}
+

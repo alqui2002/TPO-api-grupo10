@@ -42,11 +42,13 @@ const Admin = () => {
             return titleMatch ;
         });
         setFiltrados(filtrados);
+        setEditing(true);
     };
 
-    const handleEliminar = (productToDelete) => {
-        const updatedProducts = products.filter(product => product.id !== productToDelete.id);
-        setProductos(updatedProducts);
+    const handleEliminar =  (productToDelete) => {
+        setProductos(prevItems => prevItems.filter(item => item.id !== productToDelete));
+        handleSearch();
+        return products;
     };
 
     const handleAgregar = (e) => {
@@ -60,9 +62,12 @@ const Admin = () => {
             product.id === productId ? { ...product, [field]: value } : product
         );
         setProductos(updatedProducts);
+        handleSearch();
     };
 
     useEffect(() => {
+        if (editingProduct === true)
+            handleSearch();
         console.log(products);
     }, [products]);
 
@@ -73,7 +78,7 @@ const Admin = () => {
             <section className='admin-filter'>
                 <h3>Filtrar Productos</h3>
                 <input type="text" name="title" placeholder="Título" value={busquedaProduct.title} onChange={handleChangeBusqueda}/>
-                <button type='button' onClick={handleSearch}>Buscar Albúm</button>
+                <button type='button' onClick={handleSearch} >Buscar Albúm</button>
 
 
                 {filtrados.map(product => (

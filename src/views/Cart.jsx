@@ -3,26 +3,28 @@ import ProductList from "../components/ProductList.jsx";
 
 const Cart = ({ productosSeleccionados, setProductosSeleccionados }) => {
     const [seleccionEnvio, setEnvio] = useState('seleccionarEnvio');
+    const [seleccionMetodo, setMetodo] = useState('seleccionarMetodo');
     const [codigoDescuento, setCodigoDescuento] = useState('');
     const [descuentoAplicado, setDescuentoAplicado] = useState(0);
     const [totalPrice, setTotalPrice] = useState(0);
     const [precioConDescuento, setPrecioConDescuento] = useState(0);
     const [productoEliminado, setProductoEliminado] = useState("opacity-0-height-0");
 
+    const [compraExitosaVisible, setCompraExitosaVisible] = useState(false); // Estado para controlar si se muestra el mensaje de compra exitosa
+
     const handleClick = async (productId) => {
-        setProductosSeleccionados(prevItems => prevItems.filter(item => item.id !== productId));
         setProductoEliminado("disappear");
-        await new Promise(resolve => setTimeout(resolve, (2999)));
         setProductoEliminado("opacity-0-height-0");
+        setProductosSeleccionados(prevItems => prevItems.filter(item => item.id !== productId));
     };
 
     const compraExitosa = () => {
-        alert("Compra realizada con éxito!");
-        console.log (productosSeleccionados);
+        setCompraExitosaVisible(true); // Mostrar el modal de compra exitosa
     };
+    
 
     const handleCompra = () => {
-        compraExitosa();
+        compraExitosa(); // Llamar a la función de compra exitosa al hacer clic en "Finalizar Compra"
     };
 
     useEffect(() => {
@@ -58,14 +60,15 @@ const Cart = ({ productosSeleccionados, setProductosSeleccionados }) => {
 
     return (
         <div className='cart'>
-            <section id="cart-banner" className="d-flex justify-content-center align-items-center">
-                <div className="padding-nav"></div>
-                <h1 className="white-1 padding-nav-title">Carrito</h1>
-            </section>
+        {compraExitosaVisible && <div className="modal-overlay"></div>}
+        <section id="cart-banner" className="d-flex justify-content-center align-items-center">
+            <div className="padding-nav"></div>
+            <h1 className="white-1 padding-nav-title">Carrito</h1>
+        </section>
             <div className='cart-items'>
                 <div className="product-list-header d-flex align-items-center fw-bold ps-2">
                     <span>Título</span>
-                    <span>Subtítulo</span>
+                    <span>Artista</span>
                     <span>Precio</span>
                     <span></span>
                 </div>
@@ -84,15 +87,23 @@ const Cart = ({ productosSeleccionados, setProductosSeleccionados }) => {
             </div>
             <div className='cart-checkout d-flex'>
                 <div className="cart-envio">
-                    <h3 className="text-center pb-2">Seleccionar tipo de envío:</h3>
+                    <h3 className="text-center pb-2">Tipo de envío:</h3>
                     <select value={seleccionEnvio} onChange={(e) => setEnvio(e.target.value)}>
                         <option value="retiro">Retiro en Sucursal</option>
                         <option value="envio">Envío a domicilio</option>
                         <option value="seleccionarEnvio">Seleccionar envío...</option>
                     </select>
                 </div>
+                <div className="cart-envio">
+                    <h3 className="text-center pb-2">Método de pago:</h3>
+                    <select value={seleccionMetodo} onChange={(e) => setMetodo(e.target.value)}>
+                        <option value="Tarjeta Credito">Tarjeta Credito</option>
+                        <option value="Tarjeta Debito">Tarjeta Debito</option>
+                        <option value="Mercado Pago">Mercado Pago</option>
+                    </select>
+                </div>
                 <div className="cart-descuento">
-                    <h3 className="text-center pb-2">Ingrese codigo de descuento:</h3>
+                    <h3 className="text-center pb-2">Código de descuento:</h3>
                     <input 
                         type="text" 
                         placeholder="Código de descuento" 
@@ -101,6 +112,7 @@ const Cart = ({ productosSeleccionados, setProductosSeleccionados }) => {
                         onKeyDown={handleKeyDown}
                     />
                 </div>
+                
                 <div className="cart-total">
                     {descuentoAplicado > 0 && (
                         <p>Descuento aplicado: $ {descuentoAplicado.toFixed(2)}</p>
@@ -111,12 +123,27 @@ const Cart = ({ productosSeleccionados, setProductosSeleccionados }) => {
                     <button onClick={handleCompra}>Finalizar Compra</button>
                 </div>
             </div>
-            <div id="eliminar-producto-alert" className={`${productoEliminado} background-color-4 d-flex align-items-center`}>
-                <h5 className="white-1 px-3 pt-3 pb-2">Producto eliminado.</h5>
-                <button className="background-color-4" onClick={() => setProductoEliminado("opacity-0-height-0")}>
-                    <h5 className="white-1 px-3 pt-3 pb-2">X</h5>
+
+            {/* Modal de compra exitosa */}
+            <div className={`modal ${compraExitosaVisible ? 'show' : ''}`} tabIndex="-1" role="dialog">
+    <div className="modal-dialog" role="document">
+        <div className="modal-content">
+            <div className="modal-header">
+                <h5 className="modal-title">Compra exitosa</h5>
+                <button type="button" className="close" onClick={() => setCompraExitosaVisible(false)}>
+                    <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+            <div className="modal-body">
+                <p>Tu compra ha sido realizada con éxito.</p>
+            </div>
+            <div className="modal-footer">
+                <button type="button" className="boton-modal btn-primary" onClick={() => setCompraExitosaVisible(false)}>Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
         </div>
     );
 }

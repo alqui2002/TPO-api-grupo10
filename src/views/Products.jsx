@@ -37,6 +37,11 @@ const Products = ({ productosSeleccionados, setProductosSeleccionados }) => {
 
     const handleProductClick = (product) => {
         setProductosSeleccionados([...productosSeleccionados, product]);
+
+
+
+
+
     };
     
     const cambiarColor = (genero) => {
@@ -123,6 +128,10 @@ const Products = ({ productosSeleccionados, setProductosSeleccionados }) => {
                     </section>
                 </div>
             </main>
+
+                            
+
+
             <div id="footer-margin"></div>
         </div>
     );

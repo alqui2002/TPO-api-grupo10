@@ -12,6 +12,12 @@ import am from "../assets/img/am.jpg"
 
 import Card from '../components/Card.jsx';
 
+
+import { useSelector, useDispatch } from 'react-redux';
+import { increment, decrement } from '../components/Redux/counter';
+
+
+
 const Products = ({ productosSeleccionados, setProductosSeleccionados }) => {
     const [colorTodo, setColorTodo] = useState("color-3");
     const [colorRock, setColorRock] = useState("black-1");
@@ -35,13 +41,12 @@ const Products = ({ productosSeleccionados, setProductosSeleccionados }) => {
     const [filtrados, setFiltrados] = useState([]);
     const [newProduct, setNewProduct] = useState({ query: '' });
 
+    const dispatch = useDispatch();
+
+
     const handleProductClick = (product) => {
         setProductosSeleccionados([...productosSeleccionados, product]);
-
-
-
-
-
+        dispatch(increment());
     };
     
     const cambiarColor = (genero) => {

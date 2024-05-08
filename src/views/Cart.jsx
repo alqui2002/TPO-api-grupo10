@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import ProductList from "../components/ProductList.jsx";
 
+
+
+import { useSelector, useDispatch } from 'react-redux';
+import { increment, decrement } from '../components/Redux/counter';
+
 const Cart = ({ productosSeleccionados, setProductosSeleccionados }) => {
+
     const [seleccionEnvio, setEnvio] = useState('seleccionarEnvio');
     const [seleccionMetodo, setMetodo] = useState('seleccionarMetodo');
     const [codigoDescuento, setCodigoDescuento] = useState('');
@@ -9,10 +15,12 @@ const Cart = ({ productosSeleccionados, setProductosSeleccionados }) => {
     const [totalPrice, setTotalPrice] = useState(0);
     const [precioConDescuento, setPrecioConDescuento] = useState(0);
     const [productoEliminado, setProductoEliminado] = useState("opacity-0-height-0");
+    const dispatch = useDispatch();
 
     const [compraExitosaVisible, setCompraExitosaVisible] = useState(false); // Estado para controlar si se muestra el mensaje de compra exitosa
 
     const handleClick = async (productId) => {
+        dispatch(decrement());
         setProductoEliminado("disappear");
         setProductoEliminado("opacity-0-height-0");
         setProductosSeleccionados(prevItems => prevItems.filter(item => item.id !== productId));

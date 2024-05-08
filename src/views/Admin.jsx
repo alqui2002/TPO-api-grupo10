@@ -41,8 +41,8 @@ const Admin = ({isAdmin}) => {
 
     const handleSearch = () => {
         const filtrados = products.filter(product => {
-            const titleMatch = product.title.toLowerCase().includes(busquedaProduct.title.toLowerCase());
-            return titleMatch ;
+            const esTitulo = product.title.toLowerCase().includes(busquedaProduct.title.toLowerCase());
+            return esTitulo ;
         });
         setFiltrados(filtrados);
         setEditing(true);
@@ -56,15 +56,15 @@ const Admin = ({isAdmin}) => {
 
     const handleAgregar = (e) => {
         const id = products.length + 1;
-        const newAlbum = { id, ...newProduct };
-        setProductos([...products, newAlbum]);
+        const nuevoAlbum = { id, ...newProduct };
+        setProductos([...products, nuevoAlbum]);
     };
 
     const handleEdit = (productId, field, value) => {
-        const updatedProducts = products.map(product =>
+        const productosActualizados = products.map(product =>
             product.id === productId ? { ...product, [field]: value } : product
         );
-        setProductos(updatedProducts);
+        setProductos(productosActualizados);
         handleSearch();
     };
 

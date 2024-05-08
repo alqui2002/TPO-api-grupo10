@@ -135,6 +135,7 @@ const Products = ({ productosSeleccionados, setProductosSeleccionados }) => {
                             {productosMostrados.map(product => (
                                 <Card
                                     key={product.id}
+                                    id={product.id}
                                     imageSrc={product.imageSrc}
                                     title={product.title}
                                     subtitle={product.subtitle}

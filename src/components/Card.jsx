@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import "../assets/css/styles.css";
 import "../assets/css/card.css"
-function Card({ imageSrc, title, subtitle, price, handleClick, isHome }) {
+import { Link } from 'react-router-dom';
+function Card({ id, imageSrc, title, subtitle, price, handleClick, isHome }) {
     const [showPopup, setShowPopup] = useState(false);
 
     const handleAddToCart = () => {
@@ -23,6 +24,7 @@ function Card({ imageSrc, title, subtitle, price, handleClick, isHome }) {
                     <div className='d-flex'>
                         <p className="card-price">$ {price}</p>
                         <button id="add-cart-button" className="card-button bi bi-bag-fill mb-1" onClick={handleAddToCart}></button>
+                        <Link to={`/product/${id}`}>Ver mas </Link> 
                     </div>
                 )}
             </div>

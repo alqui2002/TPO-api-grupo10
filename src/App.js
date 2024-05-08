@@ -11,7 +11,9 @@ import Footer from "./components/Footer.jsx";
 import Home from './views/Home.jsx'
 import Admin from './views/Admin.jsx'
 import Cart from './views/Cart.jsx'
+
 import Products from './views/Products.jsx'
+import { ProdDescripcion } from "./views/ProdDescripcion.jsx";
 
 function App() {
 
@@ -61,7 +63,11 @@ function App() {
         <Route
           path='/products'
           element={<Products productosSeleccionados={productosSeleccionados} setProductosSeleccionados={setProductosSeleccionados} />}
-        />      
+        />     
+         <Route
+          path='/product/:id'
+          element={<ProdDescripcion/>}
+        />   
       </Routes>
       <Footer />
     </HashRouter>

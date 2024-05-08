@@ -9,6 +9,12 @@ import ttps from "../assets/img/ttps.jpeg"
 import uvst from "../assets/img/unVeranoSinTi.jpeg"
 import ohms from "../assets/img/ohms.jpg"
 import am from "../assets/img/am.jpg"
+import badbo from "../assets/img/yhlqmdlg.jpg"
+import TDB from "../assets/img/talentoDeBarrio.jpg"
+import EasyMoney from "../assets/img/EasyMoney.jpg"
+import RHLM from "../assets/img/RHLM.jpg"
+import crisis from "../assets/img/crisis.jpg"
+import mp3 from "../assets/img/mp3.jpg"
 import "../assets/css/products.css"
 import Card from '../components/Card.jsx';
 
@@ -49,6 +55,12 @@ const Products = ({ productosSeleccionados, setProductosSeleccionados }) => {
         { id: 7, title: "Un Verano Sin Ti", subtitle: 'Bad Bunny', imageSrc: uvst, price: 120.000, genero: 'Pop' },
         { id: 8, title: "Ohms", subtitle: 'Deftones', imageSrc: ohms, price: 120.000, genero: 'Rock' },
         { id: 9, title: "AM", subtitle: 'Arctic Monkeys', imageSrc: am, price: 90.000, genero: 'Rock' },
+        { id: 10, title: "YHLQMDLG", subtitle:'Bad Bunny',  imageSrc:badbo,price: 140.000, genero:'Pop' },
+        { id: 11, title: "Talento De Barrio", subtitle:'Daddy Yankee',  imageSrc:TDB,price: 125.000, genero:'Pop' },
+        { id: 12, title: "Easy Money Baby", subtitle:'Myke Towers',  imageSrc:EasyMoney,price: 100.000, genero:'Pop' },
+        { id: 13, title: "Real Hasta La Muerte", subtitle:'Anuel AA',  imageSrc:RHLM,price: 120.000, genero:'Pop' },
+        { id: 14, title: "Crisis", subtitle:'Las Pastillas Del Abuelo',  imageSrc:crisis,price: 70.000, genero:'Rock' },
+        { id: 15, title: ".MP3", subtitle:'Emilia Mernes',  imageSrc:mp3,price: 80.000, genero:'Pop' },
     ];
 
     const [filtroGenero, setFiltroGenero] = useState(null);

@@ -56,7 +56,7 @@ function App() {
       <Navbar />
       <Routes> {/* Se rutean las views con su URL */}
         <Route path='/' element={<Home />} /> 
-        <Route path='/admin' element={<Admin />} />
+        <Route path='/admin' element={<Admin isAdmin={true}/>} />
         <Route path='/login' element={<Login />} />
 
         <Route path='/cart' element={<Cart productosSeleccionados={productosSeleccionados} setProductosSeleccionados={setProductosSeleccionados}/>} /> {/* Se pasa el estado del carrito y le pasa la funcion de actualizacion */}

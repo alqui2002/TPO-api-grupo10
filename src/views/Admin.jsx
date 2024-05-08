@@ -11,7 +11,7 @@ import uvst from "../assets/img/unVeranoSinTi.jpeg"
 import ohms from "../assets/img/ohms.jpg"
 import "../assets/css/admin.css"
 
-const Admin = () => {
+const Admin = ({isAdmin}) => {
     const [products, setProductos] = useState([
         { id: 1, title: 'In Rainbows',subtitle:'Radiohead',imageSrc:inRainbows,price: 80.000, genero:"Alternativo"},
         { id: 2, title: 'Folklore', subtitle:'Taylor Swift',imageSrc:folklore,price: 90.000,genero:'indie Folk' },
@@ -22,6 +22,8 @@ const Admin = () => {
         { id: 7, title: "Un Verano Sin Ti", subtitle:'Bad Bunny',  imageSrc:uvst,price: 120.000, genero:'Pop' },
         { id: 8, title: "Ohms", subtitle:'Deftones',  imageSrc:ohms,price: 120.000, genero:'Rock' },
     ]);
+
+    
     const [filtrados, setFiltrados] = useState([]);
     const [newProduct, setNewProduct] = useState({ id: '', title: '', subtitle: '', price: '', imageSrc: '' });
     const [busquedaProduct, setBusquedaProduct] = useState({ id: '', title: '', subtitle: '', price: '', imageSrc: '' });
@@ -66,11 +68,17 @@ const Admin = () => {
         handleSearch();
     };
 
+    
+
     useEffect(() => {
         if (editingProduct === true)
             handleSearch();
         console.log(products);
     }, [products]);
+
+    if (!isAdmin) {
+        return null; 
+    }
 
     
     return (

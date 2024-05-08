@@ -19,6 +19,15 @@ nav {
     height: 90px;
     margin-right: 5rem;
   }
+  .nav-cart{
+    display: flex;
+  }
+  .nav-cart img{
+    width: 50px;
+    height: auto;
+    margin-right: 5px;
+    margin-left: 20px;
+  }
   
   .nav-links {
     margin: auto;

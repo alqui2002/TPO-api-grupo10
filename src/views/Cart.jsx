@@ -4,7 +4,7 @@ import ProductList from "../components/ProductList.jsx";
 
 
 import { useSelector, useDispatch } from 'react-redux';
-import { increment, decrement } from '../components/Redux/counter';
+import { increment, decrement,reset } from '../components/Redux/counter';
 import "../assets/css/cart.css"
 const Cart = ({ productosSeleccionados, setProductosSeleccionados }) => {
 
@@ -37,6 +37,7 @@ const Cart = ({ productosSeleccionados, setProductosSeleccionados }) => {
 
     const handleCompra = () => {
         compraExitosa(); // Llamar a la función de compra exitosa al hacer clic en "Finalizar Compra"
+        dispatch(reset());
     };
 
     useEffect(() => {

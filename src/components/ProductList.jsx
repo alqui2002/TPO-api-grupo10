@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import  "../assets/css/styles.css";
 
-function ProductList({id,imageSrc, title, subtitle, price,handleClick,handleEdit }) {
+function ProductList({id,imageSrc, title, subtitle, price,handleClick,handleEdit}) {
 
   const [valoresEdit, setValoresEdit] = useState({ title, subtitle, price });
 

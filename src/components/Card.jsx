@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import "../assets/css/styles.css";
-
+import "../assets/css/card.css"
 function Card({ imageSrc, title, subtitle, price, handleClick, isHome }) {
     const [showPopup, setShowPopup] = useState(false);
 

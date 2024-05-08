@@ -1,0 +1,155 @@
+.cart{ font-family: 'Coolvetica Regular'; }
+#cart-banner {
+  font-family: 'Merriweather';
+  background-image: url("../img/carrito-banner.jpeg");
+  height: 450px;
+  width: 100%;
+  background-size: cover;
+  background-position: center; }
+
+.product-list-header{
+  margin-left: 210px;
+  padding: 10px 0;
+  border-bottom: 1px solid #ccc;
+  font-size: 25px;
+}
+.product-list-header span{ width: 330px; }
+
+.cart-items{
+  margin: 5%;
+  margin-right: 7%; }
+
+.cart-checkout{
+  margin: 5%;
+  margin-top: 20px;
+  margin-left: 6%;
+  background-color:#cbb5f3;
+  padding: 10px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row; 
+  justify-content: space-between; 
+ }
+
+.cart-envio {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  margin: 10px;
+  height: 150px; 
+  }
+
+.cart-envio select{
+  border-radius: 5px;
+  padding: 10px 20px;
+  border: none;
+  font-size: 16px; 
+  }
+
+.cart-descuento {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  margin: 10px;
+  height: 150px; 
+  }
+.cart-descuento-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  }
+.cart-descuento input {
+  border-radius: 5px;
+  padding: 10px 20px;
+  border: none;
+  font-size: 16px;
+  }
+
+  
+  .cart-total {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; 
+    align-items: left;
+    padding: 20px;
+    margin: 10px;
+    height: 150px; 
+    width: 400px;
+  }
+  .cart-total p {
+    font-size: 28px;
+    margin: 5px 0; 
+  }
+  
+
+.cart-finalizar {
+  align-self: flex-end; 
+  padding: 20px;
+  margin: 10px;
+  border-radius: 5px;
+}
+.cart-finalizar button {
+  min-width: 176px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color:#804cd1;
+  color: white;
+  font-size: 20px;
+}
+.cart-finalizar button:hover {
+  background-color: #44296fe1;
+}
+
+#eliminar-producto-alert {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  border-radius: 3px;
+}
+#eliminar-producto-alert button { border: none; }
+
+/* Modal compra exitosa */
+.modal.show {
+  display: block;
+  margin: 0 auto;
+  
+}
+
+
+.modal-overlay {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.8); /* Opacidad del fondo */
+z-index: 999; /* Asegura que esté por encima del contenido */
+}
+
+.modal-header {
+background-color: #d1bef4;
+}
+
+.modal-footer{
+background-color: #d1bef4;
+}
+
+
+
+.boton-modal {
+min-width: 176px;
+padding: 10px 20px;
+border: none;
+border-radius: 5px;
+background-color:#804cd1;
+color: white;
+font-size: 20px;
+}
+.boton-modal:hover {
+background-color: #44296fe1;
+}

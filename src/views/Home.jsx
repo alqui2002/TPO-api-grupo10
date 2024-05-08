@@ -8,6 +8,7 @@ import folklore from "../assets/img/folklorecover.png";
 import civilizacion from "../assets/img/lospiojoscivilizacion.webp";
 import ohms from '../assets/img/ohms.jpg';
 import am from '../assets/img/am.jpg';
+import "../assets/css/home.css"
 
 const Home = () => {
     const [isHome,setisHome] = useState(false);

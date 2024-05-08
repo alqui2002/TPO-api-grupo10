@@ -9,6 +9,7 @@ import redTS from "../assets/img/redcover.jpeg";
 import ttps from "../assets/img/ttps.jpeg"
 import uvst from "../assets/img/unVeranoSinTi.jpeg"
 import ohms from "../assets/img/ohms.jpg"
+import "../assets/css/admin.css"
 
 const Admin = () => {
     const [products, setProductos] = useState([

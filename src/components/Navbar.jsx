@@ -18,10 +18,10 @@ const Navbar = () => {
 
     return (
         <nav className='d-flex align-items-center justify-content-between background-color-2'>
-            <div className="d-flex align-items-center">
+            <div className="d-flex align-items-center  nav-logo">
                 <img src={logo} alt="Logo" />
             </div>
-            <div>
+            <div className='nav-pages'>
                 <ul className='nav-links d-flex color-3 p-0'>
                     <li><Link to='/' onClick={() => window.scrollTo(0, 0)}>Inicio</Link></li>
                     <li><Link to='/Products' onClick={() => window.scrollTo(0, 0)}>Productos</Link></li>
@@ -30,7 +30,7 @@ const Navbar = () => {
                 </ul>
             </div>
             
-            <div className='nav-links color-3 p-0 m-0'><Link to='/Login' onClick={() => window.scrollTo(0, 0)}>Login/Registro</Link></div>
+            <div className='nav-links color-3 p-0 m-0 nav-login'><Link to='/Login' onClick={() => window.scrollTo(0, 0)}>Login/Registro</Link></div>
             <div className='nav-cart'>
                 <img  src={cart} alt="carrtio" />
                 <div>{count}</div>

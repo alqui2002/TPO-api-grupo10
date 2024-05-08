@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from "../assets/img/logo.png";
-
+import "../assets/css/navbar.css"
 const Navbar = () => {
     return (
         <nav className='d-flex align-items-center justify-content-between background-color-2'>

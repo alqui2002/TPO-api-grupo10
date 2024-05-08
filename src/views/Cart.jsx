@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import ProductList from "../components/ProductList.jsx";
-
+import "../assets/css/cart.css"
 const Cart = ({ productosSeleccionados, setProductosSeleccionados }) => {
     const [seleccionEnvio, setEnvio] = useState('seleccionarEnvio');
-    const [seleccionMetodo, setMetodo] = useState('seleccionarMetodo');
+    const [seleccionMetodo, setMetodo] = useState('seleccionarMetodoPago');
     const [codigoDescuento, setCodigoDescuento] = useState('');
     const [descuentoAplicado, setDescuentoAplicado] = useState(0);
     const [totalPrice, setTotalPrice] = useState(0);
@@ -20,6 +20,10 @@ const Cart = ({ productosSeleccionados, setProductosSeleccionados }) => {
 
     const compraExitosa = () => {
         setCompraExitosaVisible(true); // Mostrar el modal de compra exitosa
+        setProductosSeleccionados([]); // reestablece el carrito
+        setEnvio("seleccionarEnvio");
+        setMetodo("seleccionarMetodoPago");
+        setCodigoDescuento("");
     };
     
 
@@ -100,7 +104,7 @@ const Cart = ({ productosSeleccionados, setProductosSeleccionados }) => {
                         <option value="Tarjeta Credito">Tarjeta Credito</option>
                         <option value="Tarjeta Debito">Tarjeta Debito</option>
                         <option value="Mercado Pago">Mercado Pago</option>
-                        <option value="seleccionar Metodo Pago">Seleccionar método pago...</option>
+                        <option value="seleccionarMetodoPago">Seleccionar método pago...</option>
                     </select>
                 </div>
                 <div className="cart-descuento">

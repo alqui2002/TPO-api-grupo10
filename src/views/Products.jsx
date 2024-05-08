@@ -9,7 +9,7 @@ import ttps from "../assets/img/ttps.jpeg"
 import uvst from "../assets/img/unVeranoSinTi.jpeg"
 import ohms from "../assets/img/ohms.jpg"
 import am from "../assets/img/am.jpg"
-
+import "../assets/css/products.css"
 import Card from '../components/Card.jsx';
 
 const Products = ({ productosSeleccionados, setProductosSeleccionados }) => {
@@ -19,6 +19,20 @@ const Products = ({ productosSeleccionados, setProductosSeleccionados }) => {
     const [colorPop, setColorPop] = useState("black-1");
     const [colorNacional, setColorNacional] = useState("black-1");
 
+
+    /*
+        try {
+          const response = await fetch("https://mocki.io/v1/ff8c8472-fdd1-485f-935b-bff390a1d2e6"); // Hacer la solicitud GET
+          if (!response.ok) {
+            throw new Error('Hubo un problema al obtener los datos');
+          }
+          const products = await response.json(); // Convertir la respuesta a JSON
+          console.log('Datos obtenidos:', data);
+        } catch (error) {
+          console.error('Error al obtener los datos:', error.message);
+        }
+      };
+      */
     const products = [
         { id: 1, title: 'In Rainbows', subtitle: 'Radiohead', imageSrc: inRainbows, price: 80.000, genero: "Alternativo" },
         { id: 2, title: 'Folklore', subtitle: 'Taylor Swift', imageSrc: folklore, price: 90.000, genero: 'indie Folk' },

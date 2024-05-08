@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import "../assets/css/login.css"
 const Login = () => {
     const [hasAccount, setHasAccount] = useState('yes');
 

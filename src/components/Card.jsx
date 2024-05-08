@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import "../assets/css/styles.css";
-import "../assets/css/card.css"
+import "../assets/css/card.css";
 import { Link } from 'react-router-dom';
 
 function Card({ id, imageSrc, title, subtitle, price, handleClick, isHome, description}) {

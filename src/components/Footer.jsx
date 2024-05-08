@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from '../assets/img/logo.png';
 import { Link } from 'react-router-dom';
-import "../assets/css/footer.css"
+import "../assets/css/footer.css";
 const Footer = () => {
 
     return (
@@ -12,7 +12,7 @@ const Footer = () => {
                     <img src={logo} alt="Logo" />
                 </div>
                 <div className="footer-section d-flex flex-column align-items-center">
-                    <h3 className="black-1">Links Utiles:</h3>
+                    <h3 className="black-1 cursor-default">Links Utiles:</h3>
                     <div id="footer-links" className="d-flex flex-column">
                         <Link to='/' className="footer-link text-decoration-none black-1" onClick={() => window.scrollTo(0, 0)}>Inicio</Link>
                         <Link to='/Products' className="footer-link text-decoration-none black-1" onClick={() => window.scrollTo(0, 0)}>Productos</Link>
@@ -20,7 +20,7 @@ const Footer = () => {
                     </div>
                 </div>
                 <div id="footer-redes" className="footer-section d-flex flex-column align-items-end ms-3">
-                    <h3 className="black-1">Nuestras Redes:</h3>
+                    <h3 className="black-1 cursor-default">Nuestras Redes:</h3>
                     <div className="social-icons pe-2 me-2">
                         <a href="#"><i className="bi bi-instagram black-1 pe-1"></i></a>
                         <a href="#"><i className="bi bi-twitter black-1"></i></a>
@@ -28,7 +28,7 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
-            <h3 id="copyright" className="background-color-2b color-2 w-100 text-center mb-0 pb-2">© 2024 Spin City. Todos los derechos reservados.</h3>
+            <h3 id="copyright" className="background-color-2b color-2 w-100 text-center mb-0 pb-2 cursor-default">© 2024 Spin City. Todos los derechos reservados.</h3>
         </footer>
     );
 }

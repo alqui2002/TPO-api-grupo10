@@ -6,17 +6,17 @@ import rumours from "../assets/img/Rumourscover.png";
 import folklore from "../assets/img/folklorecover.png";
 import civilizacion from "../assets/img/lospiojoscivilizacion.webp";
 import redTS from "../assets/img/redcover.jpeg";
-import ttps from "../assets/img/ttps.jpeg"
-import uvst from "../assets/img/unVeranoSinTi.jpeg"
-import ohms from "../assets/img/ohms.jpg"
-import am from "../assets/img/am.jpg"
-import badbo from "../assets/img/yhlqmdlg.jpg"
-import TDB from "../assets/img/talentoDeBarrio.jpg"
-import EasyMoney from "../assets/img/EasyMoney.jpg"
-import RHLM from "../assets/img/RHLM.jpg"
-import crisis from "../assets/img/crisis.jpg"
-import mp3 from "../assets/img/mp3.jpg"
-import "../assets/css/admin.css"
+import ttps from "../assets/img/ttps.jpeg";
+import uvst from "../assets/img/unVeranoSinTi.jpeg";
+import ohms from "../assets/img/ohms.jpg";
+import am from "../assets/img/am.jpg";
+import badbo from "../assets/img/yhlqmdlg.jpg";
+import TDB from "../assets/img/talentoDeBarrio.jpg";
+import EasyMoney from "../assets/img/EasyMoney.jpg";
+import RHLM from "../assets/img/RHLM.jpg";
+import crisis from "../assets/img/crisis.jpg";
+import mp3 from "../assets/img/mp3.jpg";
+import "../assets/css/admin.css";
 
 const Admin = ({isAdmin}) => {
     const [products, setProductos] = useState([
@@ -37,7 +37,6 @@ const Admin = ({isAdmin}) => {
         { id: 15, title: ".MP3", subtitle:'Emilia Mernes',  imageSrc:mp3,price: 80.000, genero:'Pop' },
     ]);
 
-    
     const [filtrados, setFiltrados] = useState([]);
     const [newProduct, setNewProduct] = useState({ id: '', title: '', subtitle: '', price: '', imageSrc: '' });
     const [busquedaProduct, setBusquedaProduct] = useState({ id: '', title: '', subtitle: '', price: '', imageSrc: '' });
@@ -82,8 +81,6 @@ const Admin = ({isAdmin}) => {
         handleSearch();
     };
 
-    
-
     useEffect(() => {
         if (editingProduct === true)
             handleSearch();
@@ -94,7 +91,6 @@ const Admin = ({isAdmin}) => {
         return null; 
     }
 
-    
     return (
         <div className='admin'>
             <h2 className="ps-4 pb-4">Admin</h2>
@@ -102,10 +98,7 @@ const Admin = ({isAdmin}) => {
                 <h3>Filtrar Productos</h3>
                 <input type="text" name="title" placeholder="Título" value={busquedaProduct.title} onChange={handleChangeBusqueda}/>
                 <button type='button' onClick={handleSearch} >Buscar Albúm</button>
-
-
                 {filtrados.map(product => (
-                        
                     <ProductList
                         key={product.id}
                         imageSrc={product.imageSrc}
@@ -116,13 +109,9 @@ const Admin = ({isAdmin}) => {
                         handleEdit={(field, value) => handleEdit(product.id, field, value)} 
                         handleClick={() => handleEliminar(product.id)} 
                     />
-
                 ))}
-
-
-
             </section>
-            <section id="admin-form-new" className="background-color-1 admin-section-new">
+            <section id="admin-form-new" className="background-color-1 admin-section-new w-100">
                     <h3>Agregar Nuevo Producto</h3>
                     <form className="py-2">
                         <input type="text" name="title" placeholder="Título" value={newProduct.title} onChange={handleChange}/>
@@ -144,10 +133,7 @@ const Admin = ({isAdmin}) => {
                 </form>
         </section>*/}
         </div>
-
-        
     );
-
 }
 
 export default Admin;

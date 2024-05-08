@@ -1,28 +1,27 @@
 import React, { useState } from 'react';
 
+import Footer from '../components/Footer.jsx'
+
 import inRainbows from "../assets/img/Inrainbowscover.png";
 import rumours from "../assets/img/Rumourscover.png";
 import folklore from "../assets/img/folklorecover.png";
 import civilizacion from "../assets/img/lospiojoscivilizacion.webp";
 import redTS from "../assets/img/redcover.jpeg";
-import ttps from "../assets/img/ttps.jpeg"
-import uvst from "../assets/img/unVeranoSinTi.jpeg"
-import ohms from "../assets/img/ohms.jpg"
-import am from "../assets/img/am.jpg"
-import badbo from "../assets/img/yhlqmdlg.jpg"
-import TDB from "../assets/img/talentoDeBarrio.jpg"
-import EasyMoney from "../assets/img/EasyMoney.jpg"
-import RHLM from "../assets/img/RHLM.jpg"
-import crisis from "../assets/img/crisis.jpg"
-import mp3 from "../assets/img/mp3.jpg"
-import "../assets/css/products.css"
+import ttps from "../assets/img/ttps.jpeg";
+import uvst from "../assets/img/unVeranoSinTi.jpeg";
+import ohms from "../assets/img/ohms.jpg";
+import am from "../assets/img/am.jpg";
+import badbo from "../assets/img/yhlqmdlg.jpg";
+import TDB from "../assets/img/talentoDeBarrio.jpg";
+import EasyMoney from "../assets/img/EasyMoney.jpg";
+import RHLM from "../assets/img/RHLM.jpg";
+import crisis from "../assets/img/crisis.jpg";
+import mp3 from "../assets/img/mp3.jpg";
+import "../assets/css/products.css";
 import Card from '../components/Card.jsx';
-
 
 import { useSelector, useDispatch } from 'react-redux';
 import { increment, decrement } from '../components/Redux/counter';
-
-
 
 const Products = ({ productosSeleccionados, setProductosSeleccionados }) => {
     const [colorTodo, setColorTodo] = useState("color-3");
@@ -30,7 +29,6 @@ const Products = ({ productosSeleccionados, setProductosSeleccionados }) => {
     const [colorAlternativo, setColorAlternativo] = useState("black-1");
     const [colorPop, setColorPop] = useState("black-1");
     const [colorNacional, setColorNacional] = useState("black-1");
-
 
     /*
         try {
@@ -68,7 +66,6 @@ const Products = ({ productosSeleccionados, setProductosSeleccionados }) => {
     const [newProduct, setNewProduct] = useState({ query: '' });
 
     const dispatch = useDispatch();
-
 
     const handleProductClick = (product) => {
         setProductosSeleccionados([...productosSeleccionados, product]);
@@ -160,11 +157,8 @@ const Products = ({ productosSeleccionados, setProductosSeleccionados }) => {
                     </section>
                 </div>
             </main>
-
-                            
-
-
             <div id="footer-margin"></div>
+            <Footer />
         </div>
     );
 }

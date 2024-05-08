@@ -5,14 +5,12 @@ import './assets/css/styles.css'
 import Login from './views/Login.jsx'
 
 import Navbar from "./components/Navbar.jsx";
-import Footer from "./components/Footer.jsx";
 
-
-import Home from './views/Home.jsx'
-import Admin from './views/Admin.jsx'
-import Cart from './views/Cart.jsx'
-
-import Products from './views/Products.jsx'
+import Pago from './views/Pago.jsx';
+import Home from './views/Home.jsx';
+import Admin from './views/Admin.jsx';
+import Cart from './views/Cart.jsx';
+import Products from './views/Products.jsx';
 import { ProdDescripcion } from "./views/ProdDescripcion.jsx";
 
 function App() {
@@ -58,7 +56,7 @@ function App() {
         <Route path='/' element={<Home />} /> 
         <Route path='/admin' element={<Admin isAdmin={true}/>} />
         <Route path='/login' element={<Login />} />
-
+        <Route path='/payment' element={<Pago />} />
         <Route path='/cart' element={<Cart productosSeleccionados={productosSeleccionados} setProductosSeleccionados={setProductosSeleccionados}/>} /> {/* Se pasa el estado del carrito y le pasa la funcion de actualizacion */}
         <Route
           path='/products'
@@ -69,7 +67,6 @@ function App() {
           element={<ProdDescripcion/>}
         />   
       </Routes>
-      <Footer />
     </HashRouter>
   );
   

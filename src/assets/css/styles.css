@@ -16,7 +16,7 @@
   70% { opacity: 1; }
   100% { opacity: 0; } }
 
-.disappear { animation: disappear 3s; }
+.disappear { animation: disappear 3s forwards; }
 .opacity-0-height-0 {
   opacity: 0 !important;
   height: 0 !important; }
@@ -51,6 +51,12 @@ body p {
 .background-black-1 { background-color: #0a0a0a; }
 .green-1 { color: #49c44d; }
 .background-green-1 { background-color: #49c44d; }
+.blue-1 { color: #3e9dd8; }
+.background-blue-1 { background-color: #3dadf3; }
+.gold-1 { color: #faeeb5; }
+.background-gold-1 { background-color: #faeeb5; }
+.brown-1 { color: #e4b396; }
+.background-brown-1 { background-color: #e4b396; }
 
 .button-1 {
   padding: 10px;
@@ -70,13 +76,11 @@ body p {
 
 .hover-0:hover {
   color: #0a0a0a !important;
-  cursor: default !important;
-}
+  cursor: default !important; }
+  
+.login { align-self: flex-end; }
 
-
-.login{
-  align-self: flex-end;
-}
+.cursor-default { cursor: default; }
 
 
 

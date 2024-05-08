@@ -35,14 +35,13 @@
     column-gap: 0px;
     display: RUBY;
     justify-content: center; }
-  
   .product-list {
     margin-bottom: 30px;
     margin-top: 30px;
     height: 170px;
     border-radius: 20px; }
   .product-list-info {
-    width: 27.5%;
+    width: 25%;
     max-width: 330px;
   }
   .product-list img{
@@ -90,4 +89,4 @@
   .container{
     font-family: 'Coolvetica Black';
   }
-  
+  #product-description-p { font-size: 20px; }

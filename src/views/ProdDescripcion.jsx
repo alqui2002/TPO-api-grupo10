@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
 import { Card } from "react-bootstrap";
+
 import inRainbows from "../assets/img/Inrainbowscover.png";
 import rumours from "../assets/img/Rumourscover.png";
 import folklore from "../assets/img/folklorecover.png";
@@ -10,12 +11,12 @@ import ttps from "../assets/img/ttps.jpeg";
 import uvst from "../assets/img/unVeranoSinTi.jpeg";
 import ohms from "../assets/img/ohms.jpg";
 import am from "../assets/img/am.jpg";
-import badbo from "../assets/img/yhlqmdlg.jpg"
-import TDB from "../assets/img/talentoDeBarrio.jpg"
-import EasyMoney from "../assets/img/EasyMoney.jpg"
-import RHLM from "../assets/img/RHLM.jpg"
-import crisis from "../assets/img/crisis.jpg"
-import mp3 from "../assets/img/mp3.jpg"
+import badbo from "../assets/img/yhlqmdlg.jpg";
+import TDB from "../assets/img/talentoDeBarrio.jpg";
+import EasyMoney from "../assets/img/EasyMoney.jpg";
+import RHLM from "../assets/img/RHLM.jpg";
+import crisis from "../assets/img/crisis.jpg";
+import mp3 from "../assets/img/mp3.jpg";
 
 const products = [
   { id: 1, title: 'In Rainbows', subtitle: 'Radiohead', imageSrc: inRainbows, price: 80.000, genero: "Alternativo", description:"In Rainbows es el séptimo álbum de estudio de la banda británica Radiohead, lanzado en 2007. Es conocido por su enfoque experimental y su mezcla de géneros, que van desde el rock alternativo hasta la electrónica. El álbum recibió elogios de la crítica por su innovación musical y sus letras introspectivas. Destacan canciones como 15 Step, Nude y Reckoner. In Rainbows también fue notable por su innovador modelo de lanzamiento, donde la banda permitió a los fanáticos descargar el álbum digitalmente y pagar lo que consideraran justo."},
@@ -43,7 +44,7 @@ export const ProdDescripcion = () => {
   return (
     <div className="container">
       <div className="row justify-content-center align-items-center vh-100">
-        <div className="col-md-6">
+        <div className="col-4">
           <Card style={{ width: '18rem' }}>
             <Card.Img variant="top" src={product.imageSrc} />
             <Card.Body>
@@ -55,11 +56,11 @@ export const ProdDescripcion = () => {
             </Card.Body>
           </Card>
         </div>
-        <div className="col-md-6">
-          <div className="d-flex justify-content-center">
-            <p>{product.description}</p>
+        <div className="col-6">
+          <div className="d-flex flex-column align-items-center">
+            <p id="product-description-p">{product.description}</p>
+            <Link to="/Products" className="button-1 btn btn-primary btn-back-to-top black-1 mt-4">Volver atrás</Link>
           </div>
-          <Link to="/Products" className="button-1 btn btn-primary btn-back-to-top black-1">Volver atras</Link>
         </div>
       </div>
     </div>

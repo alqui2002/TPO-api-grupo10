@@ -108,7 +108,7 @@ const Admin = ({isAdmin}) => {
 
 
             </section>
-            <section id="admin-form-new" className="background-color-1">
+            <section id="admin-form-new" className="background-color-1 admin-section-new">
                     <h3>Agregar Nuevo Producto</h3>
                     <form className="py-2">
                         <input type="text" name="title" placeholder="Título" value={newProduct.title} onChange={handleChange}/>

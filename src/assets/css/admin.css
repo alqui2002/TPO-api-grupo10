@@ -21,14 +21,23 @@
       border-color:#ccc;
       box-shadow: 0 0 5px #808080; }
   
+
   #admin-form-new {
     padding: 30px;
     border-radius: 15px;
-    display: block; }
+    display: block;
+    margin: auto;
+    width: fit-content;
+    padding-left: 10%;
+    padding-right: 5%;
+    align-content: center;
+
+  }
   #admin-form-new input {
     font-family: 'Coolvetica Black';
     margin: 20px 0;
     display: block;
+    align-items: center;
     padding: 5px; }
   #admin-form-new  form { display: flow; }
   #admin-form-new  button, .admin-filter button {

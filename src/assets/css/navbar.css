@@ -45,3 +45,6 @@ nav img {
   text-decoration: underline;
   color: #804cd1;
   transition: 0.5s ease; }
+#nav-count { width: 20px; }
+#nav-logo-div { width: 30% }
+#nav-acc-div { width: 30% }

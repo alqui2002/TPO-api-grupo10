@@ -1,77 +1,22 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 
-import Footer from '../components/Footer.jsx'
-
-import inRainbows from "../assets/img/Inrainbowscover.png";
-import rumours from "../assets/img/Rumourscover.png";
-import folklore from "../assets/img/folklorecover.png";
-import civilizacion from "../assets/img/lospiojoscivilizacion.webp";
-import redTS from "../assets/img/redcover.jpeg";
-import ttps from "../assets/img/ttps.jpeg";
-import uvst from "../assets/img/unVeranoSinTi.jpeg";
-import ohms from "../assets/img/ohms.jpg";
-import am from "../assets/img/am.jpg";
-import badbo from "../assets/img/yhlqmdlg.jpg";
-import TDB from "../assets/img/talentoDeBarrio.jpg";
-import EasyMoney from "../assets/img/EasyMoney.jpg";
-import RHLM from "../assets/img/RHLM.jpg";
-import crisis from "../assets/img/crisis.jpg";
-import mp3 from "../assets/img/mp3.jpg";
-import "../assets/css/products.css";
+import Footer from '../components/Footer.jsx';
 import Card from '../components/Card.jsx';
 
-import { useSelector, useDispatch } from 'react-redux';
-import { increment, decrement } from '../components/Redux/counter';
-
-const Products = ({ productosSeleccionados, setProductosSeleccionados }) => {
+const Products = () => {
     const [colorTodo, setColorTodo] = useState("color-3");
     const [colorRock, setColorRock] = useState("black-1");
     const [colorAlternativo, setColorAlternativo] = useState("black-1");
     const [colorPop, setColorPop] = useState("black-1");
     const [colorNacional, setColorNacional] = useState("black-1");
 
-    /*
-        try {
-          const response = await fetch("https://mocki.io/v1/ff8c8472-fdd1-485f-935b-bff390a1d2e6"); // Hacer la solicitud GET
-          if (!response.ok) {
-            throw new Error('Hubo un problema al obtener los datos');
-          }
-          const products = await response.json(); // Convertir la respuesta a JSON
-          console.log('Datos obtenidos:', data);
-        } catch (error) {
-          console.error('Error al obtener los datos:', error.message);
-        }
-      };
-      */
-    const products = [
-        { id: 1, title: 'In Rainbows', subtitle: 'Radiohead', imageSrc: inRainbows, price: 80.000, genero: "Alternativo" },
-        { id: 2, title: 'Folklore', subtitle: 'Taylor Swift', imageSrc: folklore, price: 90.000, genero: 'indie Folk' },
-        { id: 3, title: 'Rumours', subtitle: 'Fleetwood Mac', imageSrc: rumours, price: 85.000, genero: 'Rock' },
-        { id: 4, title: 'Civilización', subtitle: 'Los Piojos', imageSrc: civilizacion, price: 75.000, genero: 'Nacional' },
-        { id: 5, title: "Red (Taylor's Version)", subtitle: 'Taylor Swift', imageSrc: redTS, price: 70.000, genero: 'Pop' },
-        { id: 6, title: "The Tortured Poets Department: The Anthology ", subtitle: 'Taylor Swift', imageSrc: ttps, price: 100.000, genero: 'Pop' },
-        { id: 7, title: "Un Verano Sin Ti", subtitle: 'Bad Bunny', imageSrc: uvst, price: 120.000, genero: 'Pop' },
-        { id: 8, title: "Ohms", subtitle: 'Deftones', imageSrc: ohms, price: 120.000, genero: 'Rock' },
-        { id: 9, title: "AM", subtitle: 'Arctic Monkeys', imageSrc: am, price: 90.000, genero: 'Rock' },
-        { id: 10, title: "YHLQMDLG", subtitle:'Bad Bunny',  imageSrc:badbo,price: 140.000, genero:'Pop' },
-        { id: 11, title: "Talento De Barrio", subtitle:'Daddy Yankee',  imageSrc:TDB,price: 125.000, genero:'Pop' },
-        { id: 12, title: "Easy Money Baby", subtitle:'Myke Towers',  imageSrc:EasyMoney,price: 100.000, genero:'Pop' },
-        { id: 13, title: "Real Hasta La Muerte", subtitle:'Anuel AA',  imageSrc:RHLM,price: 120.000, genero:'Pop' },
-        { id: 14, title: "Crisis", subtitle:'Las Pastillas Del Abuelo',  imageSrc:crisis,price: 70.000, genero:'Rock' },
-        { id: 15, title: ".MP3", subtitle:'Emilia Mernes',  imageSrc:mp3,price: 80.000, genero:'Pop' },
-    ];
-
     const [filtroGenero, setFiltroGenero] = useState(null);
     const [filtrados, setFiltrados] = useState([]);
     const [newProduct, setNewProduct] = useState({ query: '' });
 
-    const dispatch = useDispatch();
+    const products = useSelector(state => state.products.products);
 
-    const handleProductClick = (product) => {
-        setProductosSeleccionados([...productosSeleccionados, product]);
-        dispatch(increment());
-    };
-    
     const cambiarColor = (genero) => {
         setColorTodo("black-1");
         setColorRock("black-1");
@@ -113,7 +58,7 @@ const Products = ({ productosSeleccionados, setProductosSeleccionados }) => {
             product.subtitle.toLowerCase().includes(value.toLowerCase())
         );
         setFiltrados(filtrados);
-        setFiltroGenero(null); // Reiniciar filtro de género al hacer una búsqueda
+        setFiltroGenero(null);
     };
 
     const productosMostrados = filtrados.length > 0 ? filtrados : products.filter(product => !filtroGenero || product.genero === filtroGenero);
@@ -141,17 +86,7 @@ const Products = ({ productosSeleccionados, setProductosSeleccionados }) => {
                     <section className='prod-productos'>
                         <h3>Nuestros vinilos más escuchados:</h3>
                         <div className='prod-cards'>
-                            {productosMostrados.map(product => (
-                                <Card
-                                    key={product.id}
-                                    id={product.id}
-                                    imageSrc={product.imageSrc}
-                                    title={product.title}
-                                    subtitle={product.subtitle}
-                                    price={product.price}
-                                    handleClick={() => handleProductClick(product)}
-                                />
-                            ))}
+                            {productosMostrados.map(product => (<Card key={product.id} id={product.id} isHome={false} />))}
                         </div>
                         <div className="my-5 py-5"></div>
                     </section>

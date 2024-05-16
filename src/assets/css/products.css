@@ -1,92 +1,154 @@
 .prod-productos .card {
-    text-align: left;
-    margin: 20px; }
-  #prod-banner {
-    background-image: url("../img/newWave.jpg");
-    height: 450px;
-    width: 100%;
-    background-size: cover;
-    background-position: center; }
-  .prod-name {
-    font-family: 'Coolvetica Black';
-    display: flex; 
-    flex-direction: column; }
-  .prod-contenido {
-    display: flex;
-    flex-direction: row; }
-  .prod-categorias {
-    background-color: #d1bef4;
-    padding: 40px;
-    margin-bottom: 0; }
-  .prod-categorias h4 {
-    margin-left: 10px; }
-  .prod-categorias :hover {
-    cursor: pointer;
-    color: #804cd1; }
-  .prod-productos {
-    padding-left: 40px;
-    padding-top: 40px; }
-  .prod-productos h3 { padding-bottom: 20px; }
-  .prod-productos card {
-    margin-left: 0px;
-    margin-top: 20px; }
-  .prod-cards {
-    column-count: 4;
-    column-gap: 0px;
-    display: RUBY;
-    justify-content: center; }
-  .product-list {
-    margin-bottom: 30px;
-    margin-top: 30px;
-    height: 170px;
-    border-radius: 20px; }
-  .product-list-info {
-    width: 25%;
-    max-width: 330px;
-  }
-  .product-list img{
-    width: 150px;
-    height: 150px;
-    margin-right: 30px;
-    margin-left: 30px;
-    border-radius: 100px; }
-  .product-list .delete-button{
-    margin-left: auto;
-    margin-right: 5%;
-    border: none;
-    width: 3%;
-    border-radius: 200px;
-    height: 30px;
-    background-color: #804cd1;
-    color: #ffffff; }
-  .product-list .delete-button:hover {
-    background-color: #44296fe1;
-  }
-  .product-list-body span{ margin-right: 50px; }
-  .product-list-body p{
-    padding: 20px;
-    width: 35%; }
-    
-  .prod-busqueda{
-    margin-bottom: 4%;
-    background-color: #d1bef4;
-    border-radius: 20px;}
-  .prod-busqueda input{
-    border-color:#000000; 
-    border-style: solid;
-    font-size: 16px;
-    margin-right: 10px; }
-  .prod-busqueda input:hover{ cursor: text; }
-  .prod-busqueda :focus {
-    border-color:#ccc;
-    box-shadow: 0 0 5px #808080; }
-  
-  .product-list input {
-    margin-right: 7%;
-    border-radius: 10px;
-    color: #323232;
-  }
-  .container{
-    font-family: 'Coolvetica Black';
-  }
-  #product-description-p { font-size: 20px; }
+  text-align: left;
+  margin: 20px; }
+#prod-banner {
+  background-image: url("../img/newWave.jpg");
+  height: 450px;
+  width: 100%;
+  background-size: cover;
+  background-position: center; }
+.prod-name {
+  font-family: 'Coolvetica Black';
+  display: flex; 
+  flex-direction: column; }
+.prod-contenido {
+  display: flex;
+  flex-direction: row; }
+.prod-categorias {
+  background-color: #d1bef4;
+  padding: 40px;
+  margin-bottom: 0; }
+.prod-categorias h4 {
+  margin-left: 10px; }
+.prod-categorias :hover {
+  cursor: pointer;
+  color: #804cd1; }
+.prod-productos {
+  padding-left: 40px;
+  padding-top: 40px; }
+.prod-productos h3 { padding-bottom: 20px; }
+.prod-productos card {
+  margin-left: 0px;
+  margin-top: 20px; }
+.prod-cards {
+  column-count: 4;
+  column-gap: 0px;
+  display: RUBY;
+  justify-content: center; }
+.product-list {
+  margin-bottom: 30px;
+  margin-top: 30px;
+  height: 170px;
+  border-radius: 20px; }
+.product-list-info { width: 310px; }
+.product-list img{
+  width: 150px;
+  height: 150px;
+  margin-right: 30px;
+  margin-left: 30px;
+  border-radius: 100px; }
+.admin-product-button{
+  border: none;
+  border-radius: 20px;
+  height: 30px;
+  color: #ffffff;
+  transition: 0.2s ease;
+  font-size: 18px; }
+.admin-product-button:focus,
+.admin-product-button:active { box-shadow: none; }
+#admin-edit-button:hover {
+  background-color: #6138a3;
+  transition: 0.3s ease; }
+#admin-delete-button:hover {
+  background-color: #b33737 !important;
+  transition: 0.3s ease; }
+#admin-save-button:hover {
+  background-color: #2c9651 !important;
+  transition: 0.3s ease; }
+.product-list-body span{ margin-right: 50px; }
+.product-list-body p{
+  padding: 20px;
+  width: 35%; }
+.prod-busqueda{
+  margin-bottom: 4%;
+  background-color: #d1bef4;
+  border-radius: 20px;}
+.prod-busqueda input{
+  border-color:#000000; 
+  border-style: solid;
+  font-size: 16px;
+  margin-right: 10px; }
+.prod-busqueda input:hover{ cursor: text; }
+.prod-busqueda :focus {
+  border-color:#ccc;
+  box-shadow: 0 0 5px #808080; }
+.product-list input {
+  margin-right: 7%;
+  border-radius: 10px;
+  color: #323232; }
+.container{ font-family: 'Coolvetica Black'; }
+#product-description-p { font-size: 20px; }
+#carrito-add-button-descr {
+  border: none;
+  height: 50px;
+  font-size: 20px;
+  border-radius: 7px;
+  width: 197px;
+  transition: 0.3s ease; }
+#carrito-add-button-descr:hover {
+  background-color: #2c9651 !important;
+  transition: 0.3s ease; }
+#carrito-add-button-descr-no-hover {
+  border: none;
+  height: 50px;
+  font-size: 20px;
+  border-radius: 7px;
+  width: 197px;
+  transition: 0.3s ease; }
+#check-comprado { 
+  transform: translateY(0px);
+  font-size: 25px; }
+#volver-button-descr {
+  text-decoration: none;
+  border: none;
+  height: 50px;
+  font-size: 20px;
+  border-radius: 7px;
+  transition: 0.3s ease; }
+#volver-button-descr:hover {
+  background-color: #6138a3;
+  transition: 0.3s ease; }
+#product-description-card-container {
+  margin: 0 7% 0 12%;
+  padding: 45px;
+  border-radius: 10px; } 
+#product-description-card-container img {
+  height: 250px;
+  margin-bottom: 10px; }
+#product-description-description-container { width: 45%; }
+.product-column-1 {
+  padding-left: 9px;
+  width: 501px }
+.product-column-2 {
+  width: 59px;
+  text-align: center;}
+.product-column-3 {
+  margin-left: 182px;
+  width: 94px;
+  text-align: center;}
+#product-more-button {
+  font-size: 25px;
+  background-color:#00000000 }
+#product-less-button {
+  font-size: 27px;
+  margin-bottom: 2px;
+  margin-right: 3px;
+  background-color:#00000000 }
+#user-delete-button { transform: translateX(-40px); }
+#user-delete-button:hover { background-color: #b33737 !important; }
+.product-less-more-button {
+  border: none;
+  transition: 0.2s ease; }
+.product-less-more-button:hover {
+  color: #7e7e7e;
+  transition: 0.2s ease; }

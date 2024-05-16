@@ -1,17 +1,25 @@
 import { Routes, Route, HashRouter } from "react-router-dom";
 import React, { useEffect, useState } from 'react';
 
-import './assets/css/styles.css'
-import Login from './views/Login.jsx'
-
 import Navbar from "./components/Navbar.jsx";
-
+import Login from './views/Login.jsx'
 import Pago from './views/Pago.jsx';
 import Home from './views/Home.jsx';
 import Admin from './views/Admin.jsx';
 import Cart from './views/Cart.jsx';
 import Products from './views/Products.jsx';
-import { ProdDescripcion } from "./views/ProdDescripcion.jsx";
+import ProdDescripcion from "./views/ProdDescripcion.jsx";
+
+import './assets/css/styles.css';
+import './assets/css/admin.css';
+import './assets/css/card.css';
+import './assets/css/cart.css';
+import './assets/css/footer.css';
+import './assets/css/home.css';
+import './assets/css/login.css';
+import './assets/css/navbar.css';
+import './assets/css/pago.css';
+import './assets/css/products.css';
 
 function App() {
 
@@ -50,22 +58,16 @@ function App() {
 
   const [productosSeleccionados, setProductosSeleccionados] = useState([]);
   return (
-    <HashRouter> {/* Mantiene el estado de la aplicacion sincronizado con la URL */}
+    <HashRouter>
       <Navbar />
-      <Routes> {/* Se rutean las views con su URL */}
-        <Route path='/' element={<Home />} /> 
-        <Route path='/admin' element={<Admin isAdmin={true}/>} />
+      <Routes> 
+        <Route path='/' element={<Home />} />
+        <Route path='/admin' element={<Admin/>} />
         <Route path='/login' element={<Login />} />
         <Route path='/payment' element={<Pago />} />
-        <Route path='/cart' element={<Cart productosSeleccionados={productosSeleccionados} setProductosSeleccionados={setProductosSeleccionados}/>} /> {/* Se pasa el estado del carrito y le pasa la funcion de actualizacion */}
-        <Route
-          path='/products'
-          element={<Products productosSeleccionados={productosSeleccionados} setProductosSeleccionados={setProductosSeleccionados} />}
-        />     
-         <Route
-          path='/product/:id'
-          element={<ProdDescripcion/>}
-        />   
+        <Route path='/cart' element={<Cart />} />
+        <Route path='/products' element={<Products />} />
+        <Route path='/product/:id' element={<ProdDescripcion />} />
       </Routes>
     </HashRouter>
   );

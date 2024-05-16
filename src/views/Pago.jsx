@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-
-import "../assets/css/pago.css";
+import { useDispatch , useSelector } from 'react-redux';
+import { emptyCart } from '../redux/accountsSlice.js';
 
 import mPago from '../assets/img/mercado-pago-logo-1.png';
 import visaMaster from '../assets/img/visa-master-logo.png';
@@ -11,11 +10,18 @@ import visa from '../assets/img/visa-logo.png';
 
 const Pago = () => {
 
+    const dispatch = useDispatch();
+
+    const currentUser = useSelector(state => state.accounts.currentUser);
+    const products = useSelector(state => state.products.products);
+
+    const [discountedPrice, setDiscountedPrice] = useState(0);
+    const count = currentUser && currentUser.cart ? Object.values(currentUser.cart).reduce((total, quantity) => total + quantity, 0) : 0;
+
     const navigate = useNavigate();
+
     const [tarjetaView, setTarjetaView] = useState('no');
-    const count = useSelector((state) => state.counter.value);
     const [comprado, setComprado] = useState('no');
-    const [total, setTotal] = useState(219);
     const [colorMaster, setColorMaster] = useState("background-white-1");
     const [colorVisa, setColorVisa] = useState("background-white-1");
     const [buttonFinalizar, setButtonFinalizar] = useState("button-pago-blocked");
@@ -26,6 +32,22 @@ const Pago = () => {
         vtoYear: '',
         codigoSeguridad: ''
     });
+
+    useEffect(() => {
+        const totalPrice = Object.entries(currentUser.cart).reduce((total, [itemId, quantity]) => {
+            const product = products.find(product => product.id === parseInt(itemId));
+            if (product) {
+                return total + (product.price * quantity);
+            }
+            return total;
+        }, 0);
+
+        let newDiscountedPrice = totalPrice;
+        if (currentUser.discount === 1) { newDiscountedPrice += 15; }
+        else if (currentUser.discount === 2) { newDiscountedPrice *= 0.9; }
+        else if (currentUser.discount === 3) { newDiscountedPrice = newDiscountedPrice * 0.9 + 15; }
+        setDiscountedPrice(newDiscountedPrice);
+    }, [currentUser, products]);
 
     useEffect(() => {
         const { numero, titular, vtoMes, vtoYear, codigoSeguridad } = datosTarjeta;
@@ -45,8 +67,11 @@ const Pago = () => {
     };
 
     const comprar = () => {
-        setComprado('si');
-        setTarjetaView('no');
+        if (buttonFinalizar === "button-pago") {
+            setComprado('si');
+            setTarjetaView('no');
+            dispatch(emptyCart());
+        }
     }
 
     const cambiarColor = (tarjeta) => {
@@ -133,7 +158,7 @@ const Pago = () => {
                         {renderTarjeta()}
                         <div id="pago-total" className="d-flex flex-column align-items-start justify-content-end background-color-2">
                             <h5 className="ps-5">Número de articulos: {count}</h5>
-                            <h3 className="ps-5 pb-3">Total: $ {total}.00</h3>
+                            <h3 className="ps-5 pb-3">Total: $ {Math.ceil(discountedPrice)}.00</h3>
                             <div className="d-flex ps-5 pb-5">
                                 <button className={buttonFinalizar} onClick={() => comprar()}>Finalizar compra</button>
                                 <button className="button-pago" onClick={() => atras()}>Atrás</button>
@@ -147,7 +172,7 @@ const Pago = () => {
                 <div id="pago" className="d-flex flex-column justify-content-center align-items-center background-color-0">
                     <div className="padding-nav"></div>
                     <h2 className="color-3">Tu compra ha sido realizada con éxito!</h2>
-                    <button className="button-pago mt-5" onClick={() => (navigate('/cart'), window.location.reload())}>Volver</button>
+                    <button className="button-pago mt-5" onClick={() => navigate('/cart')}>Volver</button>
                 </div>
             )
         }

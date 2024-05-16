@@ -1,64 +1,60 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch , useSelector } from 'react-redux';
+import { updateDiscount } from '../redux/accountsSlice.js';
 import { Link } from 'react-router-dom';
-
 import ProductList from "../components/ProductList.jsx";
-
 import Footer from '../components/Footer.jsx';
 
-import { useSelector, useDispatch } from 'react-redux';
-import { increment, decrement, reset } from '../components/Redux/counter';
+const Cart = () => {
 
-import "../assets/css/cart.css";
-
-const Cart = ({ productosSeleccionados, setProductosSeleccionados }) => {
-
-    const [seleccionEnvio, setEnvio] = useState('seleccionarEnvio');
-    const [seleccionMetodo, setMetodo] = useState('seleccionarMetodoPago');
-    const [codigoDescuento, setCodigoDescuento] = useState('');
-    const [descuentoAplicado, setDescuentoAplicado] = useState(0);
-    const [totalPrice, setTotalPrice] = useState(0);
-    const [precioConDescuento, setPrecioConDescuento] = useState(0);
-    const [productoEliminado, setProductoEliminado] = useState("opacity-0-height-0");
-    const count = useSelector((state) => state.counter.value);
     const dispatch = useDispatch();
 
-    const handleClick = async (productId) => {
-        dispatch(decrement());
-        setProductosSeleccionados(prevItems => prevItems.filter(item => item.id !== productId));
-        setProductoEliminado("opacity-0-height-0");
-        await new Promise(resolve => setTimeout(resolve, (10)));
-        setProductoEliminado("disappear");
+    const currentUser = useSelector(state => state.accounts.currentUser);
+    const products = useSelector(state => state.products.products);
+    const currentUserWithDefault = currentUser || { cart: {} };
+
+    const [seleccionEnvio, setEnvio] = useState('Seleccionar');
+    const [codigoDescuento, setCodigoDescuento] = useState('');
+    const [isCod10Off, setIsCod10Off] = useState(false);
+    const [retiro, setRetiro] = useState(true);
+    const [discountedPrice, setDiscountedPrice] = useState(0);
+
+    const count = currentUserWithDefault && currentUserWithDefault.cart ? Object.values(currentUserWithDefault.cart).reduce((total, quantity) => total + quantity, 0) : 0;
+
+    useEffect(() => {
+        const totalPrice = currentUserWithDefault && currentUserWithDefault.cart ? Object.entries(currentUserWithDefault.cart).reduce((total, [itemId, quantity]) => {
+            const product = products.find(product => product.id === parseInt(itemId));
+            if (product) {
+                return total + (product.price * quantity);
+            }
+            return total;
+        }, 0) : 0;
+
+        let newDiscountedPrice = totalPrice;
+        if (currentUserWithDefault.discount === 1) { newDiscountedPrice += 15; }
+        else if (currentUserWithDefault.discount === 2) { newDiscountedPrice *= 0.9; }
+        else if (currentUserWithDefault.discount === 3) { newDiscountedPrice = newDiscountedPrice * 0.9 + 15; }
+        setDiscountedPrice(newDiscountedPrice);
+    }, [currentUserWithDefault, products]);
+
+    useEffect(() => {
+        let newDiscount = 0;
+        if (!isCod10Off && retiro) { newDiscount = 0; }
+        else if (!isCod10Off && !retiro) { newDiscount = 1; }
+        else if (isCod10Off && retiro) { newDiscount = 2; }
+        else if (isCod10Off && !retiro) { newDiscount = 3; }
+        if (currentUser !== null) { dispatch(updateDiscount(newDiscount)); }
+    }, [isCod10Off, retiro]);
+
+    const handleDiscountInputChange = (event) => {
+        const value = event.target.value.toLowerCase();
+        setIsCod10Off(value.includes('cod10off') || value.includes('promociona'));
+        setCodigoDescuento(value);
     };
 
-    useEffect(() => {
-        const totalPrice = productosSeleccionados.reduce((acc, curr) => acc + parseInt(curr.price), 0);
-        setTotalPrice(totalPrice);
-
-        if (codigoDescuento === 'Cod10Off') {
-            const descuentoCalculado = totalPrice * 0.1;
-            setDescuentoAplicado(descuentoCalculado);
-        } else {
-            setDescuentoAplicado(0);
-        }
-    }, [productosSeleccionados, codigoDescuento]);
-
-    useEffect(() => {
-        let precioConDescuento = totalPrice - descuentoAplicado;
-        if (seleccionEnvio === 'envio') {
-            precioConDescuento += 30;
-        }
-        setPrecioConDescuento(precioConDescuento);
-    }, [totalPrice, descuentoAplicado, seleccionEnvio]);
-
-    const handleKeyDown = (event) => {
-        if (event.key === 'Enter') {
-            if (codigoDescuento === 'promociona') {
-                const descuentoCalculado = totalPrice * 0.1;
-                setDescuentoAplicado(descuentoCalculado);
-            } else {
-                alert('El código de descuento no es válido.');
-            }
-        }
+    const handleEnvioSelectChange = (event) => {
+        setRetiro(event.target.value === 'retiro');
+        setEnvio(event.target.value);
     };
 
     const renderPago = () => {
@@ -75,28 +71,19 @@ const Cart = ({ productosSeleccionados, setProductosSeleccionados }) => {
                     <div className='cart-checkout d-flex'>
                         <div className="cart-envio">
                             <h3 className="text-center pb-2 cursor-default">Tipo de envío:</h3>
-                            <select value={seleccionEnvio} onChange={(e) => setEnvio(e.target.value)}>
+                            <select value={seleccionEnvio} onChange={handleEnvioSelectChange}>
                                 <option value="retiro">Retiro en Sucursal</option>
-                                <option value="envio">Envío a domicilio</option>
+                                <option value="envio">Envío a domicilio (+15$)</option>
                                 <option value="seleccionarEnvio">Seleccionar envío...</option>
                             </select>
                         </div>
                         <div className="cart-descuento">
                             <h3 className="text-center pb-2 cursor-default">Código de descuento:</h3>
-                            <input 
-                                type="text" 
-                                placeholder="Código de descuento" 
-                                value={codigoDescuento} 
-                                onChange={(e) => setCodigoDescuento(e.target.value)} 
-                                onKeyDown={handleKeyDown}
-                            />
+                            <input type="text" placeholder="Código de descuento" onChange={handleDiscountInputChange} value={codigoDescuento}/>
                         </div>
-                        
-                        <div className="cart-total">
-                            {descuentoAplicado > 0 && (
-                                <p>Descuento aplicado: $ {descuentoAplicado.toFixed(2)}</p>
-                            )}
-                            <p>Total: ${precioConDescuento.toFixed(2)}</p>
+                        <div className="cart-total d-flex flex-column">
+                        { isCod10Off && ( <h5 id="diezoff-h5">Descuento: - 10%</h5> )}
+                            <p>Total: ${Math.ceil(discountedPrice)}</p>
                         </div>
                         <div className="cart-finalizar">
                             <Link to="/payment" id="cart-finalizar-button">Comprar</Link>
@@ -114,31 +101,19 @@ const Cart = ({ productosSeleccionados, setProductosSeleccionados }) => {
             </section>
             <div className='cart-items'>
                 <div className="product-list-header d-flex align-items-center fw-bold ps-2">
-                    <span id="cart-padding-titulo" className="cursor-default">Título</span>
-                    <span id="cart-padding-artista" className="cursor-default">Artista</span>
+                    <span id="cart-padding-titulo" className="cursor-default ps-2">Artículo</span>
+                    <span></span>
                     <span id="cart-padding-precio" className="cursor-default">Precio</span>
+                    <span id="cart-padding-precio" className="cursor-default">Cantidad</span>
                     <span></span>
                 </div>
                 <div>
-                    {productosSeleccionados.map(product => (
-                        <ProductList
-                            key={product.id}
-                            imageSrc={product.imageSrc}
-                            title={product.title}
-                            subtitle={product.subtitle}
-                            price={product.price}
-                            handleClick={() => { handleClick(product.id); }}
-                        />
+                    {Object.keys(currentUserWithDefault.cart).map(productId => (
+                        <ProductList key={productId} id={parseInt(productId)} />
                     ))}
                 </div>
             </div>
             {renderPago()}
-            <div id="eliminar-producto-alert" className={`${productoEliminado} background-color-4 d-flex align-items-center`}>
-                <h5 className="white-1 px-3 pt-3 pb-2">Producto eliminado.</h5>
-                <button className="background-color-4" onClick={() => setProductoEliminado("opacity-0-height-0")}>
-                    <h5 className="white-1 px-3 pt-3 pb-2">X</h5>
-                </button>
-            </div>
             <Footer />
         </div>
     );

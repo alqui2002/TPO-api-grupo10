@@ -28,7 +28,6 @@
   padding-right: 5%;
   align-content: center; }
 #admin-form-new input {
-  font-family: 'Coolvetica Black';
   margin: 20px 0;
   display: block;
   align-items: center;
@@ -41,3 +40,9 @@
   color: white;
   padding: 10px;
   border-radius: 15px; }
+#admin-textarea {
+  margin-bottom: 20px;
+  padding: 5px;
+  width: 600px;
+  height: 150px;
+  resize: none; }

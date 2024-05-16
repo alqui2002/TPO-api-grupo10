@@ -50,7 +50,9 @@ body p {
 .black-1 { color: #0a0a0a; }
 .background-black-1 { background-color: #0a0a0a; }
 .green-1 { color: #49c44d; }
-.background-green-1 { background-color: #49c44d; }
+.background-green-1 { background-color: #49c44d !important; }
+.red-1 { color: #d02525; }
+.background-red-1 { background-color: #d02525 !important; }
 .blue-1 { color: #3e9dd8; }
 .background-blue-1 { background-color: #3dadf3; }
 .gold-1 { color: #faeeb5; }
@@ -67,20 +69,20 @@ body p {
   text-decoration: none;
   transition: 0.3s ease; }
 .button-1:hover {
-  color: #4b2b78;
   background-color: #cbb5f3;
   transition: 0.2s ease; }
+.no-style-button {
+  background-color: #00000000;
+  border: none; }
 
 .padding-nav { height: 85px; }
 .padding-nav-title { padding-top: 42.5px; }
-
+.cursor-default { cursor: default; }
 .hover-0:hover {
   color: #0a0a0a !important;
   cursor: default !important; }
-  
-.login { align-self: flex-end; }
 
-.cursor-default { cursor: default; }
+.login { align-self: flex-end; }
 
 
 

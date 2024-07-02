@@ -1,63 +1,83 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
+// Define the initial state
 const initialState = {
-  accounts: [
-    {name: "Admin_1", lastName: "admin", username: "admin", password: "asdasd", isAdmin: true, cart: {}, discount: 0 }
-  ],
-  currentUser: null
+  user: null,
+  loading: false,
+  error: null,
 };
+
+// Async thunk to handle user login
+export const loginUser = createAsyncThunk(
+  'accounts/login',
+  async ({ username, password }) => {
+    try {
+      const response = await axios.post('/api/v1/authenticate', {
+        username,
+        password,
+      });
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
+);
+
+// Async thunk to handle user registration
+export const registerUser = createAsyncThunk(
+  'accounts/register',
+  async ({ name, lastname, username, password }) => {
+    try {
+      const response = await axios.post('/api/v1/auth/register', {
+        name,
+        lastname,
+        username,
+        password,
+      });
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
+);
 
 const accountsSlice = createSlice({
   name: 'accounts',
   initialState,
   reducers: {
-    login: (state, action) => {
-      const { username, password } = action.payload;
-      const user = state.accounts.find(account => account.username === username && account.password === password);
-      if (user) {
-        state.currentUser = user;
-        state.loginStatus = 'success';
-      } else {
-        state.loginStatus = 'failed';
-      }
+    logoutUser: (state) => {
+      state.user = null;
     },
-    logout: (state) => {
-      state.currentUser = null;
+  },
+  extraReducers: {
+    [loginUser.pending]: (state) => {
+      state.loading = true;
+      state.error = null;
     },
-    register: (state, action) => {
-      state.accounts.push(action.payload);
-      state.registrationStatus = 'success';
+    [loginUser.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.user = action.payload; // Assuming payload contains user data
     },
-    addItemToCart: (state, action) => {
-      const itemId = action.payload;
-      if (state.currentUser.cart[itemId]) {
-        state.currentUser.cart[itemId] += 1;
-      } else {
-        state.currentUser.cart[itemId] = 1;
-      }
+    [loginUser.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.error.message;
     },
-    removeItemFromCart: (state, action) => {
-      const itemId = action.payload;
-      delete state.currentUser.cart[itemId];
+    [registerUser.pending]: (state) => {
+      state.loading = true;
+      state.error = null;
     },
-    lessCartItemQuantity: (state, action) => {
-      const itemId = action.payload;
-      if (state.currentUser.cart[itemId] && state.currentUser.cart[itemId] > 1) {
-        state.currentUser.cart[itemId] -= 1;
-      }
+    [registerUser.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.user = action.payload; // Assuming payload contains user data
     },
-    updateDiscount: (state, action) => {
-      state.currentUser.discount = action.payload;
-    },
-    emptyCart: (state) => {
-      state.currentUser.cart = {};
-    },
-    resetLoginStatus: (state) => {
-      state.loginStatus = null;
+    [registerUser.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.error.message;
     },
   },
 });
 
-export const { addAccount, login, logout, register, addItemToCart, removeItemFromCart, lessCartItemQuantity, updateDiscount, emptyCart, resetLoginStatus } = accountsSlice.actions;
+export const { logoutUser } = accountsSlice.actions;
 
 export default accountsSlice.reducer;

@@ -1,4 +1,4 @@
-import { Routes, Route, HashRouter } from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 import React, { useEffect, useState } from 'react';
 
 import Navbar from "./components/Navbar.jsx";
@@ -23,44 +23,39 @@ import './assets/css/products.css';
 
 function App() {
 
-  //----------------------------------------- MOSTRAR/OCULTAR NAVBAR--------------------------------------------------------------
-
-  const [isNavHidden, setIsNavHidden] = useState(false); //Estado que determina si la navbar está oculta
-  const [prevScrollPos, setPrevScrollPos] = useState(window.pageYOffset); //Nos dice si el ultimo scroll fue para arriba o para abajo
+  const [isNavHidden, setIsNavHidden] = useState(false);
+  const [prevScrollPos, setPrevScrollPos] = useState(window.pageYOffset);
   
   useEffect(() => {
     const handleScroll = () => {
         const currentScrollPos = window.pageYOffset;
-        if (prevScrollPos > currentScrollPos) { //Si estoy en una posicion mas alta que antes (en el scroll vertical) y la navbar esta oculto muestro la navbar
+        if (prevScrollPos > currentScrollPos) {
             if (isNavHidden) {
-                navBar.style.transform = 'translateY(0)'; //Muestra la navbar
+                navBar.style.transform = 'translateY(0)';
                 setIsNavHidden(false);
             }
-        } else { //Si estoy en una posicion mas baja que antes y la navbar no está oculta escondo la navbar
+        } else {
             if (!isNavHidden) { 
                 navBar.style.transform = 'translateY(-100%)';
                 setIsNavHidden(true);
             }
         }
 
-        setPrevScrollPos(currentScrollPos); //Actualiza la posición de scroll
+        setPrevScrollPos(currentScrollPos);
     };
 
     const navBar = document.querySelector('nav');
-    window.addEventListener('scroll', handleScroll); //Listener que llama a handleScroll cada vez que el usuario mueva la rueda del mouse
+    window.addEventListener('scroll', handleScroll);
 
     return () => {
         window.removeEventListener('scroll', handleScroll);
     };
   }, [isNavHidden, prevScrollPos,]);
 
-  //-------------------------------------------------------------------------------------------------------------------------------
-
-  const [productosSeleccionados, setProductosSeleccionados] = useState([]);
   return (
-    <HashRouter>
+    <BrowserRouter>
       <Navbar />
-      <Routes> 
+      <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/admin' element={<Admin/>} />
         <Route path='/login' element={<Login />} />
@@ -69,10 +64,8 @@ function App() {
         <Route path='/products' element={<Products />} />
         <Route path='/product/:id' element={<ProdDescripcion />} />
       </Routes>
-    </HashRouter>
+    </BrowserRouter>
   );
-  
 }
-
 
 export default App;

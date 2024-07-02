@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Carousel } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+
 
 import Footer from '../components/Footer.jsx';
 
@@ -15,7 +16,29 @@ import am from '../assets/img/am.jpg';
 import "../assets/css/home.css";
 
 const Home = () => {
+    const [vinilos, setVinilos] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState('');
+
     const [isHome,setisHome] = useState(false);
+
+    useEffect(() => {
+        // Función para obtener los vinilos desde la API
+        const fetchVinilos = async () => {
+            try {
+                const response = await fetch('http://localhost:8080/api/vinilos'); // Asegúrate de que esta URL es correcta
+                if (!response.ok) {
+                    throw new Error('Error al obtener los vinilos');
+                }
+                const data = await response.json();
+                setVinilos(data.content); // Asegúrate de que 'data.content' es el lugar correcto donde están los vinilos
+            } catch (error) {
+                console.error(error.message);
+            }
+        };
+
+        fetchVinilos();
+    }, []);
     return (
         <div>
             <section id="home-banner" className="d-flex justify-content-center align-items-center">
@@ -27,64 +50,38 @@ const Home = () => {
                 <Carousel id="home-carousel">
                     <Carousel.Item>
                         <div className='home-container-cards d-flex justify-content-center align-items-center'>
-                            <div className="home-card d-flex justify-content-center align-items-center">
-                                <Card
-                                    imageSrc={inRainbows}
-                                    title="In Rainbows"
-                                    subtitle="Radiohead"
-                                    price="80.000"
-                                    isHome={true}
-                                />
-                            </div>
-                            <div className="home-card d-flex justify-content-center align-items-center">
-                                <Card
-                                    imageSrc={rumours}
-                                    title="Rumours"
-                                    subtitle="Fleetwood Mac"
-                                    price="85.000"
-                                    isHome={true}
-                                />
-                            </div>
-                            <div className="home-card d-flex justify-content-center align-items-center">
-                                <Card
-                                    imageSrc={folklore}
-                                    title="Folklore"
-                                    subtitle="Taylor Swift"
-                                    price="90.000"
-                                    isHome={true}
-                                />
-                            </div>
+                            {vinilos.slice(0, 3).map(vinilo => (
+                                <div key={vinilo.id} className="home-card d-flex justify-content-center align-items-center">
+                                    <Card
+                                        id={vinilo.id}
+                                        imageSrc={vinilo.image}
+                                        title={vinilo.title}
+                                        subtitle={vinilo.subtitle}
+                                        price={vinilo.price}
+                                        handleClick={() => console.log(`Added ${vinilo.title} to cart`)}
+                                        isHome={isHome}
+                                        description={vinilo.description}
+                                    />
+                                </div>
+                            ))}
                         </div>
                     </Carousel.Item>
                     <Carousel.Item>
-                    <div className='home-container-cards d-flex justify-content-center align-items-center'>
-                            <div className="home-card d-flex justify-content-center align-items-center">
-                                <Card
-                                    imageSrc={civilizacion}
-                                    title="Civilización"
-                                    subtitle="Los Piojos"
-                                    price="75.000"
-                                    isHome={true}
-                                />
-                            </div>
-                            <div className="home-card d-flex justify-content-center align-items-center">
-                                <Card
-                                    imageSrc={ohms}
-                                    title="Ohms"
-                                    subtitle="Deftones"
-                                    price="85.000"
-                                    isHome={true}
-                                />
-                            </div>
-                            <div className="home-card d-flex justify-content-center align-items-center">
-                                <Card
-                                    imageSrc={am}
-                                    title="AM"
-                                    subtitle="Arctic Monkeys"
-                                    price="90.000"
-                                    isHome={true}
-                                />
-                            </div>
+                        <div className='home-container-cards d-flex justify-content-center align-items-center'>
+                            {vinilos.slice(3, 6).map(vinilo => (
+                                <div key={vinilo.id} className="home-card d-flex justify-content-center align-items-center">
+                                    <Card
+                                        id={vinilo.id}
+                                        imageSrc={vinilo.image}
+                                        title={vinilo.title}
+                                        subtitle={vinilo.subtitle}
+                                        price={vinilo.price}
+                                        handleClick={() => console.log(`Added ${vinilo.title} to cart`)}
+                                        isHome={isHome}
+                                        description={vinilo.description}
+                                    />
+                                </div>
+                            ))}
                         </div>
                     </Carousel.Item>
                 </Carousel>

@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import "../assets/css/login.css";
-import UserServiceFetch from "../services/LoginServiceFetch";
+import { useDispatch, useSelector } from 'react-redux';
+import '../assets/css/login.css';
+import { loginUser, registerUser, selectAuthError } from '../components/Redux/authSlice';
 
 const Login = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [hasAccount, setHasAccount] = useState('yes');
     const [forgotP, setForgotP] = useState('no');
     const [username, setUsername] = useState('');
@@ -16,11 +18,14 @@ const Login = () => {
     const [registerUsername, setRegisterUsername] = useState('');
     const [registerPassword, setRegisterPassword] = useState('');
     const [registerRole, setRegisterRole] = useState('');
+    const authError = useSelector(selectAuthError);
 
     
     const handleLogin = async (e) => {
         e.preventDefault();
+        
         try {
+            /*
             const response = await fetch('http://localhost:8080/api/v1/auth/authenticate', {
                 method: 'POST',
                 headers: {
@@ -32,12 +37,22 @@ const Login = () => {
     
             if (!response.ok) {
                 throw new Error('Invalid username or password');
+            }*/
+
+            try {
+                await dispatch(loginUser({ username, password })).unwrap();
+                navigate('/'); // Navega a la página principal después de iniciar sesión
+                console.log('¡Inicio de sesión exitoso!');
+            } catch (error) {
+                setError(authError || 'Error al iniciar sesión');
             }
-    
+            /*
             const data = await response.json();
+            localStorage.setItem('user', username);
+            console.log(localStorage.getItem.username)
             localStorage.setItem('token', data.token); // Asumiendo que tu backend devuelve un token
             navigate('/'); // Navega a la página principal después de iniciar sesión
-            console.log("lo lograse!");
+            console.log("lo lograse!");*/
         } catch (error) {
             setError(error.message);
         }
@@ -47,6 +62,20 @@ const Login = () => {
     const handleRegister = async (e) => {
         e.preventDefault();
         setRegisterRole('USER');
+        try {
+            await dispatch(registerUser({ 
+                name: registerName, 
+                lastname: registerLastName, 
+                username: registerUsername, 
+                password: registerPassword,
+                role: registerRole 
+            })).unwrap();
+            navigate('/'); // Navega a la página principal después de registrarse
+            console.log('¡Registro exitoso!');
+        } catch (error) {
+            setError(authError || 'Error al registrarse');
+        }
+        /*
         try {
             const response = await fetch('http://localhost:8080/api/v1/auth/register', {
                 method: 'POST',
@@ -72,7 +101,7 @@ const Login = () => {
             console.log("¡Registro exitoso!");
         } catch (error) {
             setError(error.message);
-        }
+        }*/
     };
 
 

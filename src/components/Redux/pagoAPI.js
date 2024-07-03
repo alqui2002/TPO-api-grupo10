@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-// Define la acción asíncrona para procesar el pago
 export const addPedido = createAsyncThunk(
     'pedidos/addPedido',
     async ({ username, seleccionEnvio, direccion, codigoDescuento }, { rejectWithValue }) => {
@@ -16,7 +15,7 @@ export const addPedido = createAsyncThunk(
                 throw new Error('Error al agregar el pedido a la base');
             }
 
-            const data = await response.json();  // Obtener la respuesta como JSON
+            const data = await response.json();  
             return data;
         } catch (error) {
             return rejectWithValue(error.message);

@@ -1,14 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-// Thunks para manejar acciones asincrónicas
 export const fetchVinilos = createAsyncThunk('vinilos/fetchVinilos', async () => {
     try {
-        const response = await fetch('http://localhost:8080/api/vinilos'); // Asegúrate de que esta URL es correcta
+        const response = await fetch('http://localhost:8080/api/vinilos'); 
         if (!response.ok) {
             throw new Error('Error al obtener los vinilos');
         }
         const data = await response.json();
-        return(data.content); // Asegúrate de que 'data.content' es el lugar correcto donde están los vinilos
+        return(data.content);
         console.log(data.content[0].image)
         
     } catch (error) {
@@ -67,7 +66,7 @@ const viniloSlice = createSlice({
             })
             .addCase(fetchVinilos.fulfilled, (state, action) => {
                 state.status = 'succeeded';
-                state.items = action.payload;  // Solo asignar la lista de vinilos
+                state.items = action.payload;  
             })
             .addCase(fetchVinilos.rejected, (state, action) => {
                 state.status = 'failed';

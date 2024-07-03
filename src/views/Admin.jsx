@@ -56,7 +56,7 @@ const Admin = ({ isAdmin }) => {
             formData.append('title', newProduct.title);
             formData.append('subtitle', newProduct.subtitle);
             formData.append('description', newProduct.description);
-            formData.append('imageFile', newProduct.imageSrc); // Assuming imageSrc is a file object
+            formData.append('imageFile', newProduct.imageSrc); 
             formData.append('price', newProduct.price);
             formData.append('genero', newProduct.genero);
             formData.append('stock', newProduct.stock);

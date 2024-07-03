@@ -23,7 +23,7 @@ function ProductList({id,imageSrc, title, subtitle, price,handleClick,handleEdit
     const handleEdicion = (productId, updatedValues) => {
       console.log('hola',productId)
       dispatch(updateVinilo({ productId, title,price }))
-          .unwrap()  // Desenvuelve la promesa para manejar errores directamente
+          .unwrap() 
           .then(() => {
               console.log(`Producto con id ${productId} actualizado correctamente`);
           })

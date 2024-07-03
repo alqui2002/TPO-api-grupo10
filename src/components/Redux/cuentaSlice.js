@@ -16,9 +16,7 @@ export const loginUser = createAsyncThunk('accounts/loginUser', async (credentia
         }
 
         const data = await response.json();
-        // Save token and username in localStorage
         localStorage.setItem('token', data.token);
-        // Return token and username to the payload
         return { token: data.token, username: credentials.username };
     } catch (error) {
         return rejectWithValue(error.message);

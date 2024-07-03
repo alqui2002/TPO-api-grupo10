@@ -15,7 +15,7 @@ export const getDescuento = createAsyncThunk('auth/registerUser', async ({ name,
         }
 
         const data = await response.json();
-        return { token: data.token, username };  // Devolvemos el token y el username
+        return { token: data.token, username };  
     } catch (error) {
         return rejectWithValue(error.message);
     }

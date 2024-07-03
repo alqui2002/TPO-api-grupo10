@@ -7,21 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { updateVinilo } from '../components/Redux/adminAPI.js';
 
 
-import inRainbows from "../assets/img/Inrainbowscover.png";
-import rumours from "../assets/img/Rumourscover.png";
-import folklore from "../assets/img/folklorecover.png";
-import civilizacion from "../assets/img/lospiojoscivilizacion.webp";
-import redTS from "../assets/img/redcover.jpeg";
-import ttps from "../assets/img/ttps.jpeg";
-import uvst from "../assets/img/unVeranoSinTi.jpeg";
-import ohms from "../assets/img/ohms.jpg";
-import am from "../assets/img/am.jpg";
-import badbo from "../assets/img/yhlqmdlg.jpg";
-import TDB from "../assets/img/talentoDeBarrio.jpg";
-import EasyMoney from "../assets/img/EasyMoney.jpg";
-import RHLM from "../assets/img/RHLM.jpg";
-import crisis from "../assets/img/crisis.jpg";
-import mp3 from "../assets/img/mp3.jpg";
+
 import "../assets/css/admin.css";
 
 const Admin = ({isAdmin}) => {
@@ -86,9 +72,20 @@ const Admin = ({isAdmin}) => {
 
     const handleEdit = (productId, field, value) => {
         const productosActualizados = products.map(product =>
-            product.id === productId ? { ...product, [field]: value } : product
+            product.id === productId ? { ...product, [field]: value } : product,
+            dispatch(updateVinilo(product)),
+            console.log(`Producto con id ${productId} actualizado correctamente`),
         );
+        
         setProductos(productosActualizados);
+        dispatch(updateVinilo(productId))
+            .unwrap()  // Desenvuelve la promesa para manejar errores directamente
+            .then(() => {
+                
+            })
+            .catch(err => {
+                console.error('Error actualizando vinilo:', err);
+            });
         handleSearch();
     };
 

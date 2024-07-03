@@ -3,8 +3,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import ProductList from "../components/ProductList.jsx";
 import Footer from '../components/Footer.jsx';
 import { useSelector, useDispatch } from 'react-redux';
-import { setProductosSeleccionados, setSeleccionEnvio, setCodigoDescuento, calcularTotal, setDescuentoAplicado } from '../components/Redux/carritoSlice.js'; 
+import { setProductosSeleccionados, setSeleccionEnvio, setCodigoDescuento, calcularTotal, setDescuentoAplicado, setAdress } from '../components/Redux/carritoSlice.js'; 
 import { increment, decrement } from '../components/Redux/counter';
+import { addProductToCart } from '../components/Redux/carritoAPI';
 import "../assets/css/cart.css";
 
 const Cart = () => {
@@ -16,6 +17,7 @@ const Cart = () => {
     const descuentoAplicado = useSelector((state) => state.carrito.descuentoAplicado);
     const precioConDescuento = useSelector((state) => state.carrito.precioConDescuento);
     const totalPrice = useSelector((state) => state.carrito.totalPrice);
+    const direccion = useSelector((state) => state.carrito.adress);
     const count = useSelector((state) => state.counter.value);
     const username = useSelector((state) => state.auth.username);
 
@@ -34,20 +36,31 @@ const Cart = () => {
 
     useEffect(() => {
         let precioConDescuento = totalPrice - descuentoAplicado;
-        if (seleccionEnvio === 'envio') {
+        if (seleccionEnvio === 'true') {
             precioConDescuento += 30;
         }
         dispatch(calcularTotal(precioConDescuento));
     }, [totalPrice, descuentoAplicado, seleccionEnvio, dispatch]);
 
+    useEffect(() => {
+        if (seleccionEnvio === 'false') {
+            dispatch(setAdress(''));  // Limpiar la dirección si el envío es a sucursal
+        }
+    }, [seleccionEnvio, dispatch]);
+
     const handleClick = (productId) => {
         dispatch(decrement());
         dispatch(setProductosSeleccionados(productosSeleccionados.filter(item => item.id !== productId)));
     };
+    const handleDireccionChange = (e) => {
+        dispatch(setAdress(e.target.value));  // Actualiza la dirección en el estado global
+    };
+    
 
     const handleAddToCart = () => {
-        // Asegúrate de que todos los productos seleccionados están en el carrito
         productosSeleccionados.forEach(async (product) => {
+            dispatch(addProductToCart({username,productId: product.id }));
+            /*
             try {
                 const response = await fetch(`http://localhost:8080/api/cuentas/add-item-cart?username=${encodeURIComponent(username)}&viniloId=${product.id}&cantidad=1`, {
                     method: 'PUT',
@@ -61,10 +74,9 @@ const Cart = () => {
                 }
             } catch (error) {
                 console.error('Error al agregar el producto al carrito:', error.message);
-            }
+            }*/
         });
 
-        // Redirigir a la vista de Pago
         navigate('/payment');
     };
 
@@ -95,8 +107,20 @@ const Cart = () => {
                     <select value={seleccionEnvio} onChange={(e) => dispatch(setSeleccionEnvio(e.target.value))}>
                         <option value="false">Retiro en Sucursal</option>
                         <option value="true">Envío a domicilio</option>
-                        <option value="false">Seleccionar envío...</option>
                     </select>
+                    {seleccionEnvio === 'true' && (
+                        <div className="d-flex flex-column mt-3 ">
+                            <label htmlFor="direccion" className="text-center pb-2">Dirección de Envío:</label>
+                            <input 
+                                id="direccion"
+                                type="text" 
+                                placeholder="Ingrese la dirección de envío" 
+                                value={direccion} 
+                                onChange={handleDireccionChange}
+                                  // Llama a handleDireccionChange al cambiar el texto
+                            />
+                        </div>
+                    )}
                 </div>
                 <div className="cart-descuento">
                     <h3 className="text-center pb-2 cursor-default">Código de descuento:</h3>
@@ -115,9 +139,12 @@ const Cart = () => {
                     )}
                     <p>Total: ${precioConDescuento.toFixed(2)}</p>
                 </div>
-                <div className="cart-finalizar" >
-                    <button id="cart-finalizar-button" onClick={handleAddToCart}>Comprar</button>
-                </div>
+                {username && productosSeleccionados.length > 0 && (
+                    <div className="cart-finalizar" >
+                        <button id="cart-finalizar-button" onClick={handleAddToCart}>Comprar</button>
+                    </div>
+                )}
+                
             </div>
         );
     }

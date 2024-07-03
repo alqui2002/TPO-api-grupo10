@@ -20,6 +20,7 @@ const Pago = () => {
     const codigoDescuento = useSelector((state) => state.carrito.codigoDescuento);
     const descuentoAplicado = useSelector((state) => state.carrito.descuentoAplicado);
     const precioConDescuento = useSelector((state) => state.carrito.precioConDescuento);
+    const direccion = useSelector((state) => state.carrito.adress);
     const username = useSelector((state) => state.auth.username);
 
     const [tarjetaView, setTarjetaView] = useState('no');
@@ -61,7 +62,12 @@ const Pago = () => {
 
     const comprar = async () => {
         try {
-            const response = await fetch(`http://localhost:8080/api/pedidos/add-pedido?username=${encodeURIComponent(username)}&delivery=${encodeURIComponent(seleccionEnvio)}&adress=libertador&descuento=${encodeURIComponent(codigoDescuento)}&metodoPago=tarjeta`, {
+            console.log(direccion)
+            console.log(username)
+            console.log(seleccionEnvio)
+
+
+            const response = await fetch(`http://localhost:8080/api/pedidos/add-pedido?username=${encodeURIComponent(username)}&delivery=${encodeURIComponent(seleccionEnvio)}&adress=${encodeURIComponent(direccion)}=&descuento=${encodeURIComponent(codigoDescuento)}&metodoPago=tarjeta`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',

@@ -28,7 +28,7 @@ const Cart = () => {
     };
 
     const handleDireccionChange = (e) => {
-        dispatch(setAdress(e.target.value));  // Actualiza la dirección en el estado global
+        dispatch(setAdress(e.target.value));  
     };
     
 
@@ -80,7 +80,7 @@ const Cart = () => {
                     <input 
                         type="text" 
                         placeholder="Código de descuento" 
-                        // Manejador de eventos para aplicar el código de descuento
+                        
                     />
                 </div>
                 

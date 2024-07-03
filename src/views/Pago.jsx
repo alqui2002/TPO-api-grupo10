@@ -40,7 +40,6 @@ const Pago = () => {
     });
 
     useEffect(() => {
-        // Actualizar el total cuando cambie el precio con descuento
         setTotal(precioConDescuento);
     }, [precioConDescuento]);
 

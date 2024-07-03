@@ -65,7 +65,7 @@ const Admin = ({ isAdmin }) => {
             formData.append('genero', newProduct.genero);
             formData.append('stock', newProduct.stock);
 
-            const response = await fetch('http://localhost:8080/api/add-vinilo', {
+            const response = await fetch(`http://localhost:8080/api/vinilos/add-vinilo`, {
                 method: 'POST',
                 body: formData,
             });

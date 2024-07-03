@@ -29,7 +29,7 @@ const Login = () => {
 
             try {
                 await dispatch(loginUser({ username, password })).unwrap();
-                navigate('/'); // Navega a la página principal después de iniciar sesión
+                navigate('/'); 
                 console.log('¡Inicio de sesión exitoso!');
             } catch (error) {
                 setError(authError || 'Error al iniciar sesión');

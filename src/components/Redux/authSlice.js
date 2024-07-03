@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-// Define the asynchronous action for logging in the user
 export const loginUser = createAsyncThunk('auth/loginUser', async ({ username, password }, { rejectWithValue, dispatch }) => {
     try {
         const response = await fetch('http://localhost:8080/api/v1/auth/authenticate', {
@@ -19,13 +18,12 @@ export const loginUser = createAsyncThunk('auth/loginUser', async ({ username, p
         const isAdmin = await fetchUserRole(username);
         localStorage.setItem('token', data.token);
 
-        return { token: data.token, username, isAdmin };  // Return the token, username, and role
+        return { token: data.token, username, isAdmin };  
     } catch (error) {
         return rejectWithValue(error.message);
     }
 });
 
-// Define the asynchronous action for registering a new user
 export const registerUser = createAsyncThunk('auth/registerUser', async ({ name, lastname, username, password, role }, { rejectWithValue }) => {
     try {
         const response = await fetch('http://localhost:8080/api/v1/auth/register', {
@@ -41,13 +39,12 @@ export const registerUser = createAsyncThunk('auth/registerUser', async ({ name,
         }
 
         const data = await response.json();
-        return { token: data.token, username, isAdmin: role === 'ADMIN' };  // Return the token, username, and role
+        return { token: data.token, username, isAdmin: role === 'ADMIN' };  
     } catch (error) {
         return rejectWithValue(error.message);
     }
 });
 
-// Function to fetch user role
 export const fetchUserRole = async (username) => {
     try {
         const userResponse = await fetch(`http://localhost:8080/api/cuentas/username/${username}`);
@@ -56,7 +53,7 @@ export const fetchUserRole = async (username) => {
         }
 
         const userData = await userResponse.json();
-        return userData.role === 'ADMIN';  // Check if the role is ADMIN
+        return userData.role === 'ADMIN';  
     } catch (error) {
         throw new Error(error.message);
     }
@@ -113,7 +110,7 @@ export const { logout } = authSlice.actions;
 
 export const selectAuthToken = (state) => state.auth.token;
 export const selectAuthUsername = (state) => state.auth.username;
-export const selectAuthIsAdmin = (state) => state.auth.isAdmin;  // Selector for admin state
+export const selectAuthIsAdmin = (state) => state.auth.isAdmin;  
 export const selectAuthError = (state) => state.auth.error;
 
 export default authSlice.reducer;

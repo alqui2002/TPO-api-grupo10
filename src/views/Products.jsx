@@ -23,15 +23,14 @@ const Products = () => {
     const productosSeleccionados = useSelector((state) => state.carrito.productosSeleccionados);
 
     useEffect(() => {
-        // Función para obtener los vinilos desde la API
         const fetchVinilos = async () => {
             try {
-                const response = await fetch('http://localhost:8080/api/vinilos'); // Asegúrate de que esta URL es correcta
+                const response = await fetch('http://localhost:8080/api/vinilos'); 
                 if (!response.ok) {
                     throw new Error('Error al obtener los vinilos');
                 }
                 const data = await response.json();
-                setProductos(data.content); // Asegúrate de que 'data.content' es el lugar correcto donde están los vinilos
+                setProductos(data.content);
             } catch (error) {
                 console.error('Error al obtener los vinilos:', error.message);
             }
@@ -41,7 +40,6 @@ const Products = () => {
     }, []);
 
     const handleProductClick = (product) => {
-        // Si el producto ya está en la lista, no lo agregamos nuevamente
         if (!productosSeleccionados.some(p => p.id === product.id)) {
             dispatch(setProductosSeleccionados([...productosSeleccionados, product]));
             dispatch(increment());
@@ -89,7 +87,7 @@ const Products = () => {
             product.subtitle.toLowerCase().includes(value.toLowerCase())
         );
         setFiltrados(filtrados);
-        setFiltroGenero(null); // Reiniciar filtro de género al hacer una búsqueda
+        setFiltroGenero(null);
     };
 
     const productosMostrados = filtrados.length > 0 ? filtrados : productos.filter(product => !filtroGenero || product.genero === filtroGenero);

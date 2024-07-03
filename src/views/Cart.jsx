@@ -114,7 +114,7 @@ const Cart = () => {
                     {productosSeleccionados.map(product => (
                         <ProductList
                             key={product.id}
-                            imageSrc={product.imageSrc}
+                            imageSrc={product.image}
                             title={product.title}
                             subtitle={product.subtitle}
                             price={product.price}

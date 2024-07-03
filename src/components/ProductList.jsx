@@ -13,10 +13,12 @@ function ProductList({id,imageSrc, title, subtitle, price,handleClick,handleEdit
     const handleSave = () => {
         handleEdit(id,valoresEdit);
     };
-
+    
+    console.log("puto")
+    console.log("hola: ",imageSrc);
   return (
     <div className="product-list d-flex align-items-center background-white-2 w-100">
-      <img src={imageSrc} alt={title} />
+      <img src={`data:image/jpeg;base64,${imageSrc}`} alt={title} />
       {handleEdit ? (
                     <>
                         <input type="text" name="title" value={valoresEdit.title} onChange={handleInputChange} />

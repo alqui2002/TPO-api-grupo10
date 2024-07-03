@@ -121,7 +121,7 @@ const Products = () => {
                                 <Card
                                     key={product.id}
                                     id={product.id}
-                                    imageSrc={product.imageSrc}
+                                    imageSrc={product.image}
                                     title={product.title}
                                     subtitle={product.subtitle}
                                     price={product.price}

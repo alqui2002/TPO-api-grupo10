@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import axios from 'axios'; // Asegúrate de importar axios
+//import axios from 'axios'; // Asegúrate de importar axios
 
 import "../assets/css/pago.css";
 

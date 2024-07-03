@@ -32,6 +32,8 @@ const Home = () => {
                 }
                 const data = await response.json();
                 setVinilos(data.content); // Asegúrate de que 'data.content' es el lugar correcto donde están los vinilos
+                console.log(data.content[0].image)
+                
             } catch (error) {
                 console.error(error.message);
             }

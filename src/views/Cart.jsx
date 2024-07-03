@@ -1,93 +1,47 @@
 import React, { useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import ProductList from "../components/ProductList.jsx";
 import Footer from '../components/Footer.jsx';
 import { useSelector, useDispatch } from 'react-redux';
-import { setProductosSeleccionados, setSeleccionEnvio, setCodigoDescuento, calcularTotal, setDescuentoAplicado, setAdress } from '../components/Redux/carritoSlice.js'; 
-import { increment, decrement } from '../components/Redux/counter';
+import { setProductosSeleccionados, calcularTotal, setAdress, setSeleccionEnvio } from '../components/Redux/carritoSlice.js'; 
+import { decrement } from '../components/Redux/counter';
 import { addProductToCart } from '../components/Redux/carritoAPI';
 import "../assets/css/cart.css";
 
 const Cart = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const productosSeleccionados = useSelector((state) => state.carrito.productosSeleccionados);
     const seleccionEnvio = useSelector((state) => state.carrito.seleccionEnvio);
-    const codigoDescuento = useSelector((state) => state.carrito.codigoDescuento);
-    const descuentoAplicado = useSelector((state) => state.carrito.descuentoAplicado);
-    const precioConDescuento = useSelector((state) => state.carrito.precioConDescuento);
+    const productosSeleccionados = useSelector((state) => state.carrito.productosSeleccionados);
     const totalPrice = useSelector((state) => state.carrito.totalPrice);
     const direccion = useSelector((state) => state.carrito.adress);
     const count = useSelector((state) => state.counter.value);
     const username = useSelector((state) => state.auth.username);
 
     useEffect(() => {
-        dispatch(calcularTotal());
+        dispatch(calcularTotal());  // Calcular el total basado en los vinilos seleccionados
     }, [productosSeleccionados, dispatch]);
-
-    useEffect(() => {
-        if (codigoDescuento === 'Cod10Off') {
-            const descuento = totalPrice * 0.1;
-            dispatch(setDescuentoAplicado(descuento));
-        } else {
-            dispatch(setDescuentoAplicado(0));
-        }
-    }, [codigoDescuento, totalPrice, dispatch]);
-
-    useEffect(() => {
-        let precioConDescuento = totalPrice - descuentoAplicado;
-        if (seleccionEnvio === 'true') {
-            precioConDescuento += 30;
-        }
-        dispatch(calcularTotal(precioConDescuento));
-    }, [totalPrice, descuentoAplicado, seleccionEnvio, dispatch]);
-
-    useEffect(() => {
-        if (seleccionEnvio === 'false') {
-            dispatch(setAdress(''));  // Limpiar la dirección si el envío es a sucursal
-        }
-    }, [seleccionEnvio, dispatch]);
 
     const handleClick = (productId) => {
         dispatch(decrement());
         dispatch(setProductosSeleccionados(productosSeleccionados.filter(item => item.id !== productId)));
     };
+
     const handleDireccionChange = (e) => {
         dispatch(setAdress(e.target.value));  // Actualiza la dirección en el estado global
     };
     
 
+    const handleEnvioChange = (e) => {
+        dispatch(setSeleccionEnvio(e.target.value));
+    };
+
     const handleAddToCart = () => {
         productosSeleccionados.forEach(async (product) => {
-            dispatch(addProductToCart({username,productId: product.id }));
-            /*
-            try {
-                const response = await fetch(`http://localhost:8080/api/cuentas/add-item-cart?username=${encodeURIComponent(username)}&viniloId=${product.id}&cantidad=1`, {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                });
-
-                if (!response.ok) {
-                    throw new Error('Error al agregar el producto al carrito');
-                }
-            } catch (error) {
-                console.error('Error al agregar el producto al carrito:', error.message);
-            }*/
+            dispatch(addProductToCart({username, productId: product.id }));
         });
 
         navigate('/payment');
-    };
-
-    const handleKeyDown = (event) => {
-        if (event.key === 'Enter') {
-            if (codigoDescuento === 'Cod10Off') {
-                dispatch(setCodigoDescuento(codigoDescuento));
-            } else {
-                alert('El código de descuento no es válido.');
-            }
-        }
     };
 
     const renderPago = () => {
@@ -104,7 +58,7 @@ const Cart = () => {
             <div className='cart-checkout d-flex'>
                 <div className="cart-envio">
                     <h3 className="text-center pb-2 cursor-default">Tipo de envío:</h3>
-                    <select value={seleccionEnvio} onChange={(e) => dispatch(setSeleccionEnvio(e.target.value))}>
+                    <select value={seleccionEnvio} onChange={handleEnvioChange}>
                         <option value="false">Retiro en Sucursal</option>
                         <option value="true">Envío a domicilio</option>
                     </select>
@@ -117,7 +71,6 @@ const Cart = () => {
                                 placeholder="Ingrese la dirección de envío" 
                                 value={direccion} 
                                 onChange={handleDireccionChange}
-                                  // Llama a handleDireccionChange al cambiar el texto
                             />
                         </div>
                     )}
@@ -127,17 +80,12 @@ const Cart = () => {
                     <input 
                         type="text" 
                         placeholder="Código de descuento" 
-                        value={codigoDescuento} 
-                        onChange={(e) => dispatch(setCodigoDescuento(e.target.value))} 
-                        onKeyDown={handleKeyDown}
+                        // Manejador de eventos para aplicar el código de descuento
                     />
                 </div>
                 
                 <div className="cart-total">
-                    {descuentoAplicado > 0 && (
-                        <p>Descuento aplicado: $ {descuentoAplicado.toFixed(2)}</p>
-                    )}
-                    <p>Total: ${precioConDescuento.toFixed(2)}</p>
+                    <p>Total: ${totalPrice.toFixed(2)}</p>
                 </div>
                 {username && productosSeleccionados.length > 0 && (
                     <div className="cart-finalizar" >

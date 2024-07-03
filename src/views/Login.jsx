@@ -25,19 +25,7 @@ const Login = () => {
         e.preventDefault();
         
         try {
-            /*
-            const response = await fetch('http://localhost:8080/api/v1/auth/authenticate', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                
-                body: JSON.stringify({ username, password }),
-            });
-    
-            if (!response.ok) {
-                throw new Error('Invalid username or password');
-            }*/
+            
 
             try {
                 await dispatch(loginUser({ username, password })).unwrap();
@@ -46,13 +34,7 @@ const Login = () => {
             } catch (error) {
                 setError(authError || 'Error al iniciar sesión');
             }
-            /*
-            const data = await response.json();
-            localStorage.setItem('user', username);
-            console.log(localStorage.getItem.username)
-            localStorage.setItem('token', data.token); // Asumiendo que tu backend devuelve un token
-            navigate('/'); // Navega a la página principal después de iniciar sesión
-            console.log("lo lograse!");*/
+           
         } catch (error) {
             setError(error.message);
         }
@@ -75,33 +57,7 @@ const Login = () => {
         } catch (error) {
             setError(authError || 'Error al registrarse');
         }
-        /*
-        try {
-            const response = await fetch('http://localhost:8080/api/v1/auth/register', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ 
-                    name: registerName, 
-                    lastname: registerLastName, 
-                    username: registerUsername, 
-                    password: registerPassword,
-                    role: registerRole
-                }),
-            });
-
-            if (!response.ok) {
-                throw new Error('Could not create account');
-            }
-
-            const data = await response.json();
-            localStorage.setItem('token', data.token); // Asumiendo que tu backend devuelve un token
-            navigate('/'); // Navega a la página principal después de registrarse
-            console.log("¡Registro exitoso!");
-        } catch (error) {
-            setError(error.message);
-        }*/
+        
     };
 
 

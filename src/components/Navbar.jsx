@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { increment, decrement } from '../components/Redux/counter';
+import { selectAuthIsAdmin } from '../components/Redux/authSlice';
 
 import logo from "../assets/img/logo.png";
 
@@ -11,7 +12,7 @@ import "../assets/css/navbar.css";
 const Navbar = () => {
     const count = useSelector((state) => state.counter.value);
     const dispatch = useDispatch();
-    const isAdmin = true;
+    const isAdmin = useSelector(selectAuthIsAdmin); 
 
     return (
         <nav className='d-flex align-items-center justify-content-between background-color-2'>

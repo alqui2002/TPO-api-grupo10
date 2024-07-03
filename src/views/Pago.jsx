@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios'; // Asegúrate de importar axios
+import { addPedido } from '../components/Redux/pagoAPI';
+
 
 import "../assets/css/pago.css";
 
@@ -61,28 +63,18 @@ const Pago = () => {
     };
 
     const comprar = async () => {
-        try {
+        try{
             console.log(direccion)
             console.log(username)
             console.log(seleccionEnvio)
 
-
-            const response = await fetch(`http://localhost:8080/api/pedidos/add-pedido?username=${encodeURIComponent(username)}&delivery=${encodeURIComponent(seleccionEnvio)}&adress=${encodeURIComponent(direccion)}=&descuento=${encodeURIComponent(codigoDescuento)}&metodoPago=tarjeta`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-            });   
-            if (!response.ok) {
-                throw new Error('Error al agregar el producto al carrito');
-            }else{
-                console.log('Pedido guardado:', response.data);
-                setComprado('si');
-                setTarjetaView('no');
-            }
+            dispatch(addPedido({username,seleccionEnvio,direccion,codigoDescuento}));
+            setComprado('si');
+            setTarjetaView('no');
         } catch (error) {
             console.error('Error al agregar el producto al carrito:', error.message);
-        } 
+        }        
+        
     }
 
     const cambiarColor = (tarjeta) => {

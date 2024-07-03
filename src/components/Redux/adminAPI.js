@@ -30,14 +30,10 @@ export const addVinilo = createAsyncThunk('vinilos/addVinilo', async (vinilo) =>
     return response.json();
 });
 
-export const updateVinilo = createAsyncThunk('vinilos/updateVinilo', async (vinilo, { getState }) => {
-    const { id, image, price, stock } = vinilo;
-    console.log(price,stock,id)
-    console.log(2)
-    const response = await fetch(`http://localhost:8080/api/vinilos/update/${encodeURIComponent(id)}?price=${encodeURIComponent(price)}&stock=${encodeURIComponent(stock)}`, {
+export const updateVinilo = createAsyncThunk('vinilos/updateVinilo', async ({ productId, ...updatedValues }) => {
+    const { price, stock } = updatedValues;
+    const response = await fetch(`http://localhost:8080/api/vinilos/update/${encodeURIComponent(productId)}?price=${encodeURIComponent(price)}&stock=${encodeURIComponent(stock)}`, {
         method: 'PUT',
-        
-       
     });
 
     if (!response.ok) throw new Error('Failed to update vinilo');
@@ -63,7 +59,6 @@ const viniloSlice = createSlice({
         error: null,
     },
     reducers: {
-        // Reducers adicionales si es necesario
     },
     extraReducers: (builder) => {
         builder

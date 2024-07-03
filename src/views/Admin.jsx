@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ProductList from "../components/ProductList.jsx";
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { updateVinilo } from '../components/Redux/adminAPI.js';
+import { updateVinilo , deleteVinilo} from '../components/Redux/adminAPI.js';
 import "../assets/css/admin.css";
 
 const Admin = ({ isAdmin }) => {
@@ -49,11 +49,7 @@ const Admin = ({ isAdmin }) => {
         setEditing(true);
     };
 
-    const handleEliminar = (productToDelete) => {
-        setProductos(prevItems => prevItems.filter(item => item.id !== productToDelete));
-        handleSearch();
-    };
-
+   
     const handleAgregar = async () => {
         try {
             const formData = new FormData();
@@ -76,26 +72,35 @@ const Admin = ({ isAdmin }) => {
 
             const nuevoAlbum = await response.json();
             setProductos([...products, nuevoAlbum]);
+            setNewProduct({ id: '', title: '', subtitle: '', price: '', imageSrc: '' ,description: '',stock: '',genero: ''});
         } catch (error) {
             console.error('Error al agregar el vinilo:', error);
         }
     };
 
     const handleEdit = (productId, updatedValues) => {
-        const productosActualizados = products.map(product =>
-            product.id === productId ? { ...product, ...updatedValues } : product
-        );
-
-        setProductos(productosActualizados);
         dispatch(updateVinilo({ productId, ...updatedValues }))
             .unwrap()
             .then(() => {
                 console.log(`Producto con id ${productId} actualizado correctamente`);
+                setEditing(null);
             })
-            .catch(err => {
+            .catch((err) => {
                 console.error('Error actualizando vinilo:', err);
             });
     };
+
+    const handleEliminar = (productId) => {
+        dispatch(deleteVinilo(productId))
+            .unwrap()
+            .then(() => {
+                console.log(`Vinilo con id ${productId} eliminado correctamente`);
+            })
+            .catch(err => {
+                console.error('Error eliminando vinilo:', err);
+            });
+    };
+
 
     useEffect(() => {
         if (editingProduct === true) handleSearch();
@@ -116,7 +121,7 @@ const Admin = ({ isAdmin }) => {
                     <ProductList
                         key={product.id}
                         id={product.id}
-                        imageSrc={product.imageSrc}
+                        imageSrc={product.image}
                         title={product.title}
                         subtitle={product.subtitle}
                         price={product.price}

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import axios from 'axios'; // Asegúrate de importar axios
 
 import "../assets/css/pago.css";
 
@@ -12,15 +13,21 @@ import visa from '../assets/img/visa-logo.png';
 const Pago = () => {
 
     const navigate = useNavigate();
-    const [tarjetaView, setTarjetaView] = useState('no');
+    const dispatch = useDispatch();
     const count = useSelector((state) => state.counter.value);
+    const productosSeleccionados = useSelector((state) => state.carrito.productosSeleccionados);
+    const seleccionEnvio = useSelector((state) => state.carrito.seleccionEnvio);
+    const codigoDescuento = useSelector((state) => state.carrito.codigoDescuento);
+    const descuentoAplicado = useSelector((state) => state.carrito.descuentoAplicado);
+    const precioConDescuento = useSelector((state) => state.carrito.precioConDescuento);
+    const username = useSelector((state) => state.auth.username);
+
+    const [tarjetaView, setTarjetaView] = useState('no');
     const [comprado, setComprado] = useState('no');
-    const [total, setTotal] = useState(219);
+    const [total, setTotal] = useState(precioConDescuento || 0);
     const [colorMaster, setColorMaster] = useState("background-white-1");
     const [colorVisa, setColorVisa] = useState("background-white-1");
     const [buttonFinalizar, setButtonFinalizar] = useState("button-pago-blocked");
-
-    const username = useSelector((state) => state.auth.username);
 
     const [datosTarjeta, setDatosTarjeta] = useState({
         numero: '',
@@ -31,13 +38,18 @@ const Pago = () => {
     });
 
     useEffect(() => {
+        // Actualizar el total cuando cambie el precio con descuento
+        setTotal(precioConDescuento);
+    }, [precioConDescuento]);
+
+    useEffect(() => {
         const { numero, titular, vtoMes, vtoYear, codigoSeguridad } = datosTarjeta;
         if (numero && titular && vtoMes && vtoYear && codigoSeguridad && (colorVisa !== "background-white-1" || colorMaster !== "background-white-1")) {
             setButtonFinalizar("button-pago");
         } else {
             setButtonFinalizar("button-pago-blocked");
         }
-    }, [datosTarjeta]);
+    }, [datosTarjeta, colorVisa, colorMaster]);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -48,27 +60,23 @@ const Pago = () => {
     };
 
     const comprar = async () => {
-        console.log(`Username: ${username}`); 
-        /*
-        const pedido = {
-            username: username,
-            total: total,
-            items: [
-               
-            ],
-            tarjeta: datosTarjeta
-        };
-
         try {
-            const response = await axios.post('/api/orders', pedido);
-            console.log('Pedido guardado:', response.data);
-            setComprado('si');
-            setTarjetaView('no');
+            const response = await fetch(`http://localhost:8080/api/pedidos/add-pedido?username=${encodeURIComponent(username)}&delivery=${encodeURIComponent(seleccionEnvio)}&adress=libertador&descuento=${encodeURIComponent(codigoDescuento)}&metodoPago=tarjeta`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+            });   
+            if (!response.ok) {
+                throw new Error('Error al agregar el producto al carrito');
+            }else{
+                console.log('Pedido guardado:', response.data);
+                setComprado('si');
+                setTarjetaView('no');
+            }
         } catch (error) {
-            console.error('Error al guardar el pedido:', error);
-        }*/
-        setComprado('si');
-        setTarjetaView('no');
+            console.error('Error al agregar el producto al carrito:', error.message);
+        } 
     }
 
     const cambiarColor = (tarjeta) => {
@@ -146,6 +154,7 @@ const Pago = () => {
                 );
         }
     }
+
     switch (comprado) {
         case "no":
             return (
@@ -157,8 +166,8 @@ const Pago = () => {
                             <h5 className="ps-5">Número de articulos: {count}</h5>
                             <h3 className="ps-5 pb-3">Total: $ {total}.00</h3>
                             <div className="d-flex ps-5 pb-5">
-                                <button className={buttonFinalizar} onClick={() => comprar()}>Finalizar compra</button>
-                                <button className="button-pago" onClick={() => atras()}>Atrás</button>
+                                <button className={buttonFinalizar} onClick={comprar}>Finalizar compra</button>
+                                <button className="button-pago" onClick={atras}>Atrás</button>
                             </div>
                         </div>
                     </div>
@@ -172,7 +181,7 @@ const Pago = () => {
                     <button className="button-pago mt-5" onClick={() => (navigate('/cart'), window.location.reload())}>Volver</button>
                 </div>
             )
-        }
+    }
 }
 
 export default Pago;

@@ -4,9 +4,10 @@ import Card from '../components/Card.jsx';
 import "../assets/css/products.css";
 
 import { useSelector, useDispatch } from 'react-redux';
+import { setProductosSeleccionados } from '../components/Redux/carritoSlice'; 
 import { increment } from '../components/Redux/counter';
 
-const Products = ({ productosSeleccionados, setProductosSeleccionados }) => {
+const Products = () => {
     const [colorTodo, setColorTodo] = useState("color-3");
     const [colorRock, setColorRock] = useState("black-1");
     const [colorAlternativo, setColorAlternativo] = useState("black-1");
@@ -19,7 +20,7 @@ const Products = ({ productosSeleccionados, setProductosSeleccionados }) => {
     const [productos, setProductos] = useState([]);
 
     const dispatch = useDispatch();
-    
+    const productosSeleccionados = useSelector((state) => state.carrito.productosSeleccionados);
 
     useEffect(() => {
         // Función para obtener los vinilos desde la API
@@ -40,8 +41,11 @@ const Products = ({ productosSeleccionados, setProductosSeleccionados }) => {
     }, []);
 
     const handleProductClick = (product) => {
-        setProductosSeleccionados([...productosSeleccionados, product]);
-        dispatch(increment());
+        // Si el producto ya está en la lista, no lo agregamos nuevamente
+        if (!productosSeleccionados.some(p => p.id === product.id)) {
+            dispatch(setProductosSeleccionados([...productosSeleccionados, product]));
+            dispatch(increment());
+        }
     };
 
     const cambiarColor = (genero) => {
@@ -87,7 +91,6 @@ const Products = ({ productosSeleccionados, setProductosSeleccionados }) => {
         setFiltrados(filtrados);
         setFiltroGenero(null); // Reiniciar filtro de género al hacer una búsqueda
     };
-   
 
     const productosMostrados = filtrados.length > 0 ? filtrados : productos.filter(product => !filtroGenero || product.genero === filtroGenero);
 
@@ -122,9 +125,7 @@ const Products = ({ productosSeleccionados, setProductosSeleccionados }) => {
                                     title={product.title}
                                     subtitle={product.subtitle}
                                     price={product.price}
-                                    handleClick={() => {handleProductClick(product);
-                                        }
-                                    }
+                                    handleClick={() => { handleProductClick(product); }}
                                 />
                             ))}
                         </div>

@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-// Define la acción asíncrona para procesar el login
+// Define the asynchronous action for logging in the user
 export const loginUser = createAsyncThunk('auth/loginUser', async ({ username, password }, { rejectWithValue, dispatch }) => {
     try {
         const response = await fetch('http://localhost:8080/api/v1/auth/authenticate', {
@@ -16,16 +16,16 @@ export const loginUser = createAsyncThunk('auth/loginUser', async ({ username, p
         }
 
         const data = await response.json();
-        // Llama a una función adicional para obtener el rol del usuario
         const isAdmin = await fetchUserRole(username);
+        localStorage.setItem('token', data.token);
 
-        return { token: data.token, username, isAdmin };  // Devolvemos el token, el username y el rol
+        return { token: data.token, username, isAdmin };  // Return the token, username, and role
     } catch (error) {
         return rejectWithValue(error.message);
     }
 });
 
-// Define la acción asíncrona para registrar un nuevo usuario
+// Define the asynchronous action for registering a new user
 export const registerUser = createAsyncThunk('auth/registerUser', async ({ name, lastname, username, password, role }, { rejectWithValue }) => {
     try {
         const response = await fetch('http://localhost:8080/api/v1/auth/register', {
@@ -41,13 +41,13 @@ export const registerUser = createAsyncThunk('auth/registerUser', async ({ name,
         }
 
         const data = await response.json();
-        return { token: data.token, username, isAdmin: role === 'ADMIN' };  // Devolvemos el token, el username y el rol
+        return { token: data.token, username, isAdmin: role === 'ADMIN' };  // Return the token, username, and role
     } catch (error) {
         return rejectWithValue(error.message);
     }
 });
 
-// Nueva función para obtener el rol del usuario
+// Function to fetch user role
 export const fetchUserRole = async (username) => {
     try {
         const userResponse = await fetch(`http://localhost:8080/api/cuentas/username/${username}`);
@@ -56,7 +56,7 @@ export const fetchUserRole = async (username) => {
         }
 
         const userData = await userResponse.json();
-        return userData.role === 'ADMIN';  // Verifica si el rol es ADMIN
+        return userData.role === 'ADMIN';  // Check if the role is ADMIN
     } catch (error) {
         throw new Error(error.message);
     }
@@ -66,8 +66,8 @@ const authSlice = createSlice({
     name: 'auth',
     initialState: {
         token: localStorage.getItem('token') || '',
-        isAdmin: false,
-        username: '',
+        isAdmin: JSON.parse(localStorage.getItem('isAdmin')) || false,
+        username: localStorage.getItem('username') || '',
         error: null,
     },
     reducers: {
@@ -76,6 +76,8 @@ const authSlice = createSlice({
             state.username = '';
             state.isAdmin = false;
             localStorage.removeItem('token');
+            localStorage.removeItem('isAdmin');
+            localStorage.removeItem('username');
         },
     },
     extraReducers: (builder) => {
@@ -85,6 +87,8 @@ const authSlice = createSlice({
                 state.username = action.payload.username;
                 state.isAdmin = action.payload.isAdmin;
                 localStorage.setItem('token', action.payload.token);
+                localStorage.setItem('isAdmin', action.payload.isAdmin);
+                localStorage.setItem('username', action.payload.username);
                 state.error = null;
             })
             .addCase(registerUser.fulfilled, (state, action) => {
@@ -92,6 +96,8 @@ const authSlice = createSlice({
                 state.username = action.payload.username;
                 state.isAdmin = action.payload.isAdmin;
                 localStorage.setItem('token', action.payload.token);
+                localStorage.setItem('isAdmin', action.payload.isAdmin);
+                localStorage.setItem('username', action.payload.username);
                 state.error = null;
             })
             .addCase(loginUser.rejected, (state, action) => {
@@ -107,7 +113,7 @@ export const { logout } = authSlice.actions;
 
 export const selectAuthToken = (state) => state.auth.token;
 export const selectAuthUsername = (state) => state.auth.username;
-export const selectAuthIsAdmin = (state) => state.auth.isAdmin;  // Selector para el estado de admin
+export const selectAuthIsAdmin = (state) => state.auth.isAdmin;  // Selector for admin state
 export const selectAuthError = (state) => state.auth.error;
 
 export default authSlice.reducer;

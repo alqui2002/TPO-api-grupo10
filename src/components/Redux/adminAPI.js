@@ -30,19 +30,21 @@ export const addVinilo = createAsyncThunk('vinilos/addVinilo', async (vinilo) =>
     return response.json();
 });
 
-export const updateVinilo = createAsyncThunk('vinilos/updateVinilo', async (vinilo) => {
+export const updateVinilo = createAsyncThunk('vinilos/updateVinilo', async (vinilo, { getState }) => {
     const { id, image, price, stock } = vinilo;
-    const response = await fetch(`http://localhost:8080/api/vinilos/update/${id}`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: new URLSearchParams({ image, price, stock })
+    console.log(price,stock,id)
+    console.log(2)
+    const response = await fetch(`http://localhost:8080/api/vinilos/update/${encodeURIComponent(id)}?price=${encodeURIComponent(price)}&stock=${encodeURIComponent(stock)}`, {
+        method: 'PUT',
+        
+       
     });
 
     if (!response.ok) throw new Error('Failed to update vinilo');
     return response.json();
 });
+
+
 
 export const deleteVinilo = createAsyncThunk('vinilos/deleteVinilo', async (id) => {
     const response = await fetch(`http://localhost:8080/api/vinilos/delete/${id}`, {

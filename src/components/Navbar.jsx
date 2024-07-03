@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { increment, decrement } from '../components/Redux/counter';
-import { selectAuthIsAdmin } from '../components/Redux/authSlice';
+import { selectAuthIsAdmin, selectAuthUsername } from '../components/Redux/authSlice';
 
 import logo from "../assets/img/logo.png";
 
@@ -13,6 +13,8 @@ const Navbar = () => {
     const count = useSelector((state) => state.counter.value);
     const dispatch = useDispatch();
     const isAdmin = useSelector(selectAuthIsAdmin); 
+    const isUser = useSelector(selectAuthUsername); 
+
 
     return (
         <nav className='d-flex align-items-center justify-content-between background-color-2'>
@@ -30,9 +32,9 @@ const Navbar = () => {
             <div className="d-flex align-items-center">
                 <ul className='nav-links color-3 p-0 m-0 nav-login'>
                     <li>
-                        <Link to='/Login' onClick={() => window.scrollTo(0, 0)}>
-                            <i class="bi bi-person-circle pe-2"></i>
-                            Acceder
+                    <Link to={isUser ? '/Login' : '/Login'} onClick={() => window.scrollTo(0, 0)}>
+                            <i className="bi bi-person-circle pe-2"></i>
+                            {isUser ? isUser : 'Acceder'}
                         </Link>
                     </li>
                 </ul>

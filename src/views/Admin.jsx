@@ -6,11 +6,11 @@ import ProductListAdmin from '../components/ProductListAdmin.jsx';
 
 const Admin = () => {
     
-    const dispatch = useDispatch();
+    //const dispatch = useDispatch();
 
-    const currentUser = useSelector(state => state.accounts.currentUser);
-    const products = useSelector(state => state.products.products);
-    const isAdmin = currentUser && currentUser.isAdmin;
+    //const currentUser = useSelector(state => state.accounts.currentUser);
+    //const products = useSelector(state => state.products.products);
+    const isAdmin = true;//currentUser && currentUser.isAdmin;
 
     const [newTitle, setNewTitle] = useState(null);
     const [newSubtitle, setNewSubtitle] = useState(null);
@@ -21,19 +21,19 @@ const Admin = () => {
     const [filtrados, setFiltrados] = useState([]);
     const [busquedaProduct, setBusquedaProduct] = useState('');
 
-    const handleSearch = () => {
+    const handleSearch = () => {/*
         const prodFiltrados = products.filter(product => {
             return product.title.toLowerCase().includes(busquedaProduct.toLowerCase());
         });
-        setFiltrados(prodFiltrados);
+        setFiltrados(prodFiltrados);*/
     };
 
-    const calculateNewProductId = () => {
+    const calculateNewProductId = () => {/*
         const lastProductId = products.length > 0 ? products[products.length - 1].id : 0;
-        return lastProductId + 1;
+        return lastProductId + 1;*/
     };
 
-    const handleAddProduct = () => {
+    const handleAddProduct = () => {/*
         const newProduct = {
             id: calculateNewProductId(),
             title: newTitle,
@@ -50,7 +50,7 @@ const Admin = () => {
         setNewSubtitle('');
         setNewPrice('');
         setNewGenero('');
-        setNewDescription('');
+        setNewDescription('');*/
     };
 
     if (isAdmin) return (

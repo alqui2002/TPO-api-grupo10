@@ -4,9 +4,9 @@ import { removeProduct, updateProduct } from '../redux/productsSlice';
 
 function ProductList(id) {
 
-  const dispatch = useDispatch();
-  const products = useSelector(state => state.products.products);
-  const product = products.find(product => product.id == id.id);
+  //const dispatch = useDispatch();
+  //const products = useSelector(state => state.products.products);
+  const product = null//products.find(product => product.id == id.id);
 
   const [editing, setEditing] = useState(false);
 
@@ -24,7 +24,7 @@ function ProductList(id) {
       genero: product.genero,
       description: product.description 
     };
-    dispatch(updateProduct({ id: product.id, updatedProduct }));
+    //dispatch(updateProduct({ id: product.id, updatedProduct }));
     setEditing(false);
   }
 
@@ -57,8 +57,8 @@ function ProductList(id) {
         </div>
         <div className="d-flex">
           <button id="admin-edit-button" onClick={() => setEditing(true)} className="admin-product-button d-flex align-items-center justify-content-center m-2">Editar</button>
-          <button id="admin-delete-button" onClick={() => dispatch(removeProduct(product.id))} className="admin-product-button background-red-1 d-flex align-items-center justify-content-center m-2">Eliminar</button>
-        </div>
+          {//<button id="admin-delete-button" onClick={() => dispatch(removeProduct(product.id))} className="admin-product-button background-red-1 d-flex align-items-center justify-content-center m-2">Eliminar</button>
+  }     </div>
       </div>
     );
   }

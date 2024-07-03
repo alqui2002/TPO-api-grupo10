@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+/*import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const API_BASE_URL = 'http://localhost:8080/api/v1'; // Adjust base URL as per your setup
@@ -63,3 +63,4 @@ export const cartActions = {
   addToCart,
   removeFromCart,
 };
+*/

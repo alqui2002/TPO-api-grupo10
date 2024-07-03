@@ -44,13 +44,13 @@ const Products = () => {
         }
     };
 
-    const filtrarPorGenero = (genero) => {
+    const filtrarPorGenero = (genero) => {/*
         cambiarColor(genero);
         setFiltroGenero(genero);
-        setFiltrados(products.filter(product => !genero || product.genero === genero));
+        setFiltrados(products.filter(product => !genero || product.genero === genero));*/
     };
 
-    const handleChange = (e) => {
+    const handleChange = (e) => {/*
         const { name, value } = e.target;
         setNewProduct({ [name]: value });
         const filtrados = products.filter(product =>
@@ -58,7 +58,7 @@ const Products = () => {
             product.subtitle.toLowerCase().includes(value.toLowerCase())
         );
         setFiltrados(filtrados);
-        setFiltroGenero(null);
+        setFiltroGenero(null);*/
     };
 
     const productosMostrados = filtrados.length > 0 ? filtrados : products.filter(product => !filtroGenero || product.genero === filtroGenero);

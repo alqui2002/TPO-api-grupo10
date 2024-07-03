@@ -3,24 +3,24 @@ import { useDispatch, useSelector } from 'react-redux';
 import { lessCartItemQuantity, addItemToCart, removeItemFromCart } from '../redux/accountsSlice';
 
 function ProductList({ id }) {
-  const dispatch = useDispatch();
-  const products = useSelector(state => state.products.products);
-  const currentUser = useSelector(state => state.accounts.currentUser);
-  const product = products.find(product => product.id === id);
-  const [quantity, setQuantity] = useState(currentUser.cart[id] || 0);
+  //const dispatch = useDispatch();
+  const products = null;//useSelector(state => state.products.products);
+  //const currentUser = useSelector(state => state.accounts.currentUser);
+  const product = null//products.find(product => product.id === id);
+  const [quantity, setQuantity] = useState(1)//currentUser.cart[id] || 0);
 
-  const handleLessQuantity = () => {
+  const handleLessQuantity = () => {/*
     if (quantity > 1) {
       setQuantity(prevQuantity => prevQuantity - 1);
       dispatch(lessCartItemQuantity(id));
-    }
+    }*/
   };
 
-  const handleMoreQuantity = () => {
+  const handleMoreQuantity = () => {/*
     if (quantity < 10) {
       setQuantity(prevQuantity => prevQuantity + 1);
       dispatch(addItemToCart(id));
-    }
+    }*/
   };
 
   return (
@@ -38,8 +38,8 @@ function ProductList({ id }) {
           <button id="product-more-button" className="product-less-more-button" onClick={handleMoreQuantity}>+</button>
         </div>
       </div>
-      <button id="user-delete-button" className="admin-product-button background-red-1 d-flex align-items-center justify-content-center m-2 px-3" onClick={() => dispatch(removeItemFromCart(id))}>Eliminar</button>
-    </div>
+      {//<button id="user-delete-button" className="admin-product-button background-red-1 d-flex align-items-center justify-content-center m-2 px-3" onClick={() => dispatch(removeItemFromCart(id))}>Eliminar</button>
+}   </div>
   );
 }
 

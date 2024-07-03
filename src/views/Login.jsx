@@ -20,16 +20,16 @@ const Login = () => {
     const isLoggedIn = currentUser !== null;
 
     const handleLogin = () => {
-        dispatch(login({ username, password }));
+        //dispatch(login({ username, password }));
     };
 
     const handleRegister = () => {
-        dispatch(register({ name, lastName, username, password, isAdmin: false , cart: {}, discount: 0 }));
+        //dispatch(register({ name, lastName, username, password, isAdmin: false , cart: {}, discount: 0 }));
     };
 
     useEffect(() => {
         if (registrationStatus === 'success') {
-            dispatch(login({ username, password }));
+            //dispatch(login({ username, password }));
         } else if (registrationStatus === 'error') {
             console.log('Error registrandose');
         }
@@ -37,7 +37,7 @@ const Login = () => {
 
     useEffect(() => {
         if (loginStatus === 'success') {
-            dispatch(resetLoginStatus());
+            //dispatch(resetLoginStatus());
             navigate('/');
         } else if (loginStatus === 'failed') {
             console.log('Error de login');

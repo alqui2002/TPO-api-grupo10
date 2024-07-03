@@ -10,13 +10,13 @@ import visa from '../assets/img/visa-logo.png';
 
 const Pago = () => {
 
-    const dispatch = useDispatch();
+    //const dispatch = useDispatch();
 
-    const currentUser = useSelector(state => state.accounts.currentUser);
-    const products = useSelector(state => state.products.products);
+    //const currentUser = useSelector(state => state.accounts.currentUser);
+    //const products = useSelector(state => state.products.products);
 
     const [discountedPrice, setDiscountedPrice] = useState(0);
-    const count = currentUser && currentUser.cart ? Object.values(currentUser.cart).reduce((total, quantity) => total + quantity, 0) : 0;
+    const count = 1;//currentUser && currentUser.cart ? Object.values(currentUser.cart).reduce((total, quantity) => total + quantity, 0) : 0;
 
     const navigate = useNavigate();
 
@@ -33,14 +33,14 @@ const Pago = () => {
         codigoSeguridad: ''
     });
 
-    useEffect(() => {
+    useEffect(() => {/*
         const totalPrice = Object.entries(currentUser.cart).reduce((total, [itemId, quantity]) => {
             const product = products.find(product => product.id === parseInt(itemId));
             if (product) {
                 return total + (product.price * quantity);
             }
             return total;
-        }, 0);
+        }, 0);*/
 
         let newDiscountedPrice = totalPrice;
         if (currentUser.discount === 1) { newDiscountedPrice += 15; }
@@ -70,7 +70,7 @@ const Pago = () => {
         if (buttonFinalizar === "button-pago") {
             setComprado('si');
             setTarjetaView('no');
-            dispatch(emptyCart());
+            //dispatch(emptyCart());
         }
     }
 

@@ -5,9 +5,9 @@ import { useSelector } from 'react-redux';
 import logo from "../assets/img/logo.png";
 
 const Navbar = () => {
-    const currentUser = useSelector(state => state.accounts.currentUser);
+    const currentUser = null//useSelector(state => state.accounts.currentUser);
     const isAdmin = currentUser && currentUser.isAdmin;
-    const count = currentUser && currentUser.cart ? Object.values(currentUser.cart).reduce((total, quantity) => total + quantity, 0) : 0;
+    const count = 1;//currentUser && currentUser.cart ? Object.values(currentUser.cart).reduce((total, quantity) => total + quantity, 0) : 0;
 
     return (
         <nav className='d-flex align-items-center justify-content-between background-color-2'>

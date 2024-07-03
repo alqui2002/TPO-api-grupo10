@@ -5,15 +5,15 @@ import { Link } from 'react-router-dom';
 
 function Card({ id, isHome }) {
 
-    const dispatch = useDispatch();
-    const currentUser = useSelector(state => state.accounts.currentUser);
-    const [quantity, setQuantity] = useState(currentUser && currentUser.cart ? currentUser.cart[id] || 0 : 0);
-    const products = useSelector(state => state.products.products);
-    const product = products.find(product => product.id == id);
+    //const dispatch = useDispatch();
+    //const currentUser = useSelector(state => state.accounts.currentUser);
+    //const [quantity, setQuantity] = useState(currentUser && currentUser.cart ? currentUser.cart[id] || 0 : 0);
+    //const products = useSelector(state => state.products.products);
+    const product = null//products.find(product => product.id == id);
 
     const [showPopup, setShowPopup] = useState(false);
 
-    const handleAddToCart = () => {
+    const handleAddToCart = () => {/*
         if (quantity < 10) {
             setQuantity(prevQuantity => prevQuantity + 1);
             dispatch(addItemToCart(id));
@@ -21,7 +21,7 @@ function Card({ id, isHome }) {
         setShowPopup(true);
         setTimeout(() => {
             setShowPopup(false);
-        }, 2000);
+        }, 2000);*/
     };
 
     if (!product) { return <div>Loading...</div>; }

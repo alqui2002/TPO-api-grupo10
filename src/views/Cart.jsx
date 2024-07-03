@@ -7,11 +7,11 @@ import Footer from '../components/Footer.jsx';
 
 const Cart = () => {
 
-    const dispatch = useDispatch();
+    //const dispatch = useDispatch();
 
-    const currentUser = useSelector(state => state.accounts.currentUser);
-    const products = useSelector(state => state.products.products);
-    const currentUserWithDefault = currentUser || { cart: {} };
+    //const currentUser = useSelector(state => state.accounts.currentUser);
+    //const products = useSelector(state => state.products.products);
+    //const currentUserWithDefault = currentUser || { cart: {} };
 
     const [seleccionEnvio, setEnvio] = useState('Seleccionar');
     const [codigoDescuento, setCodigoDescuento] = useState('');
@@ -21,7 +21,7 @@ const Cart = () => {
 
     const count = currentUserWithDefault && currentUserWithDefault.cart ? Object.values(currentUserWithDefault.cart).reduce((total, quantity) => total + quantity, 0) : 0;
 
-    useEffect(() => {
+    useEffect(() => {/*
         const totalPrice = currentUserWithDefault && currentUserWithDefault.cart ? Object.entries(currentUserWithDefault.cart).reduce((total, [itemId, quantity]) => {
             const product = products.find(product => product.id === parseInt(itemId));
             if (product) {
@@ -34,7 +34,7 @@ const Cart = () => {
         if (currentUserWithDefault.discount === 1) { newDiscountedPrice += 15; }
         else if (currentUserWithDefault.discount === 2) { newDiscountedPrice *= 0.9; }
         else if (currentUserWithDefault.discount === 3) { newDiscountedPrice = newDiscountedPrice * 0.9 + 15; }
-        setDiscountedPrice(newDiscountedPrice);
+        setDiscountedPrice(newDiscountedPrice);*/
     }, [currentUserWithDefault, products]);
 
     useEffect(() => {
@@ -43,7 +43,7 @@ const Cart = () => {
         else if (!isCod10Off && !retiro) { newDiscount = 1; }
         else if (isCod10Off && retiro) { newDiscount = 2; }
         else if (isCod10Off && !retiro) { newDiscount = 3; }
-        if (currentUser !== null) { dispatch(updateDiscount(newDiscount)); }
+        //if (currentUser !== null) { dispatch(updateDiscount(newDiscount)); }
     }, [isCod10Off, retiro]);
 
     const handleDiscountInputChange = (event) => {

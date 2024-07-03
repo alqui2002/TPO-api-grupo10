@@ -5,18 +5,18 @@ import { addItemToCart } from '../redux/accountsSlice';
 
 const ProdDescripcion = () => {
     
-    const dispatch = useDispatch();
-    const products = useSelector(state => state.products.products);
-    const currentUser = useSelector(state => state.accounts.currentUser);
+    //const dispatch = useDispatch();
+    //const products = useSelector(state => state.products.products);
+    //const currentUser = useSelector(state => state.accounts.currentUser);
     const { id } = useParams();
-    const [quantity, setQuantity] = useState(currentUser && currentUser.cart ? currentUser.cart[id] || 0 : 0);
-    const product = products.find(product => product.id == id);
+    const [quantity, setQuantity] = null;//useState(currentUser && currentUser.cart ? currentUser.cart[id] || 0 : 0);
+    const product = null;//products.find(product => product.id == id);
     const [comprado, setComprado] = useState(false);
 
     const handleMoreQuantity = () => {
         if (quantity < 10) {
             setQuantity(prevQuantity => prevQuantity + 1);
-            dispatch(addItemToCart(id));
+            //dispatch(addItemToCart(id));
         }
     };
 

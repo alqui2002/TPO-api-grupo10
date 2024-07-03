@@ -19,6 +19,7 @@ const Products = ({ productosSeleccionados, setProductosSeleccionados }) => {
     const [productos, setProductos] = useState([]);
 
     const dispatch = useDispatch();
+    
 
     useEffect(() => {
         // Función para obtener los vinilos desde la API
@@ -86,6 +87,7 @@ const Products = ({ productosSeleccionados, setProductosSeleccionados }) => {
         setFiltrados(filtrados);
         setFiltroGenero(null); // Reiniciar filtro de género al hacer una búsqueda
     };
+   
 
     const productosMostrados = filtrados.length > 0 ? filtrados : productos.filter(product => !filtroGenero || product.genero === filtroGenero);
 
@@ -120,7 +122,9 @@ const Products = ({ productosSeleccionados, setProductosSeleccionados }) => {
                                     title={product.title}
                                     subtitle={product.subtitle}
                                     price={product.price}
-                                    handleClick={() => handleProductClick(product)}
+                                    handleClick={() => {handleProductClick(product);
+                                        }
+                                    }
                                 />
                             ))}
                         </div>

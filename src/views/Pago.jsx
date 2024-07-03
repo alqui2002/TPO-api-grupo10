@@ -19,6 +19,9 @@ const Pago = () => {
     const [colorMaster, setColorMaster] = useState("background-white-1");
     const [colorVisa, setColorVisa] = useState("background-white-1");
     const [buttonFinalizar, setButtonFinalizar] = useState("button-pago-blocked");
+
+    const username = useSelector((state) => state.auth.username);
+
     const [datosTarjeta, setDatosTarjeta] = useState({
         numero: '',
         titular: '',
@@ -44,7 +47,26 @@ const Pago = () => {
         }));
     };
 
-    const comprar = () => {
+    const comprar = async () => {
+        console.log(`Username: ${username}`); 
+        /*
+        const pedido = {
+            username: username,
+            total: total,
+            items: [
+               
+            ],
+            tarjeta: datosTarjeta
+        };
+
+        try {
+            const response = await axios.post('/api/orders', pedido);
+            console.log('Pedido guardado:', response.data);
+            setComprado('si');
+            setTarjetaView('no');
+        } catch (error) {
+            console.error('Error al guardar el pedido:', error);
+        }*/
         setComprado('si');
         setTarjetaView('no');
     }

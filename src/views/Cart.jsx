@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate  } from 'react-router-dom';
 
 import ProductList from "../components/ProductList.jsx";
 
@@ -21,6 +21,9 @@ const Cart = ({ productosSeleccionados, setProductosSeleccionados }) => {
     const [productoEliminado, setProductoEliminado] = useState("opacity-0-height-0");
     const count = useSelector((state) => state.counter.value);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const cuentaId = useSelector((state) => state.auth.cuentaId); // Obtén cuentaId del estado de Redux
+    const username = useSelector((state) => state.auth.username); // Obtén username del estado de ReduxZZ
 
     const handleClick = async (productId) => {
         dispatch(decrement());
@@ -61,6 +64,34 @@ const Cart = ({ productosSeleccionados, setProductosSeleccionados }) => {
         }
     };
 
+    const handleAddToCart = async () => {
+        try {
+            for (const product of productosSeleccionados) {
+                console.log('Enviando solicitud para:', { username, viniloId: product.id, cantidad: 1 }); // Verifica los datos que estás enviando
+                const response = await fetch(`http://localhost:8080/api/cuentas/add-item-cart?username=${encodeURIComponent(username)}&viniloId=${product.id}&cantidad=1`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded', // Usar este tipo de contenido si estás enviando parámetros en la URL
+                    },
+                });
+    
+                if (!response.ok) {
+                    console.error('Error de red:', response.status, response.statusText); // Detalles del error
+                    throw new Error('Error al agregar el producto al carrito');
+                }else{
+                    console.log("se agrego el producto al carrito")
+                }
+    
+            }
+            setProductosSeleccionados([]);
+        } catch (error) {
+            console.error('Error al agregar el producto al carrito:', error.message);
+        }
+    };
+        
+    
+    
+
     const renderPago = () => {
         switch (count) {
             case 0:
@@ -71,7 +102,7 @@ const Cart = ({ productosSeleccionados, setProductosSeleccionados }) => {
                     </div>
                 );
             default:
-                return(
+                return (
                     <div className='cart-checkout d-flex'>
                         <div className="cart-envio">
                             <h3 className="text-center pb-2 cursor-default">Tipo de envío:</h3>
@@ -98,8 +129,8 @@ const Cart = ({ productosSeleccionados, setProductosSeleccionados }) => {
                             )}
                             <p>Total: ${precioConDescuento.toFixed(2)}</p>
                         </div>
-                        <div className="cart-finalizar">
-                            <Link to="/payment" id="cart-finalizar-button">Comprar</Link>
+                        <div className="cart-finalizar" >
+                            <Link to="/payment" id="cart-finalizar-button" onClick={handleAddToCart}>Comprar</Link>
                         </div>
                     </div>
                 );

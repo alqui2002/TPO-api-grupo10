@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import ProductList from "../components/ProductList.jsx";
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
+
+import { updateVinilo } from '../components/Redux/adminAPI.js';
+
 
 import inRainbows from "../assets/img/Inrainbowscover.png";
 import rumours from "../assets/img/Rumourscover.png";
@@ -20,28 +26,33 @@ import "../assets/css/admin.css";
 
 const Admin = ({isAdmin}) => {
     const [products, setProductos] = useState([
-        { id: 1, title: 'In Rainbows',subtitle:'Radiohead',imageSrc:inRainbows,price: 80.000, genero:"Alternativo"},
-        { id: 2, title: 'Folklore', subtitle:'Taylor Swift',imageSrc:folklore,price: 90.000,genero:'indie Folk' },
-        { id: 3, title: 'Rumours', subtitle:'Fleetwood Mac',  imageSrc:rumours,price: 85.000, genero:'Rock' },
-        { id: 4, title: 'Civilización', subtitle:'Los Piojos',  imageSrc:civilizacion,price: 75.000 , genero:'Nacional'},
-        { id: 5, title: "Red (Taylor's Version)", subtitle:'Taylor Swift',  imageSrc:redTS,price: 70.000,genero:'Pop' },
-        { id: 6, title: "The Tortured Poets Department: The Anthology ", subtitle:'Taylor Swift',  imageSrc:ttps,price: 100.000, genero:'Pop' },
-        { id: 7, title: "Un Verano Sin Ti", subtitle:'Bad Bunny',  imageSrc:uvst,price: 120.000, genero:'Pop' },
-        { id: 8, title: "Ohms", subtitle:'Deftones',  imageSrc:ohms,price: 120.000, genero:'Rock' },
-        { id: 9, title: "AM", subtitle: 'Arctic Monkeys', imageSrc: am, price: 90.000, genero: 'Rock' },
-        { id: 10, title: "YHLQMDLG", subtitle:'Bad Bunny',  imageSrc:badbo,price: 140.000, genero:'Pop' },
-        { id: 11, title: "Talento De Barrio", subtitle:'Daddy Yankee',  imageSrc:TDB,price: 125.000, genero:'Pop' },
-        { id: 12, title: "Easy Money Baby", subtitle:'Myke Towers',  imageSrc:EasyMoney,price: 100.000, genero:'Pop' },
-        { id: 13, title: "Real Hasta La Muerte", subtitle:'Anuel AA',  imageSrc:RHLM,price: 120.000, genero:'Pop' },
-        { id: 14, title: "Crisis", subtitle:'Las Pastillas Del Abuelo',  imageSrc:crisis,price: 70.000, genero:'Rock' },
-        { id: 15, title: ".MP3", subtitle:'Emilia Mernes',  imageSrc:mp3,price: 80.000, genero:'Pop' },
     ]);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const [filtrados, setFiltrados] = useState([]);
     const [newProduct, setNewProduct] = useState({ id: '', title: '', subtitle: '', price: '', imageSrc: '' });
     const [busquedaProduct, setBusquedaProduct] = useState({ id: '', title: '', subtitle: '', price: '', imageSrc: '' });
     const [editingProduct, setEditing] = useState(null);
 
+    useEffect(() => {
+        const fetchVinilos = async () => {
+            try {
+                const response = await fetch('http://localhost:8080/api/vinilos'); // Asegúrate de que esta URL es correcta
+                if (!response.ok) {
+                    throw new Error('Error al obtener los vinilos');
+                }
+                const data = await response.json();
+                setProductos(data.content); // Asegúrate de que 'data.content' es el lugar correcto donde están los vinilos
+                console.log(data.content[0].image)
+                
+            } catch (error) {
+                console.error(error.message);
+            }
+        };
+
+        fetchVinilos();
+    }, []);
     const handleChange = (e) => {
         const { name, value } = e.target;
         setNewProduct({ ...newProduct, [name]: value });

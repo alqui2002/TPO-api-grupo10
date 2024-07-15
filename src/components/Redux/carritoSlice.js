@@ -9,7 +9,7 @@ const carritoSlice = createSlice({
         descuentoAplicado: 0,
         precioConDescuento: 0,
         totalPrice: 0,
-        adress:'',
+        adress: '',
     },
     reducers: {
         setProductosSeleccionados(state, action) {
@@ -24,15 +24,25 @@ const carritoSlice = createSlice({
         setDescuentoAplicado(state, action) {
             state.descuentoAplicado = action.payload;
         },
-        calcularTotal: (state, action) => {
+        calcularTotal(state) {
             const totalPrice = state.productosSeleccionados.reduce((total, product) => total + product.price, 0);
-            state.totalPrice = action.payload !== undefined ? action.payload : totalPrice;
+            const precioConDescuento = totalPrice - (totalPrice * (state.descuentoAplicado / 100));
+            state.totalPrice = totalPrice;
+            state.precioConDescuento = precioConDescuento;
         },
         setAdress(state, action) {
             state.adress = action.payload;
+        },
+        aplicarDescuento(state, action) {
+            const discount = action.payload;
+            state.descuentoAplicado = discount;
+            const totalPrice = state.productosSeleccionados.reduce((total, product) => total + product.price, 0);
+            const precioConDescuento = totalPrice - (totalPrice * (discount / 100));
+            state.totalPrice = totalPrice;
+            state.precioConDescuento = precioConDescuento;
         }
     },
 });
 
-export const { setProductosSeleccionados, setSeleccionEnvio, setCodigoDescuento, setDescuentoAplicado, calcularTotal,setAdress } = carritoSlice.actions;
+export const { setProductosSeleccionados, setSeleccionEnvio, setCodigoDescuento, setDescuentoAplicado, calcularTotal, setAdress, aplicarDescuento } = carritoSlice.actions;
 export default carritoSlice.reducer;

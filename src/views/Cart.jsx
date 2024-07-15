@@ -1,25 +1,30 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ProductList from "../components/ProductList.jsx";
 import Footer from '../components/Footer.jsx';
 import { useSelector, useDispatch } from 'react-redux';
-import { setProductosSeleccionados, calcularTotal, setAdress, setSeleccionEnvio } from '../components/Redux/carritoSlice.js'; 
+import { setProductosSeleccionados, calcularTotal, setAdress, setSeleccionEnvio, setCodigoDescuento, aplicarDescuento } from '../components/Redux/carritoSlice.js'; 
 import { decrement } from '../components/Redux/counter';
 import { addProductToCart } from '../components/Redux/carritoAPI';
+import { selectAuthToken } from '../components/Redux/authSlice'; // Ajusta la ruta correcta
 import "../assets/css/cart.css";
 
 const Cart = () => {
+    const [discountCode, setDiscountCode] = useState('');
+    const [isDiscountValid, setIsDiscountValid] = useState(true);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const seleccionEnvio = useSelector((state) => state.carrito.seleccionEnvio);
     const productosSeleccionados = useSelector((state) => state.carrito.productosSeleccionados);
-    const totalPrice = useSelector((state) => state.carrito.totalPrice);
+    const precioConDescuento = useSelector((state) => state.carrito.precioConDescuento);
     const direccion = useSelector((state) => state.carrito.adress);
     const count = useSelector((state) => state.counter.value);
     const username = useSelector((state) => state.auth.username);
-
+    const token = useSelector(selectAuthToken); // Obtener el token del estado de Redux
+    const storedToken = localStorage.getItem('token');
+    
     useEffect(() => {
-        dispatch(calcularTotal());  // Calcular el total basado en los vinilos seleccionados
+        dispatch(calcularTotal());  // Calcular el total basado en los productos seleccionados
     }, [productosSeleccionados, dispatch]);
 
     const handleClick = (productId) => {
@@ -30,7 +35,6 @@ const Cart = () => {
     const handleDireccionChange = (e) => {
         dispatch(setAdress(e.target.value));  
     };
-    
 
     const handleEnvioChange = (e) => {
         dispatch(setSeleccionEnvio(e.target.value));
@@ -38,10 +42,56 @@ const Cart = () => {
 
     const handleAddToCart = () => {
         productosSeleccionados.forEach(async (product) => {
-            dispatch(addProductToCart({username, productId: product.id }));
+            dispatch(addProductToCart({ username, productId: product.id }));
         });
 
         navigate('/payment');
+    };
+
+    const handleDiscountChange = (e) => {
+        setDiscountCode(e.target.value);
+    };
+
+    const validarDescuento = async (code, token) => {
+        try {
+            console.log("Este es el token: "+ token )
+            const response = await fetch(`http://localhost:8080/api/descuentos/titulo/${code}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            console.log('Estado de la respuesta:', response.status);
+            if (!response.ok) {
+                throw new Error('Código de descuento inválido');
+            }
+            const data = await response.json();
+            console.log('Datos del descuento:', data);
+            return data;
+        } catch (error) {
+            console.error('Error al validar el descuento:', error);
+            return null;
+        }
+    };
+    
+    const handleApplyDiscount = async () => {
+        try {
+            if (!storedToken) {
+                throw new Error('Token de autenticación no encontrado');
+            }
+
+            const descuento = await validarDescuento(discountCode, storedToken);
+            if (descuento) {
+                console.log('Descuento válido:', descuento);
+                dispatch(aplicarDescuento(descuento.off));
+                setIsDiscountValid(true);
+            } else {
+                console.log('Descuento inválido');
+                setIsDiscountValid(false);
+            }
+        } catch (error) {
+            console.error('Error al aplicar el descuento:', error);
+            setIsDiscountValid(false);
+        }
     };
 
     const renderPago = () => {
@@ -80,22 +130,25 @@ const Cart = () => {
                     <input 
                         type="text" 
                         placeholder="Código de descuento" 
-                        
+                        value={discountCode}
+                        onChange={handleDiscountChange}
                     />
+                    <button onClick={handleApplyDiscount}>Aplicar</button>
+                    {!isDiscountValid && (
+                        <p className="error">Código de descuento inválido</p>
+                    )}
                 </div>
-                
                 <div className="cart-total">
-                    <p>Total: ${totalPrice.toFixed(2)}</p>
+                    <p>Total: ${precioConDescuento.toFixed(2)}</p>
                 </div>
                 {username && productosSeleccionados.length > 0 && (
                     <div className="cart-finalizar" >
                         <button id="cart-finalizar-button" onClick={handleAddToCart}>Comprar</button>
                     </div>
                 )}
-                
             </div>
         );
-    }
+    };
 
     return (
         <div className='cart d-flex flex-column align-items-center'>
@@ -127,6 +180,6 @@ const Cart = () => {
             <Footer />
         </div>
     );
-}
+};
 
 export default Cart;

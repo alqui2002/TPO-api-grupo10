@@ -24,21 +24,18 @@ const Login = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
         
-        try {
             
-
             try {
                 await dispatch(loginUser({ username, password })).unwrap();
+                const storedToken = localStorage.getItem('token');
+                console.log('Token almacenado en localStorage:', storedToken); // Imprime el token almacenado en localStorage
                 navigate('/'); 
                 console.log('¡Inicio de sesión exitoso!');
             } catch (error) {
                 setError(authError || 'Error al iniciar sesión');
             }
-           
-        } catch (error) {
-            setError(error.message);
-        }
-    };
+        };
+        
 
     
     const handleRegister = async (e) => {

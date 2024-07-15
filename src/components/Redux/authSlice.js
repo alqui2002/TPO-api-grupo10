@@ -16,9 +16,9 @@ export const loginUser = createAsyncThunk('auth/loginUser', async ({ username, p
 
         const data = await response.json();
         const isAdmin = await fetchUserRole(username);
-        localStorage.setItem('token', data.token);
+        localStorage.setItem('token', data.access_token);
 
-        return { token: data.token, username, isAdmin };  
+        return { token: data.access_token, username, isAdmin };  
     } catch (error) {
         return rejectWithValue(error.message);
     }
@@ -108,7 +108,7 @@ const authSlice = createSlice({
 
 export const { logout } = authSlice.actions;
 
-export const selectAuthToken = (state) => state.auth.token;
+export const selectAuthToken = (state) => state.auth.access_token;
 export const selectAuthUsername = (state) => state.auth.username;
 export const selectAuthIsAdmin = (state) => state.auth.isAdmin;  
 export const selectAuthError = (state) => state.auth.error;
